@@ -13,9 +13,9 @@ def login(request):
     return render(request, 'login/index.html')
 
 def loggedin(request):
-    #client id
-    #173138853341-9hdlujjsgpq28e3iite0n29tc1artuhr.apps.googleusercontent.com
+    #add code to store info from google into models
+    #profile = googleUser.getBasicProfile()
+    return HttpResponseRedirect(reverse('login:home'))
 
-    #client secret
-    #BTJ22vrZSuwsT1FYEvWZ34Fs
-    return
+def home(request):
+    return render(request, 'login/home.html')
