@@ -6,16 +6,9 @@
     <meta name="google-signin-client_id"
         content="173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com">
 </head>
+<body>
 Hi
-<script>
-    function init() {
-        gapi.load('auth2', function () {
-            gapi.auth2.init({
-                client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
-            });/* Ready. Make a call to gapi.auth2.init or some other API */
-        });
-    }
-</script>
+
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 <script>
     function onSignIn(googleUser) {
@@ -35,7 +28,16 @@ Hi
         });
     }
 </script>
+<script>
+        function init() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init({
+                    client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
+                });/* Ready. Make a call to gapi.auth2.init or some other API */
+            });
+        }
+ </script>
 
-<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+</body>
 
 </html>
