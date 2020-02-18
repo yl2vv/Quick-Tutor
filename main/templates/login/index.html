@@ -5,21 +5,30 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id"
         content="173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
-Hi
-
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
 <script>
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        //console.log('Name: ' + profile.getName());
+        //console.log('Image URL: ' + profile.getImageUrl());
+        //console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        data = {
+            "ID": profile.getId(),
+            "Name": profile.getName(),
+            "Image": profile.getImageUrl(),
+            "Email": profile.getEmail(),
+            csrfmiddlewaretoken: '{{ csrf_token }}' 
+        }
+        $.ajax({
+            type: "POST",
+            url: "loggedIn",
+            data: data
+        });
+
     }
 </script>
-<a href="" onclick="signOut();">Sign out</a>
 <script>
     function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
@@ -29,15 +38,22 @@ Hi
     }
 </script>
 <script>
-        function init() {
-            gapi.load('auth2', function () {
-                gapi.auth2.init({
-                    client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
-                });/* Ready. Make a call to gapi.auth2.init or some other API */
-            });
-        }
- </script>
+    function init() {
+        gapi.load('auth2', function () {
+            gapi.auth2.init({
+                client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
+            });/* Ready. Make a call to gapi.auth2.init or some other API */
+        });
+    }
+</script>
 
+<body>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <a href="" onclick="signOut();">Sign out</a>
 </body>
+
+
+
 
 </html>

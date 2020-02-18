@@ -15,6 +15,12 @@ def login(request):
 def loggedin(request):
     #add code to store info from google into models
     #profile = googleUser.getBasicProfile()
+    #if form not complete for user -> render form page
+    if(request.method == "POST"):
+        name = request.POST['Name']
+        email = request.POST['Email']
+        image = request.POST['Image']
+        ID = request.POST['ID']
     return HttpResponseRedirect(reverse('login:home'))
 
 def home(request):
