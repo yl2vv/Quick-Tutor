@@ -19,3 +19,6 @@ def loggedin(request):
 
 def home(request):
     return render(request, 'login/home.html')
+
+def newprofile(request):
+    return render(request, 'login/newprofile.html')

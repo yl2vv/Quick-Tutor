@@ -1,12 +1,13 @@
+{% extends "login/base.html" %}
 <!DOCTYPE html>
 <html>
 
-<head>
+{% block head %}
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id"
         content="173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com">
-</head>
-<body>
+{% endblock head %}
+{% block body %}
 Hi
 
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -38,6 +39,6 @@ Hi
         }
  </script>
 
-</body>
+{% endblock body %}
 
 </html>
