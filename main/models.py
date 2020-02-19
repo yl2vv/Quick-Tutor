@@ -4,7 +4,7 @@ from django.db import models
 
 
 class User(models.Model):
-    ID = models.CharField(max_length=300)
+    userid = models.CharField(max_length=300)
     name = models.CharField(max_length=50)
     email = models.EmailField()
     image = models.CharField(max_length=300)

@@ -6,5 +6,6 @@ app_name = 'login'
 urlpatterns = [
     path('', views.login, name='login'),
     path('loggedIn', views.loggedin, name='loggedin'),
-    path('home', views.home, name = 'home')
+    path('home', views.home, name = 'home'),
+    path('form', views.form,name = 'form')
 ]

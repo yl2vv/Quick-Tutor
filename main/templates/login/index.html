@@ -7,9 +7,42 @@
         content="173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
+<body>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <a href="" onclick="signOut();">Sign out</a>
+    <p id="loc"></p>
+</body>
+
+
 <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+    <script>
+        function init() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init({
+                    client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
+                });/* Ready. Make a call to gapi.auth2.init or some other API */
+            });
+        }
+    </script>
+<script>
+    var x = document.getElementById("loc");
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
         //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
         //console.log('Name: ' + profile.getName());
         //console.log('Image URL: ' + profile.getImageUrl());
@@ -19,7 +52,7 @@
             "Name": profile.getName(),
             "Image": profile.getImageUrl(),
             "Email": profile.getEmail(),
-            csrfmiddlewaretoken: '{{ csrf_token }}' 
+            csrfmiddlewaretoken: '{{ csrf_token }}'
         }
         $.ajax({
             type: "POST",
@@ -28,32 +61,11 @@
         });
 
     }
-</script>
-<script>
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-        });
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
     }
 </script>
-<script>
-    function init() {
-        gapi.load('auth2', function () {
-            gapi.auth2.init({
-                client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
-            });/* Ready. Make a call to gapi.auth2.init or some other API */
-        });
-    }
-</script>
-
-<body>
-
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <a href="" onclick="signOut();">Sign out</a>
-</body>
-
-
 
 
 </html>
