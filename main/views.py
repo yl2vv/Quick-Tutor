@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Tutee,Tutor,Profile
 
 # Create your views here.
 from django.http import Http404
@@ -21,4 +22,7 @@ def home(request):
     return render(request, 'login/home.html')
 
 def newprofile(request):
-    return render(request, 'login/newprofile.html')
+    context = {
+        'profiles' : Profile.objects.all()
+    }
+    return render(request, 'login/newprofile.html', context)
