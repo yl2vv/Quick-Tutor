@@ -21,6 +21,14 @@ def loggedin(request):
 def home(request):
     return render(request, 'login/home.html')
 
+# view for the tutor page after user has clicked that option on the homepage
+def tutoring(request):
+    return render(request, 'tutor/main.html')
+
+# view for the tutor page after user has clicked that option on the homepage
+def tuteeing(request):
+    return render(request, 'tutee/main.html')
+
 def newprofile(request):
     context = {
         'profiles' : Profile.objects.all()
