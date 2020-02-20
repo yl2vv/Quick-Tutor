@@ -7,3 +7,6 @@ from django.template import loader
 
 def question(request):
     return render(request, 'main/question.html')
+
+def results(request):
+    return render(request, 'main/results.html')
