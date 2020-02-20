@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import Tutee,Tutor,Profile
 
 # Create your views here.
 from django.http import Http404
@@ -28,9 +27,3 @@ def tutoring(request):
 # view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
     return render(request, 'tutee/main.html')
-
-def newprofile(request):
-    context = {
-        'profiles' : Profile.objects.all()
-    }
-    return render(request, 'login/newprofile.html', context)
