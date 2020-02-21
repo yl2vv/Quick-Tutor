@@ -14,3 +14,6 @@ def newprofile(request):
         'profiles' : Profile.objects.all()
     }
     return render(request, 'profile_form/newprofile.html', context)
+
+def userprofile(request):
+    return render(request, 'profile_form/userprofile.html')  # figure out how to pull data from newprofile
