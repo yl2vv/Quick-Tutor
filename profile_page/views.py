@@ -8,12 +8,6 @@ from django.urls import reverse
 from django.views import generic
 from django.template import loader
 
-# Create your views here.
-def newprofile(request):
-    context = {
-        'profiles' : Profile.objects.all()
-    }
-    return render(request, 'profile_form/newprofile.html', context)
-
+#this view shows an already created profile (image, number of people tutored, etc. )
 def userprofile(request):
     return render(request, 'profile_form/userprofile.html')  # figure out how to pull data from newprofile
