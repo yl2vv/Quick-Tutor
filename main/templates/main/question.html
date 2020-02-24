@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
-    <a class="navbar-brand text-white" href="#">QuickTutor</a>
+    <a class="navbar-brand text-white" href="results">QuickTutor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,32 +23,32 @@
       </div>
     </div>
 </nav>
-
 <div class="container">
     <div class="column col-md-6 offset-md-3 justify-content-center p-4">
         <h1>Tutee Ask Your Question!</h1>
-        <form class="column justify-content-center"> 
+        <form method='POST' class="column justify-content-center"> 
+          {% csrf_token %}
             <div class="form-group">
                 <label for="Question">What is your question?</label>
-                <input type="question" class="form-control" id="Question">
+                <input type="question" class="form-control" name="Question">
             </div>
             <div class="form-group w-50">
                 <label for="class">Class</label>
-                <select class="form-control" id="class">
+                <select class="form-control" name="class">
                     <option>CS3240</option>
                     <option>Not CS3240</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Upload Image of Question:</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" class="form-control-file" name="upload">
             </div>
             <div class="form-group">
                 <label for="comments">Additional Comments:</label>
-                <textarea class="form-control" id="comments" rows="3"></textarea>
+                <textarea class="form-control" name="comments" rows="3"></textarea>
               </div>
-            <!-- <button href="results" type="submit" class="btn btn-success btn-lg btn-block" >Submit</button> -->
-            <a href="results" type="submit" class="btn btn-success btn-lg btn-block" role="button">Submit</a>
+            <button href="results" type="submit" class="btn btn-success btn-lg btn-block" >Submit</button>
+            <!-- <a href="results" type="submit" class="btn btn-success btn-lg btn-block" role="button">Submit</a> -->
         </form>
     </div>
 </div>
