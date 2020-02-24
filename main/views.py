@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Tutee,Tutor,Profile
+from .models import Tutee,Tutor
 
 # Create your views here.
 from django.http import Http404
