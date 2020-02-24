@@ -1,26 +1,18 @@
-{% extends "login/base.html" %}
 <!DOCTYPE html>
+{% load socialaccount %}
+{% providers_media_js %}
 <html>
 
-{% block head %}
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id"
-        content="173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com">
-{% endblock head %}
-{% block body %}
-Hi
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
 
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-<script>
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-</script>
-<a href="" onclick="signOut();">Sign out</a>
+<body>
+    <p>hi</p>
+    <button><a href="{% provider_login_url "google" %}">Google</a></button>
+</body>
+
+
 <script>
     function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
@@ -29,16 +21,44 @@ Hi
         });
     }
 </script>
-<script>
-        function init() {
-            gapi.load('auth2', function () {
-                gapi.auth2.init({
-                    client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
-                });/* Ready. Make a call to gapi.auth2.init or some other API */
-            });
-        }
- </script>
 
-{% endblock body %}
+<script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        var positionCords;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    // Get current cordinates.
+                    positionCords = [position.coords.latitude, position.coords.longitude];
+                    data = {
+                        "ID": profile.getId(),
+                        "Name": profile.getName(),
+                        "Image": profile.getImageUrl(),
+                        "Email": profile.getEmail(),
+                        "Latitude": positionCords[0],
+                        "Longitude": positionCords[1],
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "loggedIn",
+                        data: data
+                    });
+                },
+                function (error) {
+                    // On error code..
+                    alert("Not able to get location")
+                },
+                { timeout: 30000, enableHighAccuracy: true, maximumAge: 75000 }
+            );
+        }
+        else {
+            alert("Please try again.")
+        }
+    }
+
+</script>
+
 
 </html>
