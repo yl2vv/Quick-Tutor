@@ -1,10 +1,35 @@
-{% extends "login/base.html" %}
-<!DOCTYPE html>
-<html>
-{% block head %}
-	New profile form
-{% endblock head %}
-{% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-{% endblock body %}
-</html>
+<nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <a class="navbar-brand text-white" href="home">QuickTutor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+</nav>
+<div class="container">
+    <div class="column col-md-6 offset-md-3 justify-content-center p-4">
+        <h1>Create your profile</h1>
+        <form method='POST' class="column justify-content-center"> 
+          {% csrf_token %}
+          <div class='row-md-4'>
+	            <div class="form-group">
+	                <input type="newfirstname" class="form-control" placeholder = "First Name" name="FirstName">
+	            </div>
+	            <div class="form-group">
+	                <input type="newlastname" class="form-control" placeholder = "Last Name" name="LastName">
+	            </div>
+	      </div>
+            <div class="form-group">
+                <label for="GPA">Enter your cummulative college GPA:</label>
+                <input type="newgpa" class="form-control" name="GPA">
+            </div>
+            <div class="form-group">
+                <label for="comments">Personal Bio:</label>
+                <textarea type = "newbio" class="form-control" name="Bio" rows="3"></textarea>
+              </div>
+            <button href="home" type="submit" class="btn btn-success btn-lg btn-block" >Create
+            </button>
+        </form>
+    </div>
+</div>

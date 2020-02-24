@@ -14,7 +14,9 @@ class Profile(models.Model):
     #additional information pulled from a new user profile
     date_created = models.DateTimeField(default = timezone.now)
     #might want to add author = models.ForeignKey(User,on_delete=models.CASCADE)
-    name = models.CharField(max_length = 50)
+    firstname = models.CharField(max_length = 15)
+    lastname = models.CharField(max_length=15)
+    computingID = models.CharField(max_length = 7)
     gpa = models.CharField(max_length = 5)
     phone_number = models.CharField(max_length = 12)
     #shool_year and college should be pull down options
