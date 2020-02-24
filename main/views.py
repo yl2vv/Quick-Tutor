@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
-from .models import Question
+from .models import Question, People
 
 
 def question(request):
@@ -27,8 +27,16 @@ def question(request):
     return render(request, 'main/question.html', context)
 
 def results(request):
-    queryset = Question.objects.all()
+    questions = Question.objects.all()
+    people = People.objects.all()
+    results = []
+    for p in people:
+        if questions.reverse()[0].Class_text.upper() in p.class_id.upper():
+            if p.status == True:
+                results.append(p)
     context = {
-        "object_list": queryset
+        "questions_list": questions,
+        "people_list": people,
+        "results": results,
     }
     return render(request, 'main/results.html', context)

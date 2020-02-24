@@ -26,11 +26,77 @@
     </div>
 </nav>
 
-<div>
+<!-- <div>
   {% for instance in object_list %}
     <p>{{instance.Question_text}} - {{instance.Class_text}} - {{instance.Comments_text}} - {{File_upload}}</p>
   {% endfor %}
-</div>
+</div> -->
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Name</th>
+      <th scope="col">Classes</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for instance in results %}
+        <tr>
+          <th scope="row">{{instance.username}}</th>
+          <td>{{instance.name}}</td>
+          <td>{{instance.class_id}}</td>
+          <td>{{instance.rating}}</td>
+          <td>{{instance.status}}</td>
+        </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Name</th>
+      <th scope="col">Classes</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for instance in people_list %}
+    <tr>
+      <th scope="row">{{instance.username}}</th>
+      <td>{{instance.name}}</td>
+      <td>{{instance.class_id}}</td>
+      <td>{{instance.rating}}</td>
+      <td>{{instance.status}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Question</th>
+      <th scope="col">Class</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Pic</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for instance in questions_list %}
+    <tr>
+      <th scope="row">{{instance.Question_text}}</th>
+      <td>{{instance.Class_text}}</td>
+      <td>{{instance.Comments_text}}</td>
+      <td>{{isntance.File_upload}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 <!-- <div class="container">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
