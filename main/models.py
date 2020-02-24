@@ -1,6 +1,10 @@
 from django.db import models
+# from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+# class CustomUser(AbstractUser):
+#     pass
+#     # add additional fields in here
+
 
 
 class User(models.Model):
@@ -8,5 +12,6 @@ class User(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     image = models.CharField(max_length=300)
-    location = models.FloatField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
     formCompleted = models.BooleanField()

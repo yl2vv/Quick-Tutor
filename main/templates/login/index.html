@@ -1,17 +1,15 @@
 <!DOCTYPE html>
+{% load socialaccount %}
+{% providers_media_js %}
 <html>
 
 <head>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id"
-        content="173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
-
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <a href="" onclick="signOut();">Sign out</a>
+    <p>hi</p>
+    <button><a href="{% provider_login_url "google" %}">Google</a></button>
 </body>
 
 
@@ -23,50 +21,43 @@
         });
     }
 </script>
+
 <script>
-    function init() {
-        gapi.load('auth2', function () {
-            gapi.auth2.init({
-                client_id: '173138853341-qr118somq28dgh4mm2l0mrbon86hoq5b.apps.googleusercontent.com',
-            });/* Ready. Make a call to gapi.auth2.init or some other API */
-        });
-    }
-</script>
-<script>
-    var loc = []
-    function showPosition(position) {
-        loc[0] = position.coords.latitude;
-        loc[1] = position.coords.longitude;
-    }
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
-        
+        var positionCords;
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    // Get current cordinates.
+                    positionCords = [position.coords.latitude, position.coords.longitude];
+                    data = {
+                        "ID": profile.getId(),
+                        "Name": profile.getName(),
+                        "Image": profile.getImageUrl(),
+                        "Email": profile.getEmail(),
+                        "Latitude": positionCords[0],
+                        "Longitude": positionCords[1],
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "loggedIn",
+                        data: data
+                    });
+                },
+                function (error) {
+                    // On error code..
+                    alert("Not able to get location")
+                },
+                { timeout: 30000, enableHighAccuracy: true, maximumAge: 75000 }
+            );
         }
-        console.log(loc);
-
-        //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        //console.log('Name: ' + profile.getName());
-        //console.log('Image URL: ' + profile.getImageUrl());
-        //console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        data = {
-            "ID": profile.getId(),
-            "Name": profile.getName(),
-            "Image": profile.getImageUrl(),
-            "Email": profile.getEmail(),
-            "Latitude": loc[0],
-            "Longitude": loc[1],
-            csrfmiddlewaretoken: '{{ csrf_token }}'
+        else {
+            alert("Please try again.")
         }
-        $.ajax({
-            type: "POST",
-            url: "loggedIn",
-            data: data
-        });
-
     }
-    
+
 </script>
 
 

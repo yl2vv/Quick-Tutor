@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.template import loader
-from .models import User
+
 
 # Create your views here.
 
@@ -25,15 +25,20 @@ def loggedin(request):
         email = request.POST['Email']
         image = request.POST['Image']
         ID = request.POST['ID']
+        latitude = request.POST['Latitude']
+        longitude = request.POST['Longitude']
         try:
             user = User.objects.get(userid=ID)
             formCheck = user[formCompleted]
             if(formCheck == False):
                 return HttpResponseRedirect(reverse('login:form'))
         except:
-            #User.objects.create(userid = ID,email = email,name = name,image = image)
+            #User.objects.create(userid = ID,email = email,name = name,image = image,latitude = latitude, longitude = longitude)
             print("exception")
-    return HttpResponseRedirect(reverse('login:home'))
+    if request.user.is_authenticated:
+      return HttpResponseRedirect(reverse('login:home'))
+    else:
+        return HttpResponseRedirect(reverse('login:login'))
 
 
 def form(request):
