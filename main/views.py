@@ -31,9 +31,10 @@ def results(request):
     people = People.objects.all()
     results = []
     for p in people:
-        if questions.reverse()[0].Class_text.upper() in p.class_id.upper():
+        if questions.last().Class_text.upper() in p.class_id.upper():
             if p.status == True:
                 results.append(p)
+    print(results)
     context = {
         "questions_list": questions,
         "people_list": people,
