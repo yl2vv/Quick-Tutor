@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Tutee,Tutor
+from .models import Tutee,Tutor,User
 
 # Create your views here.
 from django.http import Http404
@@ -58,7 +58,27 @@ def tuteeing(request):
     return render(request, 'tutee/main.html')
 
 def newprofile(request):
-    context = {
-        'profiles' : Profile.objects.all()
-    }
+    if request.method == "POST":
+        newfirstname = request.POST.get('FirstName')
+        newlastname = request.POST.get('LastName')
+        newcomputingid = request.POST.get('ComputingID')
+        newphonenumber = request.POST.get('PhoneNumber')
+        newgpa = request.POST.get('GPA')
+        newschoolyear = request.POST.get('SchoolYear')
+        newbio = request.POST.get('Bio')
+
+        o = User()
+        o.firstName = newfirstname
+        o.lastName = newlastname
+        o.computingID = newcomputingid
+        o.phoneNumber = newphonenumber
+        o.gpa = newgpa
+        o.schoolYear = newschoolyear
+        o.bio = newbio
+        o.save()
+
+    context = {}
     return render(request, 'login/newprofile.html', context)
+
+def userprofile(request):
+    return render(request, 'login/userprofile.html')

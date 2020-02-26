@@ -1,13 +1,7 @@
 from django.db import models
-# from django.contrib.auth.models import AbstractUser
+from phone_field import PhoneField
 from django.utils import timezone
-#for User ForeignKey from django.contrib.auth.models import User
 
-class Tutor(models.Model):
-#     # add additional fields in here
-#     pass
-# class CustomUser(AbstractUser):
-    #from google API
 class Tutor(models.Model):
     tutor_ID = models.CharField(max_length = 100) #not sure how long these IDs are
 
@@ -24,6 +18,7 @@ class Tutee(models.Model):
 
 
 class User(models.Model):
+    #info from the API
     userid = models.CharField(max_length=300)
     name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -31,3 +26,13 @@ class User(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     formCompleted = models.BooleanField()
+
+    #info from the profile form
+    firstName = models.CharField(max_length=10)
+    lastName = models.CharField(max_length=10)
+    phoneNumber = PhoneField(blank = True, help_text = 'Mobile phone number')
+    computingID = models.CharField(max_length =7)
+    schoolYear = models.IntegerField()
+    classes = models.CharField(max_length=200)
+    gpa = models.FloatField()
+    bio = models.TextField(max_length = 300)
