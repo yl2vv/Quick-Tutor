@@ -46,11 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount',
+    'allauth.account',
+    'allauth',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -98,20 +98,6 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
 
 
 # Internationalization
@@ -137,7 +123,14 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = "/loggedIn"
 
+
 #AUTH_USER_MODEL = 'main.CustomUser'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+ACCOUNT_LOGOUT_ON_GET = True
+
+ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+
+

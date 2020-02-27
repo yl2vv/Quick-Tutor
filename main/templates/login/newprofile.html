@@ -1,10 +1,152 @@
-{% extends "login/base.html" %}
 <!DOCTYPE html>
 <html>
-{% block head %}
-	<title></title>
-{% endblock head %}
-{% block body %}
 
-{% endblock body %}
-</html>
+<!-- <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head> -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<meta charset="utf-8">  
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+      
+    <link rel="stylesheet" href=  
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
+        
+    <script src=  
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">  
+    </script>  
+        
+    <script src=  
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">  
+    </script>  
+        
+    <script src=  
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">  
+    </script>  
+      
+    <style type="text/css"> 
+        h1 { 
+            color:green; 
+        } 
+        .xyz { 
+            background-size: auto; 
+            text-align: center; 
+            padding-top: 100px; 
+        } 
+        .btn-circle.btn-sm { 
+            width: 30px; 
+            height: 30px; 
+            padding: 6px 0px; 
+            border-radius: 15px; 
+            font-size: 8px; 
+            text-align: center; 
+        } 
+        .btn-circle.btn-md { 
+            width: 50px; 
+            height: 50px; 
+            padding: 7px 10px; 
+            border-radius: 25px; 
+            font-size: 10px; 
+            text-align: center; 
+        } 
+        .btn-circle.btn-xl { 
+            width: 70px; 
+            height: 70px; 
+            padding: 10px 16px; 
+            border-radius: 35px; 
+            font-size: 12px; 
+            text-align: center; 
+        } 
+    </style>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <a class="navbar-brand text-white" href="home">QuickTutor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+</nav>
+
+<!-- <script>
+  profile = googleUser.getBasicProfile();
+  data = {
+    "ID": profile.getId(),
+    csrfmiddlewaretoken: '{{ csrf_token }}'
+  }
+  $.ajax({
+                        type: "POST",
+                        url: "home",
+                        data: data
+                    });
+</script> -->
+
+<div class="container">
+    <div class="column col-md offset-md-3 justify-content-center p-4">
+        <h1>Create your profile</h1>
+    </div>
+</div>
+
+
+<form method='POST' class="column justify-content-center"> 
+    {% csrf_token %}
+    <div class='container'>
+        <div class = "row p-4">
+            <div class = "col-sm-4">
+        	   <div class="form-group" style = "width: 150px">
+        	        <input type="newfirstname" class="form-control" placeholder = "First Name" name="FirstName">
+        	   </div>
+            </div>
+            <div class = "col-sm-4">
+            	<div class="form-group" style = "width: 150px">
+            	   <input type="newlastname" class="form-control" placeholder = "Last Name" name="LastName">
+            	</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="newgpa" class="form-control" placeholder = "Cummulative college GPA" name="GPA">
+        </div>
+
+
+        <div class = "form-group">
+            <input type="tel" id="phone" name="PhoneNumber" placeholder = "Phone number: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        </div>
+
+
+
+        <ul>
+        <li class="dropdown">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">Classes you have taken<b class="caret"></b></a>
+            <ul class="custom-select">
+                <li>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">Two
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">Two
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        </ul>
+
+
+
+        <div class="form-group">
+            <textarea type = "newbio" class="form-control" placeholder = "Personal bio" name="Bio" rows="3"></textarea>
+        </div>
+
+        <button type = "button" class = "btn btn-light btn-circle btn-xl" onclick = "window.location.href = 'home';">Create</button>
+
+	</div>
+</form>

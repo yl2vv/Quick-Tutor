@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Tutee,Tutor
+from .models import Tutee,Tutor,User
 
 # Create your views here.
 from django.http import Http404
@@ -28,11 +28,12 @@ def loggedin(request):
         ID = request.POST['ID']
         latitude = request.POST['Latitude']
         longitude = request.POST['Longitude']
+
         try:
             user = User.objects.get(userid=ID)
             formCheck = user[formCompleted]
-            if(formCheck == False):
-                return HttpResponseRedirect(reverse('login:form'))
+            if(formCheck == False): #this formCheck isn't working
+                return HttpResponseRedirect(reverse('login:newprofile'))
         except:
             #User.objects.create(userid = ID,email = email,name = name,image = image,latitude = latitude, longitude = longitude)
             print("exception")
@@ -40,11 +41,6 @@ def loggedin(request):
       return HttpResponseRedirect(reverse('login:home'))
     else:
         return HttpResponseRedirect(reverse('login:login'))
-
-
-def form(request):
-    return render(request, 'login/form.html')
-
 
 def home(request):
     return render(request, 'login/home.html')
@@ -56,3 +52,30 @@ def tutoring(request):
 # view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
     return render(request, 'tutee/main.html')
+
+def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
+    if request.method == "POST":
+        # o = User.objects.get(userid=id)
+        o = User()
+        o.firstName = request.POST.get('FirstName')
+        o.lastName = request.POST.get('LastName')
+        o.computingID = request.POST.get('ComputingID')
+        o.phoneNumber = request.POST.get('PhoneNumber')
+        o.gpa = request.POST.get('GPA')
+        o.schoolYear = request.POST.get('SchoolYear')
+        o.bio = request.POST.get('Bio')
+
+         #get current user to add this info to User.objects.get(userid=ID)
+        # o.firstName = newfirstname
+        # o.lastName = newlastname
+        # o.computingID = newcomputingid
+        # o.phoneNumber = newphonenumber
+        # o.gpa = newgpa
+        # o.schoolYear = newschoolyear
+        # o.bio = newbio
+        o.save()
+
+    return render(request, 'login/newprofile.html')
+
+def userprofile(request):
+    return render(request, 'login/userprofile.html')
