@@ -5,3 +5,13 @@ install:
 - pip install -r requirements-travis.txt
 script:
 - python manage.py test
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: MfyIFmJN4FpFZmfhG3vB4Eg+FjaHLB9fKSOxooLUFUGXBHowhApXGjS/b5NtZhLMNhxVOTB0JNgZaS5z3SMu0/m811xk7Ti0jhYe2zLqdW42uPsRjYxUer/APPDkqKkqr6SXp9R3wiMXR3SjWsU6jE56nreTJwgKz7v07ou//0VVJ89tSSJBCaWjCIafeo5XxLeySQulSK/EziF6Rm6Cf4Vj50XsvnPFH/cldfggNjwq/zb1A9zxcVGz6yjogXzSO/YonIZKF1BdYf+s2IrHtjNybKDAqeDCSW6WDg5XpaYV1+NFKg0wi0/a2fvqJ3f5poK5MnojpcyFzpqM8ErSam0+RBX4QpYCHevKy5qPe1HnzgSySzWzxtbAbG4BXNh2UIHwSJXBKhw1jMmlC7kZ5eZ4ObE2a8DwbLL7U3Ho/xVFaagAXJwPazTqpuIqetnEODeHFUG50Ya6tyB5t1pFDr9C1mw3X1+Gj5303Zh4lo5spBqRz0Tn5Zb2x2bm7MdVB3hq0mNlV7MXjCE9FuXIiUJjMeGE+wSsY5w8Zhv2vg9N/zaSq/vunm9QeCJlu0P9KuzeIzEHjPy1bzoiGARXfAK75qDldv87nmhYcecjV+yMqO93mtKoedi7wc3XSp5P5R1NXol5Ti4fCa6Oy14OQFlyhklPN1o5oBZrXuBFJJE=
+  app: cs4life-quicktutor
+  on:
+    repo: uva-cs3240-s20/project-101-cs4life
