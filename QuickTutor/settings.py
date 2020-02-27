@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -122,7 +123,14 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = "/loggedIn"
 
+
+#AUTH_USER_MODEL = 'main.CustomUser'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
+
 ACCOUNT_LOGOUT_ON_GET = True
 
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+
 
