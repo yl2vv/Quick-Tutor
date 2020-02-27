@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main.apps.MainConfig',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount',
     'allauth.account',

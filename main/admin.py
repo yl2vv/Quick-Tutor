@@ -2,13 +2,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-<<<<<<< HEAD
+
 # Register your models here.
 from .models import Question, People
 
 admin.site.register(Question)
 admin.site.register(People)
-=======
+
 from .models import Profile
 
 class ProfileInline(admin.StackedInline):
@@ -28,4 +28,4 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
->>>>>>> dev
+
