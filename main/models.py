@@ -25,7 +25,7 @@ class User(models.Model):
     image = models.CharField(max_length=300)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    formCompleted = models.BooleanField()
+    formCompleted = models.BooleanField(default = False)
 
     #info from the profile form
     firstName = models.CharField(max_length=10)
@@ -34,5 +34,5 @@ class User(models.Model):
     computingID = models.CharField(max_length =7)
     schoolYear = models.IntegerField()
     classes = models.CharField(max_length=200)
-    gpa = models.FloatField()
+    gpa = models.CharField(max_length =4)
     bio = models.TextField(max_length = 300)
