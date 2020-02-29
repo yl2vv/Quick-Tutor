@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth',
     'django.contrib.sites',
+    'phone_field',
 ]
 
 MIDDLEWARE = [

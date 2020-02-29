@@ -10,7 +10,9 @@ dj-database-url==0.5.0
 Django==3.0.2
 django-allauth==0.41.0
 django-bootstrap4==1.1.1
+django-crispy-forms==1.8.1
 django-heroku==0.3.1
+django-phone-field==1.8.0
 google-api-python-client==1.7.11
 google-auth==1.11.2
 google-auth-httplib2==0.0.3
@@ -41,5 +43,6 @@ soupsieve==1.9.5
 sqlparse==0.3.0
 uritemplate==3.0.1
 urllib3==1.25.8
+virtualenv==16.7.9
 whitenoise==5.0.1
 wrapt==1.11.2
