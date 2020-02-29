@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load socialaccount %}
+{% providers_media_js %}
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <p>Welcome to quickTutor!</p>
+    <button><a href="{% provider_login_url "google" %}">Google</a></button>
+    <button><a href="{% url 'account_logout' %}">Log Out</a></button>
+</body>
+
+
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+</script>
+
+<script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        var positionCords;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    // Get current cordinates.
+                    positionCords = [position.coords.latitude, position.coords.longitude];
+                    data = {
+                        "ID": profile.getId(),
+                        "Name": profile.getName(),
+                        "Image": profile.getImageUrl(),
+                        "Email": profile.getEmail(),
+                        "Latitude": positionCords[0],
+                        "Longitude": positionCords[1],
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "loggedIn",
+                        data: data
+                    });
+                },
+                function (error) {
+                    // On error code..
+                    alert("Not able to get location")
+                },
+                { timeout: 30000, enableHighAccuracy: true, maximumAge: 75000 }
+            );
+        }
+        else {
+            alert("Please try again.")
+        }
+    }
+
+</script>
+
+
+</html>
