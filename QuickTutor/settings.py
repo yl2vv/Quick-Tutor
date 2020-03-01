@@ -97,6 +97,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 # install postgres on this machine
 # you'll enter root user credentials in the process
 # use the credentials to create another user (this should be the same for all your group memebers)
