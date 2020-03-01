@@ -8,6 +8,8 @@ script:
 branches:
   only:
   - master
+services:
+  - postgresql
 deploy:
   provider: heroku
   api_key:
