@@ -89,10 +89,20 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'quicktutor4',
+        'USER': 'groupuser',
+        'PASSWORD': 'tutoring!',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
+# install postgres on this machine
+# you'll enter root user credentials in the process
+# use the credentials to create another user (this should be the same for all your group memebers)
+# create a database (this should be the same for all your group memebers)
+# give that user the permissions to modify/access the database
+# try running the server
 
 
 # Password validation
@@ -128,8 +138,6 @@ LOGIN_REDIRECT_URL = "/loggedIn"
 
 # Activate Django-Heroku.
 #django_heroku.settings(locals())
-
-# Activate Django-Heroku.
 try:
     # Configure Django App for Heroku.
     import django_heroku
