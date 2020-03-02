@@ -102,13 +102,6 @@ if 'HEROKU' in os.environ:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-'''
-    DATABASES = {
-        'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'quicktutor4',
             'USER': 'groupuser',
@@ -117,7 +110,7 @@ else:
             'PORT': '5432',
         }
     }
-'''
+
 # install postgres on this machine
 # you'll enter root user credentials in the process
 # use the credentials to create another user (this should be the same for all your group memebers)
