@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -86,7 +88,6 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 if 'HEROKU' in os.environ:
     DATABASES = {
         'default': {
@@ -101,6 +102,13 @@ if 'HEROKU' in os.environ:
 else:
     DATABASES = {
         'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+'''
+    DATABASES = {
+        'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'quicktutor4',
             'USER': 'groupuser',
@@ -109,6 +117,7 @@ else:
             'PORT': '5432',
         }
     }
+'''
 # install postgres on this machine
 # you'll enter root user credentials in the process
 # use the credentials to create another user (this should be the same for all your group memebers)
@@ -160,5 +169,8 @@ except ImportError:
 ACCOUNT_LOGOUT_ON_GET = True
 
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+
+
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
