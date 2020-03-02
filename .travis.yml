@@ -17,7 +17,7 @@ services:
 deploy:
   provider: heroku
   api_key:
-    secure: "BRk5qdjJgvFXJfdk/mnUGaP31UzEECgNjPChe8LNPf+X28ZWODTY8r/GlJB0nII8HcYgY/dQ8SviVsavdzuamS3/A6xyBQUdwC64j4NwVXNfAM0k6QIHdeIRjIcu2oj1POVwTde/nk+wg5yWWr2uQgrndDn/Qghi8slJ+WoRShkLVEV2NVlRbgTwsUVgOH6TB4HPOF75VG8p4wyJuOcwggSJyOFbQy1SECJplpJsoZeAyEJ8vZ4cfmcRmE12ouNXXtwcvpcggI5EsHnhcleqXoHW41DCa7hXmNH+KpjLXRorM0akecjtMVnMVnmu0X8SH/FsbgRvtoULcQSU85+xJ3UUMEUk5B7eLZ6sBxAIa9O1DHYj2OGsMQ6Nk4qwwWHvcLNtczCEQonW73GBELQQxSbcnxva6XAFR5ODLAMuZwTDTwyu5BgLPrSuMnTQQ0kwU8uQkZ9kUyyFca7LReq426BX+efEpo50KyYHYQ404bnFKqv24FREHuS0Lk5Njh+bDSYOl1v4cNXuvNO7VsBE+gwDyQJ04ZCc4uE5od+WyItP/qUAiE69ffGtrB0y3U3zsiIc3GuCb3hKrdPm0cGayf6Jb+PKDAAbBPI7faATCsFuXlapzTwKA3HRmcaBmBFWGyJlLb5WArENcIs+RilRAOr+lKKn25HBUCxksA8j6N0="
+    secure: 7cc35d68-f014-43bb-ac31-e00e9d6df8e8
   app: cs4life-quicktutor
   on:
     repo: uva-cs3240-s20/project-101-cs4life
