@@ -36,7 +36,7 @@ SECRET_KEY = '0=+%_)z8*!16i@e(v!1kome^xrly#-d4b#(hz@(qxkx7sc+0k!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com']
 
 
 # Application definition
