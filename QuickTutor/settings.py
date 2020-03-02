@@ -138,5 +138,3 @@ SOCIALACCOUNT_PROVIDERS = {
         'VERIFIED_EMAIL': True,
     }
 }
-
-#SOCIALACCOUNT_ADAPTER = 'main.adapter.MyAdapter'

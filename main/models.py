@@ -3,6 +3,12 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_mysql.models import ListCharField
+from django.conf import settings
+from allauth import app_settings
+from allauth.account.models import EmailAddress
+from allauth.account.utils import get_next_redirect_url, setup_user_email
+from allauth.utils import get_user_model
+
 
 class Profile(models.Model):
     STUDENT = 1
@@ -13,13 +19,14 @@ class Profile(models.Model):
         (TEACHER, 'Teacher'),
         (SUPERVISOR, 'Supervisor'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Uid = models.IntegerField(default=0)
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    Uid = models.CharField(max_length=100,blank=True)
     location = models.CharField(max_length=30, blank=True)
     birthdate = models.DateField(null=True, blank=True)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
     email = models.EmailField(blank=True)
-    image = models.ImageField(blank=True)
+    image = models.CharField(max_length=300,blank=True)
     #latitude = models.FloatField()
     #longitude = models.FloatField()
     formCompleted = models.BooleanField(default=False)
@@ -28,11 +35,11 @@ class Profile(models.Model):
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
+# @receiver(post_save, sender=User)
+# def create_or_update_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+#     instance.profile.save()
 
 
 
