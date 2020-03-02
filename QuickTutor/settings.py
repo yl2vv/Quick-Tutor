@@ -55,12 +55,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'main.apps.MainConfig',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount',
     'allauth.account',
     'allauth',
-    'django.contrib.sites',
     'phone_field',
 ]
 
