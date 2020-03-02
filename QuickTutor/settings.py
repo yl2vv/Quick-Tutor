@@ -159,12 +159,9 @@ LOGIN_REDIRECT_URL = "/loggedIn"
 
 # Activate Django-Heroku.
 #django_heroku.settings(locals())
-try:
-    # Configure Django App for Heroku.
+if 'HEROKU' in os.environ:
     import django_heroku
     django_heroku.settings(locals())
-except ImportError:
-    found = False
 
 ACCOUNT_LOGOUT_ON_GET = True
 
