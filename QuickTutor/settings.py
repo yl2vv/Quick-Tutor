@@ -44,7 +44,7 @@ SECRET_KEY = '0=+%_)z8*!16i@e(v!1kome^xrly#-d4b#(hz@(qxkx7sc+0k!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -53,7 +53,6 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-
 
 
 INSTALLED_APPS = [
@@ -109,11 +108,21 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }'''
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-#Database
-#https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+DATABASES = {'default': dj_database_url.parse('postgres://postgres:Keshav00@localhost:5432/quicktutor')}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'quickTutor',
+#         'USER': 'kailaney',
+#         'PASSWORD': 'Keshav00',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }}
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # if 'HEROKU' in os.environ:
 #     DATABASES = {
 #         'default': {
@@ -150,7 +159,6 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -178,13 +186,24 @@ LOGIN_REDIRECT_URL = "/loggedIn"
 #AUTH_USER_MODEL = 'main.CustomUser'
 
 # Activate Django-Heroku.
-#django_heroku.settings(locals())
+# django_heroku.settings(locals())
 if 'HEROKU' in os.environ:
     import django_heroku
     django_heroku.settings(locals())
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
-
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'VERIFIED_EMAIL': True,
+    }
+}
