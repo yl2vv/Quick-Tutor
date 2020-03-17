@@ -11,35 +11,26 @@ from allauth.utils import get_user_model
 
 
 class Profile(models.Model):
-    STUDENT = 1
-    TEACHER = 2
-    SUPERVISOR = 3
-    ROLE_CHOICES = (
-        (STUDENT, 'Student'),
-        (TEACHER, 'Teacher'),
-        (SUPERVISOR, 'Supervisor'),
-    )
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    firstname = models.CharField(max_length=50,blank=True)
+    lastname = models.CharField(max_length=50,blank=True)
     Uid = models.CharField(max_length=100,blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birthdate = models.DateField(null=True, blank=True)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
+    computingID = models.CharField(max_length=10,blank=True)
     email = models.EmailField(blank=True)
+    phoneNumber = models.CharField(max_length=50,blank=True)
     image = models.CharField(max_length=300,blank=True)
-    #latitude = models.FloatField()
-    #longitude = models.FloatField()
+    latitude = models.FloatField(default=0.0,blank=True)
+    longitude = models.FloatField(default=0.0,blank=True)
     formCompleted = models.BooleanField(default=False)
+    gpa = models.FloatField(default=0.0,blank=True)
+    schoolYear = models.IntegerField(default=0,blank=True)
     classes = ListCharField(base_field=models.CharField(max_length=15),size=15,max_length= 240,blank=True)
+    bio = models.CharField(max_length=500,blank=True)
 
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
-# @receiver(post_save, sender=User)
-# def create_or_update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
-#     instance.profile.save()
 
 
 
@@ -67,5 +58,3 @@ class Tutee(models.Model):
     def __str__(self):
         # change this to what we actually want to return
         return self.tutee_ID
-
-
