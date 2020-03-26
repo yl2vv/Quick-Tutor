@@ -1,0 +1,23 @@
+language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements-travis.txt
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+- psql -c "CREATE USER groupuser WITH PASSWORD 'tutoring!';" -U postgres
+- psql -c "ALTER USER groupuser CREATEDB;" -U postgres
+script:
+- python manage.py test
+branches:
+  only:
+  - master
+services:
+  - postgresql
+deploy:
+  provider: heroku
+  api_key:
+    secure: "R4ygREEmh6on0rFpyMdyI7UONQvX1B3AgW6FyXFPOryPx26mVrD2A/UGYrufnWuLMEW8JxoBIRzc/yfyP3iiML1s/6FXw5CZcOsRBFuJzpApPPdrnCweYgfPzVLzlAlz3zdpSw5pFfxyGUDMu9fbD8r+Ln+++1uDXO7+2EfiqfLxDD1Sp5zYPEdopvVyMJvFkp9bkJU2YiWy49W8+bHSs6+AlNVkxse4CXOmVYpiyCZKfrxL38ieLPsHSS/P8LTX0if7GBrcQnjQdTaC4nvP7egIRIOtIMF6ztTZ3CtCHJhoQX9qw3hrZoX5Tn3gzJtZk86A8PQPC0pZ7ro0i41VT8uMhlBzr8l9mMpLyirylk0n7OSJVjxMNSlDiZKYSs0c2UsGQCSs3K4rqLcA/A64A3VY3X96JCeK/78/tldwkNJM8plbASIcUzd1gMzaTfpN4qFFpAA/L3SfuuT+dyIXCrKxrjruuKtPNDI/dePJhR1yQ6z1Cqd0tR/jbzGETd8UXVItwAjvua8/CI0v3xzKiS/kem5rkqsZyqxb2RNve88h8ysjakteBATc5uXA/GAZ0gPGQ55P9YwupSuFXK/dOXu9VpR3EOSBtaygWsqxdRXb1tLXEk0fuvBzlrGLCKidliDMo+oP7CAWmYMAny9S1i+rbRAPgrKNnIwMGChoOZ4="
+  app: cs4life-quicktutor
+  on:
+    repo: uva-cs3240-s20/project-101-cs4life
