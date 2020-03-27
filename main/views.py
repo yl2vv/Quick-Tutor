@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Tutee,Tutor,Profile
+from .models import Tutee,Tutor,Profile, Question
 
 # Create your views here.
 from django.http import Http404
@@ -62,7 +62,58 @@ def tutoring(request):
 
 # view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
-    return render(request, 'tutee/main.html')
+    if request.method == "POST":
+        #Get the user inputs
+        question = request.POST.get('Question')
+        class_id = request.POST.get('class')
+        file_upload = request.POST.get('upload')
+        comments = request.POST.get('comments')
+        print(question)
+        #Store in model
+        obj = Question() 
+        obj.Question_text = question
+        obj.Class_text = class_id
+        obj.File_upload = file_upload
+        obj.Comments_text = comments
+        obj.save()
+    context = {}
+    return render(request, 'tutee/main.html', context)
+
+def results(request):
+    #Grab all the questions
+    questions = Question.objects.all()
+    #Grab all the profiles
+    people = Profile.objects.all()
+    results = []
+    #Check that a person took the class and is currently an active tutor 
+#WILL HAVE TO ADD LOCATION AS WELL
+    for p in people:
+        if questions.last().Class_text.upper() in p.classes:
+            if p.activeStatus == True:
+                results.append(p)
+    print(results)
+    context = {
+        "questions_list": questions,
+        "people_list": people,
+        "results": results,
+    }
+    return render(request, 'tutee/results.html', context)
+
+# def results(request):
+#     questions = Question.objects.all()
+#     people = People.objects.all()
+#     results = []
+#     for p in people:
+#         if questions.last().Class_text.upper() in p.class_id.upper():
+#             if p.status == True:
+#                 results.append(p)
+#     print(results)
+#     context = {
+#         "questions_list": questions,
+#         "people_list": people,
+#         "results": results,
+#     }
+#     return render(request, 'main/results.html', context)
 
 def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
     if request.method == "POST":
