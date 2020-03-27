@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Tutee,Tutor,User
+from .models import Tutee,Tutor,Profile
 
 # Create your views here.
 from django.http import Http404
@@ -8,6 +8,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.template import loader
+from allauth.socialaccount import models as socialmodel
+
 
 
 # Create your views here.
@@ -21,24 +23,33 @@ def loggedin(request):
     # add code to store info from google into models
     #profile = googleUser.getBasicProfile()
     # if form not complete for user -> render form page
-    if(request.method == "POST"):
-        name = request.POST['Name']
-        email = request.POST['Email']
-        image = request.POST['Image']
-        ID = request.POST['ID']
-        latitude = request.POST['Latitude']
-        longitude = request.POST['Longitude']
-
-        try:
-            user = User.objects.get(userid=ID)
-            formCheck = user[formCompleted]
-            if(formCheck == False): #this formCheck isn't working
-                return HttpResponseRedirect(reverse('login:newprofile'))
-        except:
-            #User.objects.create(userid = ID,email = email,name = name,image = image,latitude = latitude, longitude = longitude)
-            print("exception")
+    # if(request.method == "POST"):
+    #     name = request.POST['Name']
+    #     email = request.POST['Email']
+    #     image = request.POST['Image']
+    #     ID = request.POST['ID']
+    #     latitude = request.POST['Latitude']
+    #     longitude = request.POST['Longitude']
+    #     try:
+    #         user = User.objects.get(userid=ID)
+    #         formCheck = user[formCompleted]
+    #         if(formCheck == False):
+    #             return HttpResponseRedirect(reverse('login:form'))
+    #     except:
+    #         #User.objects.create(userid = ID,email = email,name = name,image = image,latitude = latitude, longitude = longitude)
+    #         print("exception")
+    if(Profile.objects.filter(user=request.user).exists() == False):
+        s = socialmodel.SocialAccount.objects.get(user=request.user).extra_data
+        email = s.get('email')
+        uid = s.get('id')
+        name = s.get('name')
+        picture = s.get('picture')
+        currentProfile = Profile(user=request.user,email=email,image=picture,Uid=uid)
+        currentProfile.save()
     if request.user.is_authenticated:
-      return HttpResponseRedirect(reverse('login:home'))
+        if Profile.objects.get(user=request.user).formCompleted == False:
+            return HttpResponseRedirect(reverse('login:newprofile'))
+        return HttpResponseRedirect(reverse('login:home'))
     else:
         return HttpResponseRedirect(reverse('login:login'))
 
@@ -56,14 +67,15 @@ def tuteeing(request):
 def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
     if request.method == "POST":
         # o = User.objects.get(userid=id)
-        o = User()
+        o = Profile.objects.get(user=request.user)
         o.firstName = request.POST.get('FirstName')
         o.lastName = request.POST.get('LastName')
-        o.computingID = request.POST.get('ComputingID')
+        # o.computingID = request.POST.get('ComputingID')
         o.phoneNumber = request.POST.get('PhoneNumber')
         o.gpa = request.POST.get('GPA')
-        o.schoolYear = request.POST.get('SchoolYear')
-        o.bio = request.POST.get('Bio')
+        # o.schoolYear = request.POST.get('SchoolYear')
+        # o.bio = request.POST.get('Bio')
+        o.formCompleted = True
 
          #get current user to add this info to User.objects.get(userid=ID)
         # o.firstName = newfirstname
@@ -74,6 +86,7 @@ def newprofile(request): #maybe try to change to (request,id) if way to handle p
         # o.schoolYear = newschoolyear
         # o.bio = newbio
         o.save()
+        return HttpResponseRedirect(reverse('login:home'))
 
     return render(request, 'login/newprofile.html')
 
