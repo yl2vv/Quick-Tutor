@@ -126,16 +126,7 @@
             <!--font-size: 12px;-->
             <!--text-align: center;-->
         <!--}-->
-                .navbar a {
-  float: left;
-  <!--padding: 12px;-->
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  width: 25%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
-  <!--text-align: center; /* If you want the text to be centered */-->
-}
+
 .table td.demo {
    max-width: 177px;
 }
@@ -164,10 +155,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <nav class="nav-link" href="home">Home <span class="sr-only">(current)</span></nav>
+        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <nav class="nav-link" href="userprofile">Profile</nav>
+        <a class="nav-link" href="userprofile">Profile</a>
       </li>
 
     </ul>
@@ -198,7 +189,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr onclick="window.location='userprofile'">
+    <tr onclick="window.location='question'">
       <th scope="row">Mykim</th>
       <td>CS3240</td>
       <td>quickTutor</td>

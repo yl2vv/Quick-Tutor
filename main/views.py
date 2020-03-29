@@ -92,3 +92,6 @@ def newprofile(request): #maybe try to change to (request,id) if way to handle p
 
 def userprofile(request):
     return render(request, 'login/userprofile.html')
+
+def question(request):
+    return render(request, 'tutee/question.html')
