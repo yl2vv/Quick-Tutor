@@ -29,6 +29,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=500,blank=True)
     activeStatus = models.BooleanField(default=False) #Are they an active tutor
     connection = models.CharField(max_length=50,blank=True) #Who they are tutoring / tuteeing
+    # tutor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tutor", default=None, null=True)
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 

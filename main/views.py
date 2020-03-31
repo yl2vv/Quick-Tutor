@@ -3,7 +3,7 @@ from .models import Tutee,Tutor,Profile, Question
 
 # Create your views here.
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
@@ -104,7 +104,17 @@ def results(request):
         "people_list": people,
         "results": results,
         }
+    if request.method == "POST":
+        print(request.POST.get())
+        HttpResponseRedirect('results/rating')
     return render(request, 'tutee/results.html', context)
+
+# def select(request, username):
+# 	# current_user = Profile.objects.get(user=request.user)
+# 	# current_tutor = User.objects.get(username=username)
+# 	# current_user.tutor.add(current_tutor)
+# 	# current_user.save()
+# 	return redirect('results')
 
 def rating(request):
     return render(request, "tutee/ratings.html")
