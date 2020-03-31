@@ -106,6 +106,9 @@ def results(request):
         }
     return render(request, 'tutee/results.html', context)
 
+def rating(request):
+    return render(request, "tutee/ratings.html")
+
 def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
     if request.method == "POST":
         # o = User.objects.get(userid=id)

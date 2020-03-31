@@ -10,6 +10,7 @@ urlpatterns = [
     path('tutoring', views.tutoring, name='tutor'),
     path('tuteeing', views.tuteeing, name='tutee'),
     path('tuteeing/results', views.results, name='tuteeResults'),
+    path('tuteeing/results/rating', views.rating, name='rating'),
     path('newprofile',views.newprofile,name='newprofile'),
     path('userprofile',views.userprofile,name='userprofile')
 ]
