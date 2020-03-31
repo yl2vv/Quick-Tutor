@@ -62,6 +62,10 @@ def tutoring(request):
 
 # view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
+    #Get current user
+    o = Profile.objects.get(user=request.user)
+    classes = o.classes
+    #After clicking submit
     if request.method == "POST":
         #Get the user inputs
         question = request.POST.get('Question')
@@ -76,7 +80,10 @@ def tuteeing(request):
         obj.File_upload = file_upload
         obj.Comments_text = comments
         obj.save()
-    context = {}
+        return HttpResponseRedirect('tuteeing/results')
+    context = {
+         "classes": classes,
+    }
     return render(request, 'tutee/main.html', context)
 
 def results(request):
@@ -96,24 +103,8 @@ def results(request):
         "questions_list": questions,
         "people_list": people,
         "results": results,
-    }
+        }
     return render(request, 'tutee/results.html', context)
-
-# def results(request):
-#     questions = Question.objects.all()
-#     people = People.objects.all()
-#     results = []
-#     for p in people:
-#         if questions.last().Class_text.upper() in p.class_id.upper():
-#             if p.status == True:
-#                 results.append(p)
-#     print(results)
-#     context = {
-#         "questions_list": questions,
-#         "people_list": people,
-#         "results": results,
-#     }
-#     return render(request, 'main/results.html', context)
 
 def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
     if request.method == "POST":

@@ -38,16 +38,20 @@
               <th scope="col">Email</th>
               <th scope="col">Phone Number</th>
               <th scope="col">Bio</th>
+              <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         {% for instance in results %}
             <tr>
-                <th scope="row">{{instance.firstname}} {{instance.lastname}}</th>
+                <th scope="row">
+                  {{instance.firstname}} {{instance.lastname}}
+                </th>
                 <td>{{instance.gpa}}</td>
                 <td>{{instance.email}}</td>
                 <td>{{instance.phoneNumber}}</td>
                 <td>{{instance.bio}}</td>
+                <td><button type="submit">select</button></td>
             </tr>
         {% endfor %}
         </tbody>
@@ -106,9 +110,9 @@
     </tr>
   {% endfor %}
   </tbody>
-</table>
+</table> -->
 
-<table class="table">
+<!-- <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Question</th>
