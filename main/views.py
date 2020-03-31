@@ -95,3 +95,6 @@ def userprofile(request):
 
 def question(request):
     return render(request, 'tutee/question.html')
+
+def session(request):
+    return render(request, 'tutor/session.html')
