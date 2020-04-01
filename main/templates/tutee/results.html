@@ -43,7 +43,7 @@
           </thead>
           <tbody>
           {% for instance in results %}
-            <form method='POST'>
+            <form method='POST' action=>
             {% csrf_token %}
               <tr>
                   <th scope="row">
@@ -52,8 +52,8 @@
                   <td>{{instance.gpa}}</td>
                   <td>{{instance.email}}</td>
                   <td>{{instance.phoneNumber}}</td>
-                  <td>{{instance.Uid}}</td>
-                  <td><button type="submit" name={{instance.Uid}}>select</button></td>
+                  <td>{{instance.bio}}</td>
+                  <td><button type="submit">select</button></td>
               </tr>
             </form>
           {% endfor %}

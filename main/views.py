@@ -98,15 +98,17 @@ def results(request):
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
                 results.append(p)
-    print(results)
     context = {
         "questions_list": questions,
         "people_list": people,
         "results": results,
         }
     if request.method == "POST":
-        print(request.POST.get())
-        HttpResponseRedirect('results/rating')
+        o = Profile.objects.get(user=request.user)
+        # o.connection = request.POST.get('Uid')
+        # o.save()
+        print(request.POST)
+        return HttpResponseRedirect('results/rating')
     return render(request, 'tutee/results.html', context)
 
 # def select(request, username):
