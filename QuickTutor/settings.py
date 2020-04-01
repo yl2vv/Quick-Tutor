@@ -44,7 +44,7 @@ SECRET_KEY = '0=+%_)z8*!16i@e(v!1kome^xrly#-d4b#(hz@(qxkx7sc+0k!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:10721744Cross!@localhost:5432/quicktutor')}
+DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@localhost:5433/quicktutor')}
 
 # DATABASES = {
 #     'default': {
