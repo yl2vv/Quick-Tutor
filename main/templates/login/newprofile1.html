@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html>
 {% load static %}
 <head>
-	<!-- link to bootstrap -->
+    <!-- link to bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- static/login_style.css -->
-    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/home_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/login_style.css'%}">
     <!-- javascripts from Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -14,27 +15,28 @@
 </head>
 
 <body style = "background-color: LavenderBlush;">
-    <div class = "container-fluid">
+    <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h1 class = "title text-center"><b>
-						Home Page</b>
-					</h1>
-                     
-                    <form method='POST'>
-                    	{% csrf_token %}
-                    	<div class = "row p-4">
-                    		<div class = "col-5">
-								<button onclick="window.location.href = '/tuteeing';" type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;"><p style = "font-family: Ink Free; font-size:18px;"><b>I need a tutor and want to ask a question</b></p></button>
-							</div>
-							<div class = "col-5">
-								<button onclick="window.location.href = '/tutoring';" type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;"><p style = "font-family: Ink Free; font-size:18px;"><b>I want to be a tutor and answer someone's question</b></p></button>
-							</div>
+                    <h5 class="title text-center"><b>Next Step!</b></h5>  
+                    <form method='POST'>Contact information:
+                        {% csrf_token %}
+                        <div class = "row">
+                            <div class = "col-6">
+                                <div class="form-group" style = "width: 164px">
+                                <input type="newPhoneNumber" class="form-control" placeholder = "Cell Phone Number" name="PhoneNumber">
+                                </div>
+                            </div>
+                            <div class = "col-6">
+                                <div class="form-group" style = "width: 159px">
+                                <input type="newcomputingID" class="form-control" placeholder = "Computing ID" name="ComputingID">
+                                </div>
+                            </div>
                         </div>
-                        <div class = "card" style = "float: right;">
-                        	<button class = "btn btn-light btn-circle" style = "width: 150px; height: 50px;"><a href="{% url 'account_logout' %}">Log Out</a></button>
+                        <div style= "float:right;">
+                            <button onclick="window.location.href = '/newprofile2';" type= "button" class = "btn btn-light">Next</a></button>
                         </div>
                     </form>  
                     </div>
@@ -44,6 +46,4 @@
     </div>
 
 </body>
-
-
 </html>
