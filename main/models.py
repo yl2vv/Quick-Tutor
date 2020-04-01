@@ -13,8 +13,8 @@ from allauth.utils import get_user_model
 
 class Profile(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    firstname = models.CharField(max_length=50,blank=True)
-    lastname = models.CharField(max_length=50,blank=True)
+    firstName = models.CharField(max_length=50,blank=True)
+    lastName = models.CharField(max_length=50,blank=True)
     Uid = models.CharField(max_length=100,blank=True)
     computingID = models.CharField(max_length=10,blank=True)
     email = models.EmailField(blank=True)
