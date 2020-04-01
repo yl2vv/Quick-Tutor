@@ -54,6 +54,15 @@ def loggedin(request):
         return HttpResponseRedirect(reverse('login:login'))
 
 def home(request):
+    if(request.method == 'POST'):
+        p = Profile.objects.get(user=request.user)
+        p.latitude = request.POST.get('Latitude')
+        p.longitude = request.POST.get('Longitude')
+        p.save()
+        if(request.POST.get('Type') == 'tutee'):
+            return HttpResponseRedirect(reverse('login:tutee'))
+        if(request.POST.get('Type') == 'tutor'):
+            return HttpResponseRedirect(reverse('login:tutor'))
     return render(request, 'login/home.html')
 
 # view for the tutor page after user has clicked that option on the homepage

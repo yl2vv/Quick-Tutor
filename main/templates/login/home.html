@@ -1,15 +1,41 @@
-{% extends "login/base.html" %}
-
-{% block head %}
-{% endblock head %}
-
-{% block body %}
 <h1>
 	Home Page
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script>
+		function getLocation(type) {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+					function (position) {
+						// Get current cordinates.
+						positionCords = [position.coords.latitude, position.coords.longitude];
+						data = {
+							"Type": String(type),
+							"Latitude": positionCords[0],
+							"Longitude": positionCords[1],
+							csrfmiddlewaretoken: '{{ csrf_token }}'
+						}
+						console.log(positionCords[0])
+						$.ajax({
+							type: "POST",
+							url: "home",
+							data: data
+						});
+					},
+					function (error) {
+						// On error code..
+						alert("Not able to get location")
+					},
+					{ timeout: 30000, enableHighAccuracy: true, maximumAge: 75000 }
+				);
+			}
+			else{
+				alert("Please try again.")
+			}
+
+		}
+	</script>
 </h1>
-<button onclick="window.location.href = '/tuteeing';">Request a Tutor</button>
-<button onclick="window.location.href = '/tutoring';">Be a Tutor</button>
+
+<button value = "tutee" onclick="getLocation(this.value)">Request a Tutor</button>
+<button value = "tutor" onclick="getLocation(this.value)">Be a Tutor</button>
 <button><a href="{% url 'account_logout' %}">Log Out</a></button>
-
-
-{% endblock body %}
