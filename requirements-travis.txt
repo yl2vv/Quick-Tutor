@@ -3,5 +3,6 @@ gunicorn
 django-allauth
 django-heroku
 django-multiselectfield
+django-mysql
 django-phone-field
 python-dotenv
