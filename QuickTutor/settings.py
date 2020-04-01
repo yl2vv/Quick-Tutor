@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@localhost:5433/quicktutor')}
+DATABASES = {'default': dj_database_url.parse('postgres://postgres:hello@localhost:5432/quicktutor')}
 
 # DATABASES = {
 #     'default': {
