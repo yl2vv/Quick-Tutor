@@ -69,16 +69,19 @@
    display: inline-block;
    white-space: nowrap;
    max-width: 100%;
+   }
 
   .navbar-custom {
-            background-color: teal;
+            background-color: #008080;
+            <!--background-color: #a7cecd; the brighter one-->
         }
+
     </style>
 
 
 <!--GREEN NAVIGATION BAR AT TOP OF PAGE-->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
     <nav class="navbar-brand text-white" >Tutor Page</nav>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,84 +151,3 @@
 
 
 
-<!--</nav>-->
-
-<!-- <script>
-  profile = googleUser.getBasicProfile();
-  data = {
-    "ID": profile.getId(),
-    csrfmiddlewaretoken: '{{ csrf_token }}'
-  }
-  $.ajax({
-                        type: "POST",
-                        url: "home",
-                        data: data
-                    });
-</script> -->
-
-<!--<div class="container">-->
-    <!--<div class="column col-md offset-md-3 justify-content-center p-4">-->
-        <!--<h1>Create your profile</h1>-->
-    <!--</div>-->
-<!--</div>-->
-
-
-<!--<form method='POST' class="column justify-content-center">-->
-    <!--{% csrf_token %}-->
-    <!--<div class='container'>-->
-        <!--<div class = "row p-4">-->
-            <!--<div class = "col-sm-4">-->
-        	   <!--<div class="form-group" style = "width: 150px">-->
-        	        <!--<input type="newfirstname" class="form-control" placeholder = "First Name" name="FirstName">-->
-        	   <!--</div>-->
-            <!--</div>-->
-            <!--<div class = "col-sm-4">-->
-            	<!--<div class="form-group" style = "width: 150px">-->
-            	   <!--<input type="newlastname" class="form-control" placeholder = "Last Name" name="LastName">-->
-            	<!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="form-group">-->
-            <!--<input type="newgpa" class="form-control" placeholder = "Cummulative college GPA" name="GPA">-->
-        <!--</div>-->
-
-
-        <!--<div class = "form-group">-->
-            <!--<input type="tel" id="phone" name="PhoneNumber" placeholder = "Phone number: 1234567890" pattern="[0-9]{10}" required>-->
-        <!--</div>-->
-
-
-
-        <!--<ul>-->
-        <!--<li class="dropdown">-->
-            <!--<a href="" data-toggle="dropdown" class="dropdown-toggle">Classes you have taken<b class="caret"></b></a>-->
-            <!--<ul class="custom-select">-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label>-->
-                            <!--<input type="checkbox">Two-->
-                        <!--</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label>-->
-                            <!--<input type="checkbox">Two-->
-                        <!--</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</li>-->
-        <!--</ul>-->
-
-
-
-        <!--<div class="form-group">-->
-            <!--<textarea type = "newbio" class="form-control" placeholder = "Personal bio" name="Bio" rows="3"></textarea>-->
-        <!--</div>-->
-
-        <!--<button type = "submit" class = "btn btn-light btn-circle btn-xl">Create</button>-->
-
-	<!--</div>-->
-<!--</form>-->
