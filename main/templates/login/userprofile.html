@@ -15,16 +15,19 @@
         <div class="col-sm-5 text-center">
             <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
             <!--{{context.whatever}}   # as a placeholder-->
-            <div>Name: </div>
-            <div>Computing Id: </div>
+            <div>Name: {{user.firstname}} {{user.lastname}}</div>
+            <div>Computing Id: {{user.computingID}}</div>
         </div>
 
         <div class="col-sm-7">
             <div>Number of People Tutored:</div>
             <div>Number of Questions Asked:</div>
             <div>Rating:</div>
-            <div>Courses:</div>
+            <div>Courses: {{user.classes}}</div>
 
+        </div>
+        <div>
+            <button class = "btn btn-light btn-circle align-right" style = "width: 110px; height: 40px;"><a href="newprofile">Change</a></button>
         </div>
     </div>
 

@@ -120,13 +120,13 @@ def rating(request):
 def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
     if request.method == "POST":
         o = Profile.objects.get(user=request.user)
-        o.firstName = request.POST.get('FirstName')
-        o.lastName = request.POST.get('LastName')
+        o.firstname = request.POST.get('FirstName')
+        o.lastname = request.POST.get('LastName')
         # o.gpa = request.POST.get('GPA')
         # # o.schoolYear = request.POST.get('SchoolYear')
         # # o.bio = request.POST.get('Bio')
         o.save()
-        return HttpResponseRedirect(reverse('login:home'))
+        return HttpResponseRedirect('newprofile1')
     return render(request, 'login/newprofile.html')
 
 def newprofile1(request):
@@ -135,11 +135,14 @@ def newprofile1(request):
         o.phoneNumber = request.POST.get('PhoneNumber')
         o.computingID = request.POST.get('ComputingID')
         o.save()
+        return HttpResponseRedirect('newprofile2')
     return render(request, 'login/newprofile1.html')
 
 def newprofile2(request):
-    o = Profile.objects.get(user = request.user)
     # this deals with classes
+    if request.method == "POST":
+        o = Profile.objects.get(user = request.user)
+        return HttpResponseRedirect('newprofile3')
     return render(request, 'login/newprofile2.html')
 
 def newprofile3(request):
@@ -156,4 +159,8 @@ def newprofile3(request):
 
 
 def userprofile(request):
-    return render(request, 'login/userprofile.html')
+    o = Profile.objects.get(user = request.user)
+    context = {
+         "user": o,
+    }
+    return render(request, 'login/userprofile.html', context)
