@@ -3,3 +3,4 @@ gunicorn
 django-allauth
 django-heroku
 django-phone-field
+python-dotenv
