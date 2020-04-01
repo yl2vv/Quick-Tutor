@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.account',
     'allauth',
-    'phone_field',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +113,7 @@ DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@loca
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'quickTutor',
 #         'USER': 'kailaney',
 #         'PASSWORD': 'Keshav00',

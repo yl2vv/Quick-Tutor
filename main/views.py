@@ -11,10 +11,6 @@ from django.template import loader
 from allauth.socialaccount import models as socialmodel
 
 
-
-# Create your views here.
-
-
 def login(request):
     return render(request, 'login/index.html')
 
@@ -123,29 +119,41 @@ def rating(request):
 
 def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
     if request.method == "POST":
-        # o = User.objects.get(userid=id)
         o = Profile.objects.get(user=request.user)
         o.firstName = request.POST.get('FirstName')
         o.lastName = request.POST.get('LastName')
-        # o.computingID = request.POST.get('ComputingID')
-        o.phoneNumber = request.POST.get('PhoneNumber')
-        o.gpa = request.POST.get('GPA')
-        # o.schoolYear = request.POST.get('SchoolYear')
-        # o.bio = request.POST.get('Bio')
-        o.formCompleted = True
-
-         #get current user to add this info to User.objects.get(userid=ID)
-        # o.firstName = newfirstname
-        # o.lastName = newlastname
-        # o.computingID = newcomputingid
-        # o.phoneNumber = newphonenumber
-        # o.gpa = newgpa
-        # o.schoolYear = newschoolyear
-        # o.bio = newbio
+        # o.gpa = request.POST.get('GPA')
+        # # o.schoolYear = request.POST.get('SchoolYear')
+        # # o.bio = request.POST.get('Bio')
         o.save()
         return HttpResponseRedirect(reverse('login:home'))
-
     return render(request, 'login/newprofile.html')
+
+def newprofile1(request):
+    if request.method == "POST":
+        o = Profile.objects.get(user=request.user)
+        o.phoneNumber = request.POST.get('PhoneNumber')
+        o.computingID = request.POST.get('ComputingID')
+        o.save()
+    return render(request, 'login/newprofile1.html')
+
+def newprofile2(request):
+    o = Profile.objects.get(user = request.user)
+    # this deals with classes
+    return render(request, 'login/newprofile2.html')
+
+def newprofile3(request):
+    if request.method == "POST":
+        o = Profile.objects.get(user = request.user)
+        o.bio = request.POST.get('Bio')
+        o.gpa = request.POST.get('GPA')
+        o.schoolYear = request.POST.get('SchoolYear')
+        o.formCompleted = True
+        o.save()
+        return HttpResponseRedirect(reverse('login:home'))
+    return render(request,'login/newprofile3.html')
+
+
 
 def userprofile(request):
     return render(request, 'login/userprofile.html')

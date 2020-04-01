@@ -10,8 +10,8 @@ from allauth.account.utils import get_next_redirect_url, setup_user_email
 from allauth.utils import get_user_model
 
 
+
 class Profile(models.Model):
-    #user = models.OneToOneField(User, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=50,blank=True)
     lastname = models.CharField(max_length=50,blank=True)
