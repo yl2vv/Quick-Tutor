@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.account',
     'allauth',
-    'phone_field',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
@@ -109,11 +109,11 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:Keshav00@localhost:5432/quicktutor')}
+DATABASES = {'default': dj_database_url.parse('postgres://postgres:10721744Cross!@localhost:5432/quicktutor')}
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'quickTutor',
 #         'USER': 'kailaney',
 #         'PASSWORD': 'Keshav00',
