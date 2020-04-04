@@ -98,24 +98,22 @@ def results(request):
         "questions_list": questions,
         "people_list": people,
         "results": results,
-        }
-    if request.method == "POST":
-        o = Profile.objects.get(user=request.user)
-        # o.connection = request.POST.get('Uid')
-        # o.save()
-        print(request.POST)
-        return HttpResponseRedirect('results/rating')
+    }
     return render(request, 'tutee/results.html', context)
 
-# def select(request, username):
-# 	# current_user = Profile.objects.get(user=request.user)
-# 	# current_tutor = User.objects.get(username=username)
-# 	# current_user.tutor.add(current_tutor)
-# 	# current_user.save()
-# 	return redirect('results')
-
-def rating(request):
-    return render(request, "tutee/ratings.html")
+def rating(request, tutor_id):
+    #Get the tutor by the tutor_id set in results page
+    tutor = Profile.objects.get(pk=tutor_id)
+    if request.method == "POST":
+        tutor.compositeRating = tutor.compositeRating + int(request.POST.get("rate"))
+        tutor.timesTutored = tutor.timesTutored + 1
+        tutor.tutorRate = tutor.compositeRating / tutor.timesTutored
+        tutor.save()
+        return HttpResponseRedirect('/home')
+    context = {
+        'tutor' : tutor
+    }
+    return render(request, "tutee/ratings.html", context)
 
 def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
     if request.method == "POST":
