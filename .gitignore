@@ -133,4 +133,7 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/'.env' 
-'.env' 
+'.env'
+
+# idea file
+.idea
