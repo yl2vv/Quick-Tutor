@@ -75,6 +75,7 @@ def tuteeing(request):
         obj.Class_text = class_id
         obj.File_upload = file_upload
         obj.Comments_text = comments
+        # obj.person = o
         obj.save()
         return HttpResponseRedirect('tuteeing/results')
     context = {
@@ -166,7 +167,18 @@ def userprofile(request):
     return render(request, 'login/userprofile.html', context)
 
 def question(request):
-    return render(request, 'tutee/question.html')
+    o = Profile.objects.get(user=request.user)
+    context = {
+        "user": o,
+    }
+    return render(request, 'tutee/question.html', context)
 
 def session(request):
     return render(request, 'tutor/session.html')
+
+def payment(request):
+    o = Profile.objects.get(user=request.user)
+    context = {
+        "user": o,
+    }
+    return render(request, 'tutor/payment.html', context)
