@@ -11,24 +11,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
-import dotenv
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# This is new:
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -73,7 +65,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -109,10 +100,6 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@localhost:5432/quicktutor4')}
-# DATABASES = {}
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-
 
 # DATABASES = {
 #     'default': {
@@ -138,16 +125,16 @@ DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@loc
 #         }
 #     }
 # else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'quicktutor4',
-#             'USER': 'groupuser',
-#             'PASSWORD': 'tutoring!',
-#             'HOST': '127.0.0.1',
-#             'PORT': '5432',
-#         }
-#     }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'quicktutor4',
+        'USER': 'groupuser',
+        'PASSWORD': 'tutoring!',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
 
 
 

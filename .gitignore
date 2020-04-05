@@ -132,7 +132,7 @@ dmypy.json
 .pyre/
 
 # pytype static type analyzer
-.pytype/'.env' 
+.pytype/
 '.env'
 
 # idea file
