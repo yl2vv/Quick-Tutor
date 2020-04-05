@@ -54,9 +54,25 @@ def home(request):
 
 # view for the tutor page after user has clicked that option on the homepage
 def tutoring(request):
-    return render(request, 'tutor/main.html')
+    o = Profile.objects.get(user=request.user)
+    connection = o.connection
+    if connection != "":
+        tutee = Profile.objects.get(pk=connection)
+        question = Question.objects.get(pk=tutee.connection)
+        context = {
+            "first": tutee.firstname,
+            "last": tutee.lastname,
+            "question": question,
+        }
+    else:
+        context = {
+                "first": "No",
+                "last": "one",
+                "question": "a question.",
+            }
+    return render(request, 'tutor/main.html', context)
 
-# view for the tutor page after user has clicked that option on the homepage
+# view for the tutee page after user has clicked that option on the homepage
 def tuteeing(request):
     #Get current user
     o = Profile.objects.get(user=request.user)
@@ -68,14 +84,16 @@ def tuteeing(request):
         class_id = request.POST.get('class')
         file_upload = request.POST.get('upload')
         comments = request.POST.get('comments')
-        print(question)
         #Store in model
         obj = Question() 
         obj.Question_text = question
         obj.Class_text = class_id
         obj.File_upload = file_upload
         obj.Comments_text = comments
+        obj.asker = o.id
         obj.save()
+        o.connection = obj.id
+        o.save()
         return HttpResponseRedirect('tuteeing/results')
     context = {
          "classes": classes,
@@ -104,11 +122,25 @@ def results(request):
 def rating(request, tutor_id):
     #Get the tutor by the tutor_id set in results page
     tutor = Profile.objects.get(pk=tutor_id)
+    tutor.connection = Profile.objects.get(user=request.user).id
+    tutor.save()
     if request.method == "POST":
+        #Increment total rating 
         tutor.compositeRating = tutor.compositeRating + int(request.POST.get("rate"))
+        #Increment times tutored
         tutor.timesTutored = tutor.timesTutored + 1
+        #Calcuate the rating of the tutor
         tutor.tutorRate = tutor.compositeRating / tutor.timesTutored
+        #Break connections and delete question
+        tutor.connection = ""
         tutor.save()
+        me = Profile.objects.get(user=request.user)
+        question = Question.objects.get(pk=me.connection)
+        question.delete()
+        me.connection = ""
+        me.save()
+
+        #Return Home
         return HttpResponseRedirect('/home')
     context = {
         'tutor' : tutor
