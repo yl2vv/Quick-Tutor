@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.views import generic
 from django.template import loader
 from allauth.socialaccount import models as socialmodel
+import math
 
 
 def login(request):
@@ -96,13 +97,15 @@ def results(request):
     questions = Question.objects.all()
     #Grab all the profiles
     people = Profile.objects.all()
+    me = Profile.objects.get(user=request.user)
     results = []
     #Check that a person took the class and is currently an active tutor 
 #WILL HAVE TO ADD LOCATION AS WELL
     for p in people:
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
-                results.append(p)
+                if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
+                    results.append(p)
     context = {
         "questions_list": questions,
         "people_list": people,
