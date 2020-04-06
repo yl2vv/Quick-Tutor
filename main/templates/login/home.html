@@ -14,12 +14,18 @@
 							"Longitude": positionCords[1],
 							csrfmiddlewaretoken: '{{ csrf_token }}'
 						}
-						console.log(positionCords[0])
 						$.ajax({
 							type: "POST",
 							url: "home",
 							data: data
 						});
+                        if(type == 'tutee'){
+                            window.location.href = '/tuteeing'
+                        }
+                        else{
+                            window.location.href = '/tutoring'
+                        }
+                        
 					},
 					function (error) {
 						// On error code..
