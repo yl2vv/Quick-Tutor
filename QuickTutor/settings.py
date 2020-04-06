@@ -44,7 +44,7 @@ SECRET_KEY = '0=+%_)z8*!16i@e(v!1kome^xrly#-d4b#(hz@(qxkx7sc+0k!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.account',
     'allauth',
-    'phone_field',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
@@ -109,11 +109,14 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:Keshav00@localhost:5432/quicktutor')}
+#DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@localhost:5432/quicktutor4')}
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'quickTutor',
 #         'USER': 'kailaney',
 #         'PASSWORD': 'Keshav00',
@@ -146,13 +149,6 @@ DATABASES = {'default': dj_database_url.parse('postgres://postgres:Keshav00@loca
 #         }
 #     }
 
-
-# install postgres on this machine
-# you'll enter root user credentials in the process
-# use the credentials to create another user (this should be the same for all your group memebers)
-# create a database (this should be the same for all your group memebers)
-# give that user the permissions to modify/access the database
-# try running the server
 
 
 # Password validation

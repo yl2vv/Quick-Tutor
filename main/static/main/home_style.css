@@ -28,10 +28,10 @@ img{
 .mark{
 	color: Lime;
 }
-
+ 
 .top_layer{
 	height: 500px;
-	width: 400px;
+	width: 600px;
 	shape-margin: auto;
 	margin-top: 50px;
 	margin-bottom: auto;
@@ -61,37 +61,16 @@ img{
     text-align: center; 
     padding-top: 100px; 
 } 
-.btn-circle.btn-sm { 
-    width: 100px; 
-    height: 100px; 
-    padding: 10px 16px; 
-    border-radius: 150px; 
-    font-size: 15px; 
-    font-weight: 300;
-    text-align: center; 
-    background-color: LavenderBlush;
-} 
-.btn-circle.btn-md { 
-    width: 100px; 
-    height: 100px; 
-    padding: 10px 16px; 
-    border-radius: 150px; 
-    font-size: 9px; 
-    text-align: center; 
-} 
 .btn-circle.btn-xl { 
-    width: 100px; 
-    height: 100px; 
-    padding: 10px 16px; 
-    border-radius: 150px; 
-    font-size: 15px; 
-    font-weight: 300;
+    width: 175px; 
+    height: 175px; 
+    padding: 25px 28px; 
+    border-radius: 225px; 
+    font-size: 17px; 
+    font-weight: 500;
     text-align: center; 
     background-color: LavenderBlush;
 } 
 .btn-circle.btn-xl:hover{
-	background-color: Black;
-}
-.btn-circle.btn-md:hover{
 	background-color: Black;
 }
