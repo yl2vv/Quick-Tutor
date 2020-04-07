@@ -169,10 +169,11 @@ LOGIN_REDIRECT_URL = "/loggedIn"
 #AUTH_USER_MODEL = 'main.CustomUser'
 
 # Activate Django-Heroku.
-# django_heroku.settings(locals())
-if 'HEROKU' in os.environ:
+try:
     import django_heroku
     django_heroku.settings(locals())
+except ImportError:
+    pass
 
 ACCOUNT_LOGOUT_ON_GET = True
 
