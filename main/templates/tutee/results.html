@@ -43,7 +43,7 @@
           </thead>
           <tbody>
           {% for instance in results %}
-            <form method='POST' action=>
+            <form method='POST'>
             {% csrf_token %}
               <tr>
                   <th scope="row">
@@ -53,7 +53,8 @@
                   <td>{{instance.email}}</td>
                   <td>{{instance.phoneNumber}}</td>
                   <td>{{instance.bio}}</td>
-                  <td><button type="submit">select</button></td>
+                  <!-- Save the id of instance so I can Profile.objects.get() -->
+                  <td><button type="button" onclick="window.location.href='results/rating/{{instance.id}}'">select</button></td>
               </tr>
             </form>
           {% endfor %}

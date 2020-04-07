@@ -65,9 +65,25 @@ def home(request):
 
 # view for the tutor page after user has clicked that option on the homepage
 def tutoring(request):
-    return render(request, 'tutor/main.html')
+    o = Profile.objects.get(user=request.user)
+    connection = o.connection
+    if connection != "":
+        tutee = Profile.objects.get(pk=connection)
+        question = Question.objects.get(person=tutee)
+        context = {
+            "first": tutee.firstname,
+            "last": tutee.lastname,
+            "question": question,
+        }
+    else:
+        context = {
+                "first": "No",
+                "last": "one",
+                "question": "a question.",
+            }
+    return render(request, 'tutor/main.html', context)
 
-# view for the tutor page after user has clicked that option on the homepage
+# view for the tutee page after user has clicked that option on the homepage
 def tuteeing(request):
     #Get current user
     o = Profile.objects.get(user=request.user)
@@ -79,14 +95,16 @@ def tuteeing(request):
         class_id = request.POST.get('class')
         file_upload = request.POST.get('upload')
         comments = request.POST.get('comments')
-        print(question)
         #Store in model
         obj = Question() 
         obj.Question_text = question
         obj.Class_text = class_id
         obj.File_upload = file_upload
         obj.Comments_text = comments
+        obj.asker = o.id
+        obj.person = Profile.objects.get(user=request.user)
         obj.save()
+        o.save()
         return HttpResponseRedirect('tuteeing/results')
     context = {
          "classes": classes,
@@ -111,24 +129,35 @@ def results(request):
         "questions_list": questions,
         "people_list": people,
         "results": results,
-        }
-    if request.method == "POST":
-        o = Profile.objects.get(user=request.user)
-        # o.connection = request.POST.get('Uid')
-        # o.save()
-        print(request.POST)
-        return HttpResponseRedirect('results/rating')
+    }
     return render(request, 'tutee/results.html', context)
 
-# def select(request, username):
-# 	# current_user = Profile.objects.get(user=request.user)
-# 	# current_tutor = User.objects.get(username=username)
-# 	# current_user.tutor.add(current_tutor)
-# 	# current_user.save()
-# 	return redirect('results')
+def rating(request, tutor_id):
+    #Get the tutor by the tutor_id set in results page
+    tutor = Profile.objects.get(pk=tutor_id)
+    tutor.connection = Profile.objects.get(user=request.user).id
+    tutor.save()
+    if request.method == "POST":
+        #Increment total rating 
+        tutor.compositeRating = tutor.compositeRating + int(request.POST.get("rate"))
+        #Increment times tutored
+        tutor.timesTutored = tutor.timesTutored + 1
+        #Calcuate the rating of the tutor
+        tutor.tutorRate = tutor.compositeRating / tutor.timesTutored
+        #Break connections and delete question
+        tutor.connection = ""
+        tutor.save()
+        me = Profile.objects.get(user=request.user)
+        question = Question.objects.get(person = me)
+        question.delete()
+        me.save()
 
-def rating(request):
-    return render(request, "tutee/ratings.html")
+        #Return Home
+        return HttpResponseRedirect('/home')
+    context = {
+        'tutor' : tutor
+    }
+    return render(request, "tutee/ratings.html", context)
 
 def newprofile(request):
     if request.method == "POST":
