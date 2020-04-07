@@ -4,34 +4,9 @@ body{
 	background-color: Teal !important;
 }
 
-.quickTutor_logo_container {
-	position: absolute;
-	height: 185px;
-	width: 185px;
-	top: -45px;
-	margin-left: -75px;
-	margin-right: 195px;
-	border-radius: 300px;
-	background-color: LavenderBlush;
-	padding: 5px;
-	text-align: center;
-		box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-img{
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.mark{
-	color: Lime;
-}
- 
 .top_layer{
-	height: 500px;
-	width: 600px;
+	height: 600px;
+	width: 650px;
 	shape-margin: auto;
 	margin-top: 50px;
 	margin-bottom: auto;
@@ -53,14 +28,9 @@ img{
 }
 
 .top_layer .body{
-	padding: 2rem;
+	padding: 6rem;
 }
-
-.xyz { 
-    background-size: auto; 
-    text-align: center; 
-    padding-top: 100px; 
-} 
+ 
 .btn-circle.btn-xl { 
     width: 175px; 
     height: 175px; 
@@ -73,4 +43,10 @@ img{
 } 
 .btn-circle.btn-xl:hover{
 	background-color: Black;
+}
+
+.card{
+	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
