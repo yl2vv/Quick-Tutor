@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.views import generic
 from django.template import loader
 from allauth.socialaccount import models as socialmodel
+import math
 
 
 def login(request):
@@ -51,6 +52,15 @@ def loggedin(request):
         return HttpResponseRedirect(reverse('login:login'))
 
 def home(request):
+    if(request.method == 'POST'):
+        p = Profile.objects.get(user=request.user)
+        p.latitude = request.POST.get('Latitude')
+        p.longitude = request.POST.get('Longitude')
+        p.save()
+        if(request.POST.get('Type') == 'tutee'):
+            return HttpResponseRedirect(reverse('login:tutee'))
+        if(request.POST.get('Type') == 'tutor'):
+            return HttpResponseRedirect(reverse('login:tutor'))
     return render(request, 'login/home.html')
 
 # view for the tutor page after user has clicked that option on the homepage
@@ -88,13 +98,15 @@ def results(request):
     questions = Question.objects.all()
     #Grab all the profiles
     people = Profile.objects.all()
+    me = Profile.objects.get(user=request.user)
     results = []
     #Check that a person took the class and is currently an active tutor 
 #WILL HAVE TO ADD LOCATION AS WELL
     for p in people:
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
-                results.append(p)
+                if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
+                    results.append(p)
     context = {
         "questions_list": questions,
         "people_list": people,
