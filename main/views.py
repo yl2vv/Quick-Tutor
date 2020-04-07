@@ -58,7 +58,7 @@ def tutoring(request):
     connection = o.connection
     if connection != "":
         tutee = Profile.objects.get(pk=connection)
-        question = Question.objects.get(pk=tutee.connection)
+        question = Question.objects.get(person=tutee)
         context = {
             "first": tutee.firstname,
             "last": tutee.lastname,
@@ -91,8 +91,8 @@ def tuteeing(request):
         obj.File_upload = file_upload
         obj.Comments_text = comments
         obj.asker = o.id
+        obj.person = Profile.objects.get(user=request.user)
         obj.save()
-        o.connection = obj.id
         o.save()
         return HttpResponseRedirect('tuteeing/results')
     context = {
@@ -135,9 +135,8 @@ def rating(request, tutor_id):
         tutor.connection = ""
         tutor.save()
         me = Profile.objects.get(user=request.user)
-        question = Question.objects.get(pk=me.connection)
+        question = Question.objects.get(person = me)
         question.delete()
-        me.connection = ""
         me.save()
 
         #Return Home
