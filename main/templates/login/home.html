@@ -46,7 +46,13 @@
 				);
 			}
 			else{
-				alert("Please try again.")
+				alert("No location provided, please reset permissions on browser to redo")
+				if(type == 'tutee'){
+                    window.location.href = '/tuteeing'
+                }
+                else{
+                    window.location.href = '/tutoring'
+                }
 			}
 
 		}

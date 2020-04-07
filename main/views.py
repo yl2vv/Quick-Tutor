@@ -104,7 +104,10 @@ def results(request):
     for p in people:
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
-                if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
+                if p.latitude != 0.0 and me.latitude != 0.0:
+                    if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
+                        results.append(p)
+                else:
                     results.append(p)
     context = {
         "questions_list": questions,
