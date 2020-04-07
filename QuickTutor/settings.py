@@ -93,38 +93,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'QuickTutor.wsgi.application'
 
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}'''
 
-
-# DATABASES = {
-#     'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'quickTutor',
-#         'USER': 'kailaney',
-#         'PASSWORD': 'Keshav00',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }}
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-# if 'HEROKU' in os.environ:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'd6humjm2sv80ba',
-#             'USER': 'bonxsspvtuuons',
-#             'PASSWORD': '2c88c692268646249453ec7448aed5dbc5c3ce859738794d5a9e86abd004fd1d',
-#             'HOST': 'ec2-3-234-169-147.compute-1.amazonaws.com',
-#             'PORT': '5432',
-#         }
-#     }
-# else:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
