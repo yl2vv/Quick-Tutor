@@ -9,7 +9,7 @@ script:
 - python manage.py test
 branches:
   only:
-  - travis-heroku
+  - master
 services:
 - postgresql
 deploy:
