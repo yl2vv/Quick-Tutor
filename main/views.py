@@ -54,8 +54,26 @@ def home(request):
 
 # view for the tutor page after user has clicked that option on the homepage
 def tutoring(request):
+    # o = Profile.objects.get(user=request.user)
+    # connection = o.connection
+    # if connection != "":
+    #     tutee = Profile.objects.get(pk=connection)
+    #     question = Question.objects.get(person=tutee)
+    #     context = {
+    #         "first": tutee.firstname,
+    #         "last": tutee.lastname,
+    #         "topic": question.Question_text,
+    #         "class": question.Class_text,
+    #         "question": question.Comments_text
+    #     }
+    # else:
+    #     context = {
+    #         "first": "No",
+    #         "last": "one",
+    #         "question": "a question"
+    #     }
+    # return render(request, 'tutor/main.html', context)
     return render(request, 'tutor/main.html')
-
 # view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
     #Get current user
@@ -75,8 +93,10 @@ def tuteeing(request):
         obj.Class_text = class_id
         obj.File_upload = file_upload
         obj.Comments_text = comments
-        # obj.person = o
+        obj.person = o
         obj.save()
+        o.connection = obj.id
+        o.save()
         return HttpResponseRedirect('tuteeing/results')
     context = {
          "classes": classes,
@@ -174,7 +194,12 @@ def question(request):
     return render(request, 'tutee/question.html', context)
 
 def session(request):
-    return render(request, 'tutor/session.html')
+    o = Profile.objects.get(user=request.user)
+    context = {
+        "user": o,
+    }
+
+    return render(request, 'tutor/session.html', context)
 
 def payment(request):
     o = Profile.objects.get(user=request.user)

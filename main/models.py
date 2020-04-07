@@ -30,6 +30,7 @@ class Profile(models.Model):
     activeStatus = models.BooleanField(default=False) #Are they an active tutor
     connection = models.CharField(max_length=50,blank=True) #Who they are tutoring / tuteeing
     # tutor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tutor", default=None, null=True)
+
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
@@ -39,7 +40,7 @@ class Question(models.Model):
     Class_text = models.CharField(default='',max_length=200)
     Comments_text = models.CharField(default='',max_length=10000)
     File_upload = models.ImageField()
-    # person = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.Question_text
 

@@ -133,6 +133,8 @@ function startStop(){
         interval = window.setInterval(stopWatch, 1000);
         document.getElementById("startStop").innerHTML = "Stop";
         status = "started";
+        <!--amount = minutes/5-->
+        <!--document.getElementByID("amount").innerHTML = "testing"-->
 
     }
     else{
@@ -140,6 +142,7 @@ function startStop(){
         window.clearInterval(interval);
         document.getElementById("startStop").innerHTML = "Start";
         status = "stopped";
+        document.getElementByID("amount").innerHTML = "testing"
 
     }
 
@@ -156,7 +159,14 @@ function reset(){
     document.getElementById("startStop").innerHTML = "Start";
 
 }
-    </script>
+
+<!--function calculate(){-->
+    <!--if(minutes < 5):-->
+    <!---->
+
+<!--}-->
+
+ </script>
 
     <!--END js CODE -->
 
@@ -178,6 +188,9 @@ function reset(){
       <li class="nav-item">
         <a class="nav-link" href="userprofile">Profile</a>
       </li>
+        <li class="nav-item">
+        <a class="nav-link" href="tutoring">Tutor Page</a>
+      </li>
 
     </ul>
 
@@ -186,7 +199,7 @@ function reset(){
 
 
 <div class="container-fluid">
-    <h2 class="text-center">Session with Tutee</h2>
+    <h2 class="text-center">Session with {{user.firstname}}</h2>
     <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
         <div class="col-sm-5 text-center">
             <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
@@ -203,11 +216,15 @@ function reset(){
         </div>
 
         <div class="buttons">
-            <button id="startStop" onclick="startStop()">Start</button> <button id="reset" onclick="reset()">Reset</button>
+            <button id="startStop" onclick="startStop()">Start</button>
+            <button id="reset" onclick="reset()">Reset</button>
+            <button id="calculate" onclick="calculate()">Calculate</button>
         </div>
 
     </div>
-
+                    <div id="amount">
+                       Total amount:
+                   </div>
 
             <!--END STOPWATCH CODE -->
                <div class="btn-toolbar">
@@ -221,6 +238,7 @@ function reset(){
                    <div class="btn-group mr-2" role="group" aria-label="Button group example">
                     <a href="payment" type="button" class="btn btn-secondary btn-sm">Payment</a>
                  </div>
+
 
 
                 <!--<button type="button" class="btn btn-secondary btn-sm">View Profile</button>-->
