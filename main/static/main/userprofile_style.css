@@ -11,7 +11,6 @@ body{
 	top: -45px;
 	margin-left: -75px;
 	margin-right: 195px;
-	border-radius: 300px;
 	background-color: LavenderBlush;
 	padding: 5px;
 	text-align: center;
@@ -25,9 +24,26 @@ img{
 	max-height: 100%;
 }
 
+.card.user-card{
+	height:500px;  
+	margin-top: 80px;
+	background-color:Teal;
+	box-shadow: 0 20px 15px 0 rgba(0, 0, 0, 0.2), 0 20px 30px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card.image-card{
+	height:400px;
+	margin-top: 20px;
+	margin-left:30px;
+	background-color:white;
+
+}
+
 .top_layer{
-	height: 500px;
-	width: 550px;
+	height: 600px;
+	width: 650px;
 	shape-margin: auto;
 	margin-top: 50px;
 	margin-bottom: auto;
@@ -40,7 +56,7 @@ img{
 	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border-radius: 10px;
+	border-radius: 5px;
 } 
 .top_layer .title{
 	margin-bottom: 2rem;
@@ -51,15 +67,43 @@ img{
 .top_layer .body{
 	padding: 2rem;
 }
-.btn.btn-light.btn-circle.btn-xl { 
+
+.xyz { 
+    background-size: auto; 
+    text-align: center; 
+    padding-top: 100px; 
+} 
+.btn-circle.btn-sm { 
     width: 100px; 
     height: 100px; 
     padding: 10px 16px; 
     border-radius: 150px; 
+    font-size: 15px; 
+    font-weight: 300;
     text-align: center; 
-    background-color:Teal;
+    background-color: LavenderBlush;
+} 
+.btn-circle.btn-md { 
+    width: 100px; 
+    height: 100px; 
+    padding: 10px 16px; 
+    border-radius: 150px; 
+    font-size: 9px; 
+    text-align: center; 
+} 
+.btn-circle.btn-xl { 
+    width: 100px; 
+    height: 100px; 
+    padding: 10px 16px; 
+    border-radius: 150px; 
+    font-size: 15px; 
+    font-weight: 300;
+    text-align: center; 
+    background-color: LavenderBlush;
 } 
 .btn-circle.btn-xl:hover{
-	background-color: white;
+	background-color: Black;
 }
-
+.btn-circle.btn-md:hover{
+	background-color: Black;
+}

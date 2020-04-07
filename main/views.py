@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Tutee,Tutor,Profile, Question
+import re
 
 # Create your views here.
 from django.http import Http404
@@ -117,14 +118,11 @@ def results(request):
 def rating(request):
     return render(request, "tutee/ratings.html")
 
-def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
+def newprofile(request):
     if request.method == "POST":
         o = Profile.objects.get(user=request.user)
         o.firstname = request.POST.get('FirstName')
         o.lastname = request.POST.get('LastName')
-        # o.gpa = request.POST.get('GPA')
-        # # o.schoolYear = request.POST.get('SchoolYear')
-        # # o.bio = request.POST.get('Bio')
         o.save()
         return HttpResponseRedirect('newprofile1')
     return render(request, 'login/newprofile.html')
@@ -140,10 +138,28 @@ def newprofile1(request):
 
 def newprofile2(request):
     # this deals with classes
-    if request.method == "POST":
-        o = Profile.objects.get(user = request.user)
+    o = Profile.objects.get(user=request.user)
+    if request.method == "POST" and len(o.classes) == 0:
+        full_string = str(request.POST.get('Classes'))
+        split_list = full_string.split(",")
+        for i in split_list:
+            if re.match(r"[A-Z]{2,4}[0-9]{4}$",i):
+                o.classes.append(i)
+                o.save()
+        return HttpResponseRedirect('newprofile2.5')
+    elif request.method == "POST" and len(o.classes) != 0:
         return HttpResponseRedirect('newprofile3')
     return render(request, 'login/newprofile2.html')
+
+def newprofile2_5(request):
+    o = Profile.objects.get(user = request.user)
+    classes = o.classes
+    context = {
+        "classes": classes,
+    }
+    if request.method == "POST":
+        return HttpResponseRedirect('newprofile3')
+    return render(request, 'login/newprofile2.5.html', context)
 
 def newprofile3(request):
     if request.method == "POST":

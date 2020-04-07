@@ -10,7 +10,7 @@
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
     <!-- javascripts from Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJ oft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
@@ -20,20 +20,17 @@
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><p style = "font-family: Yu Gothic; font-size:40px;"><b>Enter the classes you have taken!</p></b></h5>  
+                    <h1 class="title text-center"><p style = "font-family: Yu Gothic; font-size:35px;"><b>You successfully entered the following classes:</b></p></h1>  
                     <form method='POST'>
                         {% csrf_token %}
-                        <div class = "row">
-                            <div class = "col-6"><p style = "font-family: Yu Gothic; font-size:20px;"><b>Classes:</b></p>
-                                <div class="form-group" style = "width: 320px">
-                                    <input type="newClasses" class="form-control" placeholder = "CS3240,APMA3100,ECE2330" name="Classes" style = "border: 1px solid black;">
-                                </div>
-
+                            {% for instance in classes %}
+                            <div class = "col">
+                            <li> {{ instance }} </li>
                             </div>
+                            {% endfor %}
+                        <div style= "float:right;">
+                            <button onclick="window.location.href = '/newprofile3';" type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black;">Next</button>
                         </div>
-                            <div style = "float:right;">
-                                <button onclick= "window.location.href = '/newprofile3';" type = "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black;">Enter these classes</button> 
-                            </div>
                     </form>  
                     </div>
                 </div>
