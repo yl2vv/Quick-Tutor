@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+    <style type="text/css">
+
+
+<!--.table td.demo {-->
+   <!--max-width: 177px;-->
+<!--}-->
+.table td.demo span {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: inline-block;
+   white-space: nowrap;
+   max-width: 100%;
+   }
+
+  .navbar-custom {
+            background-color: #008080;
+            <!--background-color: #a7cecd; the brighter one-->
+        }
+
+  .container{
+    height: 300px;
+    width: 100%;
+  }
+
+  #display{
+    width: 100%;
+    font-size: 72px;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .buttons{
+    text-align: center;
+  }
+
+
+    </style>
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <nav class="navbar-brand text-white" >Tutoring</nav>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userprofile">Profile</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+	<div class="row">
+        <div class="col-sm-12">
+            <legend>Payment</legend>
+        </div>
+        <!-- panel preview -->
+        <div class="col-sm-5" align="left">
+            <!--<h4>Add payment:</h4>-->
+            <div class="panel panel-default">
+                <div class="panel-body form-horizontal payment-form">
+                    <div class="form-group">
+                        <label for="concept" class="col-sm-3 control-label">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="concept" name="concept" value={{user.firstname}} >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-3 control-label">Description</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="description" name="description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-3 control-label">Amount</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="amount" name="amount">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date" class="col-sm-3 control-label">Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="date" name="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-right">
+                            <!--<div type="button" class="btn btn-secondary">-->
+                                <!--<a href="tutoring"></a> Finish-->
+                            <!--</div>-->
+                            <div class="btn-group mr-2" role="group" aria-label="Button group example">
+                    <a href="tutoring" type="button" class="btn btn-secondary btn-sm">Finish</a>
+                 </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- / panel preview -->
+        <!--<div class="col-sm-7">-->
+            <!--<h4>Preview:</h4>-->
+            <!--<div class="row">-->
+                <!--<div class="col-xs-12">-->
+                    <!--<div class="table-responsive">-->
+                        <!--<table class="table preview-table">-->
+                            <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th>Concept</th>-->
+                                    <!--<th>Description</th>-->
+                                    <!--<th>Amount</th>-->
+                                    <!--<th>Status</th>-->
+                                    <!--<th>Date</th>-->
+                                <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody></tbody> &lt;!&ndash; preview content goes here&ndash;&gt;-->
+                        <!--</table>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row text-right">-->
+                <!--<div class="col-xs-12">-->
+                    <!--<h4>Total: <strong><span class="preview-total"></span></strong></h4>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="col-xs-12">-->
+                    <!--<hr style="border:1px dashed #dddddd;">-->
+                    <!--<button type="button" class="btn btn-primary btn-block">Submit all and finish</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+	</div>
+</div>
+
+
+</body>
+</html>
+
+

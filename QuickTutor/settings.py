@@ -109,7 +109,14 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@localhost:5433/quicktutor')}
+# DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@localhost:5432/quicktutor4')} UNCOMMENT LATER
+
+DATABASES = {'default': dj_database_url.parse('postgres://postgres:hello@localhost:5432/quicktutor')}
+
+
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 # DATABASES = {
 #     'default': {
@@ -146,13 +153,6 @@ DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@loca
 #         }
 #     }
 
-
-# install postgres on this machine
-# you'll enter root user credentials in the process
-# use the credentials to create another user (this should be the same for all your group memebers)
-# create a database (this should be the same for all your group memebers)
-# give that user the permissions to modify/access the database
-# try running the server
 
 
 # Password validation

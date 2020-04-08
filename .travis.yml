@@ -3,6 +3,7 @@ python:
 - '3.8'
 install:
 - pip install -r requirements-travis.txt
+- python -m pip install Pillow
 before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 - psql -c "CREATE USER groupuser WITH PASSWORD 'tutoring!';" -U postgres
@@ -13,11 +14,14 @@ branches:
   only:
   - master
 services:
-  - postgresql
+- postgresql
 deploy:
   provider: heroku
   api_key:
-    secure: "R4ygREEmh6on0rFpyMdyI7UONQvX1B3AgW6FyXFPOryPx26mVrD2A/UGYrufnWuLMEW8JxoBIRzc/yfyP3iiML1s/6FXw5CZcOsRBFuJzpApPPdrnCweYgfPzVLzlAlz3zdpSw5pFfxyGUDMu9fbD8r+Ln+++1uDXO7+2EfiqfLxDD1Sp5zYPEdopvVyMJvFkp9bkJU2YiWy49W8+bHSs6+AlNVkxse4CXOmVYpiyCZKfrxL38ieLPsHSS/P8LTX0if7GBrcQnjQdTaC4nvP7egIRIOtIMF6ztTZ3CtCHJhoQX9qw3hrZoX5Tn3gzJtZk86A8PQPC0pZ7ro0i41VT8uMhlBzr8l9mMpLyirylk0n7OSJVjxMNSlDiZKYSs0c2UsGQCSs3K4rqLcA/A64A3VY3X96JCeK/78/tldwkNJM8plbASIcUzd1gMzaTfpN4qFFpAA/L3SfuuT+dyIXCrKxrjruuKtPNDI/dePJhR1yQ6z1Cqd0tR/jbzGETd8UXVItwAjvua8/CI0v3xzKiS/kem5rkqsZyqxb2RNve88h8ysjakteBATc5uXA/GAZ0gPGQ55P9YwupSuFXK/dOXu9VpR3EOSBtaygWsqxdRXb1tLXEk0fuvBzlrGLCKidliDMo+oP7CAWmYMAny9S1i+rbRAPgrKNnIwMGChoOZ4="
+    secure: "aJNhEpnw8DV36FZVQCavEHew4OQaEZ4zeKn9J4Ry4R5xuka1EzVncBNTo8xZnIFIPLBKRPt4+gSE3BT4/PKPAOBUGmWTdnWL+KHHgwzZMg0QMkPpAmbLXk5G7wkCzDMaDSxA5OqfEvUw/vFOpCpkQJzjS8+BYwBi3PEAAa
+    9YGMj9AInEEjq3HdD9XFlPb6fUy5tWE/X8bM6MirFQDix8zNKr1sTp0zq1DCDsPOya8ZdZephy624+EOXavSYCPLvAmAIb1Mu5IDLh0EaDvIStBqCn+amUzhLAHAvPzfd07CrmhPhVRl4ESy13A7t6nNWa0Kp/Pp7xmJBHknFqC7DAX47
+    mIbks/HvaQiFPMsDgdJHgcGcti+Lmkh428vpngJ7M6liJKyQ2r3fRrRqc83oGMCN5thjBavH00F8dmHg6ow5a/fU8jX0f1PR2w4R36NM9LdyodygBOQFnPiP8FMf8sg7hFXNwdcZT09I4gDBZ4CJSxiC7Y8pvJwVUWyLs4W2SeFHICq9K
+    ui4m0CPLejlYHGXR5OB1cxDXtarB92HbawvZ8MJPN/+qi8Zc4inPF2CwuQnV+TGP9HTNzJ3fTMRk2rf0b69LPvpRlNG2YMsQd8tGXqMSw8vIhTI1oYTHkuoSzz5o9PzfqUZNAJIPJYWZ3dFesSMafQ9SosA+z6Q3qU8="
   app: cs4life-quicktutor
   on:
     repo: uva-cs3240-s20/project-101-cs4life

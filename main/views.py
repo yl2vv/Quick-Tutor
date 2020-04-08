@@ -54,25 +54,27 @@ def home(request):
 
 # view for the tutor page after user has clicked that option on the homepage
 def tutoring(request):
-    o = Profile.objects.get(user=request.user)
-    connection = o.connection
-    if connection != "":
-        tutee = Profile.objects.get(pk=connection)
-        question = Question.objects.get(person=tutee)
-        context = {
-            "first": tutee.firstname,
-            "last": tutee.lastname,
-            "question": question,
-        }
-    else:
-        context = {
-                "first": "No",
-                "last": "one",
-                "question": "a question.",
-            }
-    return render(request, 'tutor/main.html', context)
-
-# view for the tutee page after user has clicked that option on the homepage
+    # o = Profile.objects.get(user=request.user)
+    # connection = o.connection
+    # if connection != "":
+    #     tutee = Profile.objects.get(pk=connection)
+    #     question = Question.objects.get(person=tutee)
+    #     context = {
+    #         "first": tutee.firstname,
+    #         "last": tutee.lastname,
+    #         "topic": question.Question_text,
+    #         "class": question.Class_text,
+    #         "question": question.Comments_text
+    #     }
+    # else:
+    #     context = {
+    #         "first": "No",
+    #         "last": "one",
+    #         "question": "a question"
+    #     }
+    # return render(request, 'tutor/main.html', context)
+    return render(request, 'tutor/main.html')
+# view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
     #Get current user
     o = Profile.objects.get(user=request.user)
@@ -192,3 +194,25 @@ def userprofile(request):
          "user": o,
     }
     return render(request, 'login/userprofile.html', context)
+
+def question(request):
+    o = Profile.objects.get(user=request.user)
+    context = {
+        "user": o,
+    }
+    return render(request, 'tutee/question.html', context)
+
+def session(request):
+    o = Profile.objects.get(user=request.user)
+    context = {
+        "user": o,
+    }
+
+    return render(request, 'tutor/session.html', context)
+
+def payment(request):
+    o = Profile.objects.get(user=request.user)
+    context = {
+        "user": o,
+    }
+    return render(request, 'tutor/payment.html', context)

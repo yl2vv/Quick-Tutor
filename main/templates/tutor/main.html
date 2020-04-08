@@ -1,13 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tutor Main Page</title>
-</head>
-<body>
-<h1>Answer a Question</h1>
-<h2>{{first}} {{last}} asked {{question}}</h2>
-<button onclick="window.location.href = '/home';">Back to Home</button>
+<html>
 
-</body>
-</html>
+<!-- <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head> -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+    <style type="text/css">
+        <!--h1 {-->
+            <!--color:green;-->
+        <!--}-->
+        <!--.xyz {-->
+            <!--background-size: auto;-->
+            <!--text-align: center;-->
+            <!--padding-top: 100px;-->
+        <!--}-->
+        <!--.btn-circle.btn-sm {-->
+            <!--width: 30px;-->
+            <!--height: 30px;-->
+            <!--padding: 6px 0px;-->
+            <!--border-radius: 15px;-->
+            <!--font-size: 8px;-->
+            <!--text-align: center;-->
+        <!--}-->
+        <!--.btn-circle.btn-md {-->
+            <!--width: 50px;-->
+            <!--height: 50px;-->
+            <!--padding: 7px 10px;-->
+            <!--border-radius: 25px;-->
+            <!--font-size: 10px;-->
+            <!--text-align: center;-->
+        <!--}-->
+        <!--.btn-circle.btn-xl {-->
+            <!--width: 70px;-->
+            <!--height: 70px;-->
+            <!--padding: 10px 16px;-->
+            <!--border-radius: 35px;-->
+            <!--font-size: 12px;-->
+            <!--text-align: center;-->
+        <!--}-->
+
+.table td.demo {
+   max-width: 177px;
+}
+.table td.demo span {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: inline-block;
+   white-space: nowrap;
+   max-width: 100%;
+   }
+
+  .navbar-custom {
+            background-color: #008080;
+            <!--background-color: #a7cecd; the brighter one-->
+        }
+
+    </style>
+
+
+<!--GREEN NAVIGATION BAR AT TOP OF PAGE-->
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <nav class="navbar-brand text-white" >Tutor Page</nav>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userprofile">Profile</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+<!--END OF NAVBAR-->
+
+
+
+<!--CREATING A TABLE FOR TUTEES WHO REQUESTED THE TUTOR-->
+
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-dark text-white">
+      <th scope="col">Tutee</th>
+      <th scope="col">Class</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Question</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+
+               <!--&lt;!&ndash;{% for instance in results %}&ndash;&gt;-->
+            <!--<form method='POST' action=>-->
+            <!--{% csrf_token %}-->
+              <!--<tr>-->
+                  <!--<th scope="row">-->
+                    <!--{{instance.firstname}} {{instance.lastname}}-->
+                  <!--</th>-->
+                  <!--<td>{{instance.gpa}}</td>-->
+                  <!--<td>{{instance.email}}</td>-->
+                  <!--<td>{{instance.phoneNumber}}</td>-->
+                  <!--<td>{{instance.bio}}</td>-->
+                  <!--<td><button type="submit">select</button></td>-->
+              <!--</tr>-->
+            <!--</form>-->
+          <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
+
+
+
+
+
+
+
+    <tr onclick="window.location='question'">
+      <th scope="row">Mykim</th>
+      <td>CS3240</td>
+      <td>quickTutor</td>
+      <td class ="demo"> <span>hiya</span></td>
+    </tr>
+
+
+         <tr onclick="window.location='question'">
+      <th scope="row">{{first}} {{last}}</th>
+      <td>{{class}}</td>
+      <td>{{topic}}</td>
+      <td class ="demo"> <span>{{question}}</span></td>
+    </tr>
+               <!--<tr>-->
+      <!--<th scope="row">Student2</th>-->
+      <!--<td>Science</td>-->
+      <!--<td>idk</td>-->
+      <!--<td class ="demo"> <span>this is a test to see how long the question can be before it is hidden: SPAMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+     <!--<th scope="row">Student3</th>-->
+      <!--<td>CS3240</td>-->
+      <!--<td>quickTutor</td>-->
+      <!--<td class ="demo"> <span>need to automatically add rows</span></td>-->
+    <!--</tr>-->
+
+
+  </tbody>
+</table>
+
+<!--END OF TABLE-->
+
+
+
+
+
+
+
+
+
+
+
