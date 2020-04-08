@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 {% load static %}
@@ -9,33 +10,26 @@
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
     <!-- javascripts from Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJ oft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
-<body style = "background: LightBlue">
+<body style = "background: LightBlue;">
     <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b>Next Step!</b></h5>  
-                    <form method='POST'><b>Contact information:</b>
+                    <h1 class="title text-center"><p style="font-size:30px;"><b>You successfully entered the following classes:</b></p></h1>  
+                    <form method='POST'>
                         {% csrf_token %}
-                        <div class = "row">
-                            <div class = "col-6">
-                                <div class="form-group" style = "width: 164px">
-                                <input type="newPhoneNumber" class="form-control" placeholder = "Cell Phone Number" name="PhoneNumber" style = "border: 1px solid black;">
-                                </div>
+                            {% for instance in classes %}
+                            <div class = "col">
+                            <li> {{ instance }} </li>
                             </div>
-                            <div class = "col-6">
-                                <div class="form-group" style = "width: 159px">
-                                <input type="newcomputingID" class="form-control" placeholder = "Computing ID" name="ComputingID" style = "border: 1px solid black;">
-                                </div>
-                            </div>
-                        </div>
+                            {% endfor %}
                         <div style= "float:right;">
-                            <button onclick="window.location.href = '/newprofile2';" type="submit" class = "btn btn-light" style = "border: 2px solid black;">Next</a></button>
+                            <button onclick="window.location.href = '/newprofile3';" type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black;">Next</button>
                         </div>
                     </form>  
                     </div>

@@ -1,20 +1,47 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+    <!-- link to bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <!-- static/login_style.css -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/userprofile_style.css'%}">
+    <!-- javascripts from Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
-<body>
-<!--<h1>User Profile</h1>-->
-<div class="container-fluid">
-    <h2 class="text-center">User Profile</h2>
+
+<body style = "background: LightBlue">
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card top_layer my-5">
+            <div class = "image_container">
+                <img class = "profile-pic" src = {{user.image}} > 
+            </div>
+            <div class="body">
+            <h5 class="title text-center"><p style = "font-family: Yu Gothic; font-size:70px;">User profile info</b></p></h5>
+            <form class="form-signin">
+              
+
+              <hr class="my-4">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <!-- <h2 class="text-center">User Profile</h2>
     <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
         <div class="col-sm-5 text-center">
             <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
-            <!--{{context.whatever}}   # as a placeholder-->
             <div>Name: {{user.firstname}} {{user.lastname}}</div>
             <div>Computing Id: {{user.computingID}}</div>
         </div>
@@ -29,7 +56,7 @@
         <div>
             <button class = "btn btn-light btn-circle align-right" style = "width: 110px; height: 40px;"><a href="newprofile">Change</a></button>
         </div>
-    </div>
+    </div> -->
 
 </div>
 

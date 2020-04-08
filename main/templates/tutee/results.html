@@ -1,33 +1,22 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- static/login_style.css -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
 <head>
     <meta charset="UTF-8">
     <title>Tutee Results Page</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
-        <button onclick="window.location.href = '/home';">Back to Home</button>
+<body style="background-color:LightBlue;">
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class = "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link text-white" href="#">Tutee <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Profile
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Profile</a>
-              <a class="dropdown-item" href="#">Logout</a>
-            </div>
-          </div>
+       
         </div>
     </nav>
       <table class="table">
@@ -43,7 +32,7 @@
           </thead>
           <tbody>
           {% for instance in results %}
-            <form method='POST' action=>
+            <form method='POST'>
             {% csrf_token %}
               <tr>
                   <th scope="row">
@@ -53,7 +42,8 @@
                   <td>{{instance.email}}</td>
                   <td>{{instance.phoneNumber}}</td>
                   <td>{{instance.bio}}</td>
-                  <td><button type="submit">select</button></td>
+                  <!-- Save the id of instance so I can Profile.objects.get() -->
+                  <td><button type="button" onclick="window.location.href='results/rating/{{instance.id}}'">select</button></td>
               </tr>
             </form>
           {% endfor %}

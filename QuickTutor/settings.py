@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.account',
     'allauth',
-    'multiselectfield',
 ]
 
 MIDDLEWARE = [
