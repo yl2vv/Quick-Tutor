@@ -101,7 +101,6 @@ def tuteeing(request):
         obj.Class_text = class_id
         obj.File_upload = file_upload
         obj.Comments_text = comments
-        obj.asker = o.id
         obj.person = Profile.objects.get(user=request.user)
         obj.save()
         o.save()
