@@ -19,5 +19,6 @@ urlpatterns = [
     path('userprofile',views.userprofile,name='userprofile'),
     #path('userprofile',views.userprofile,name='userprofile'),
     path('question',views.question,name='question'),
-    path('session', views.session, name='session')
+    path('session', views.session, name='session'),
+    path('payment', views.payment, name='payment')
 ]
