@@ -97,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'quicktutor4',
-        'USER': 'groupuser',
-        'PASSWORD': 'tutoring!',
+        'USER': 'postgres',
+        'PASSWORD': 'adm!n1847',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
