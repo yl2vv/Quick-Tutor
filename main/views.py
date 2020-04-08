@@ -54,26 +54,28 @@ def home(request):
 
 # view for the tutor page after user has clicked that option on the homepage
 def tutoring(request):
-    # o = Profile.objects.get(user=request.user)
-    # connection = o.connection
-    # if connection != "":
-    #     tutee = Profile.objects.get(pk=connection)
-    #     question = Question.objects.get(person=tutee)
-    #     context = {
-    #         "first": tutee.firstname,
-    #         "last": tutee.lastname,
-    #         "topic": question.Question_text,
-    #         "class": question.Class_text,
-    #         "question": question.Comments_text
-    #     }
-    # else:
-    #     context = {
-    #         "first": "No",
-    #         "last": "one",
-    #         "question": "a question"
-    #     }
-    # return render(request, 'tutor/main.html', context)
-    return render(request, 'tutor/main.html')
+    o = Profile.objects.get(user=request.user)
+    connection = o.connection
+    if connection != "":
+        tutee = Profile.objects.get(pk=connection)
+        question = Question.objects.get(person=tutee)
+        context = {
+            "first": tutee.firstname,
+            "last": tutee.lastname,
+            "topic": question.Question_text,
+            "class": question.Class_text,
+            "question": question.Comments_text
+        }
+    else:
+        context = {
+            "first": "No Questions",
+            "last": "",
+            "topic": "",
+            "class": "",
+            "question": "",
+        }
+    return render(request, 'tutor/main.html', context)
+    # return render(request, 'tutor/main.html')
 # view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
     #Get current user
@@ -197,22 +199,34 @@ def userprofile(request):
 
 def question(request):
     o = Profile.objects.get(user=request.user)
+    tutee = Profile.objects.get(pk=o.connection)
+    question = Question.objects.get(person=tutee)
     context = {
         "user": o,
+        "tutee": tutee,
+        "question": question,
     }
     return render(request, 'tutee/question.html', context)
 
 def session(request):
     o = Profile.objects.get(user=request.user)
+    tutee = Profile.objects.get(pk=o.connection)
     context = {
         "user": o,
+        "tutee": tutee,
     }
-
     return render(request, 'tutor/session.html', context)
 
 def payment(request):
     o = Profile.objects.get(user=request.user)
+    tutee = Profile.objects.get(pk=o.connection)
+
+    o.connection = ""
+    o.save()
+    question = Question.objects.get(person = tutee)
+    question.delete()
     context = {
         "user": o,
+        "tutee": tutee,
     }
     return render(request, 'tutor/payment.html', context)
