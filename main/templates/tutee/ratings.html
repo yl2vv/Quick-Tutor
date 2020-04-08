@@ -33,12 +33,12 @@
 
     <div class="container">
       <div class="column col-md-6 offset-md-3 justify-content-center p-4">
-          <h1>How Would You Rate Your Tutor?</h1>
+          <h1>How Would You Rate {{tutor.firstname}} ?</h1>
           <form method='POST' class="column justify-content-center"> 
             {% csrf_token %}
               <div class="form-group w-50">
                   <label for="class">Rating</label>
-                  <select class="form-control" name="class">
+                  <select class="form-control" name="rate">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -47,7 +47,6 @@
                   </select>
               </div>
               <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
-              <!-- <a href="tuteeing/results" type="submit" class="btn btn-success btn-lg btn-block" role="button">Submit</a> -->
           </form>
       </div>
   </div>

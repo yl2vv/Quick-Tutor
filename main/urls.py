@@ -10,8 +10,7 @@ urlpatterns = [
     path('tutoring', views.tutoring, name='tutor'),
     path('tuteeing', views.tuteeing, name='tutee'),
     path('tuteeing/results', views.results, name='results'),
-    # path('tuteeing/<str:username>/select', views.select, name='select'),
-    path('tuteeing/results/rating', views.rating, name='rating'),
+    path('tuteeing/results/rating/<tutor_id>', views.rating, name='rating'),
     path('newprofile',views.newprofile,name='newprofile'),
     path('newprofile1',views.newprofile1,name='newprofile1'),
     path('newprofile2',views.newprofile2,name='newprofile2'),
@@ -20,5 +19,6 @@ urlpatterns = [
     path('userprofile',views.userprofile,name='userprofile'),
     #path('userprofile',views.userprofile,name='userprofile'),
     path('question',views.question,name='question'),
-    path('session', views.session, name='session')
+    path('session', views.session, name='session'),
+    path('payment', views.payment, name='payment')
 ]

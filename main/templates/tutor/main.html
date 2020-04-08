@@ -118,24 +118,59 @@
     </tr>
   </thead>
   <tbody>
-    <tr onclick="window.location='question'">
+
+
+
+               <!--&lt;!&ndash;{% for instance in results %}&ndash;&gt;-->
+            <!--<form method='POST' action=>-->
+            <!--{% csrf_token %}-->
+              <!--<tr>-->
+                  <!--<th scope="row">-->
+                    <!--{{instance.firstname}} {{instance.lastname}}-->
+                  <!--</th>-->
+                  <!--<td>{{instance.gpa}}</td>-->
+                  <!--<td>{{instance.email}}</td>-->
+                  <!--<td>{{instance.phoneNumber}}</td>-->
+                  <!--<td>{{instance.bio}}</td>-->
+                  <!--<td><button type="submit">select</button></td>-->
+              <!--</tr>-->
+            <!--</form>-->
+          <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
+
+
+
+
+
+
+
+    <!-- <tr onclick="window.location='question'">
       <th scope="row">Mykim</th>
       <td>CS3240</td>
       <td>quickTutor</td>
       <td class ="demo"> <span>hiya</span></td>
+    </tr> -->
+
+
+    <tr onclick="window.location='question'">
+      <th scope="row">{{first}} {{last}}</th>
+      <td>{{class}}</td>
+      <td>{{question}}</td>
+      <td class ="demo"> <span>{{topic}}</span></td>
     </tr>
-    <tr>
-      <th scope="row">Student2</th>
-      <td>Science</td>
-      <td>idk</td>
-      <td class ="demo"> <span>this is a test to see how long the question can be before it is hidden: SPAMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span></td>
-    </tr>
-    <tr>
-     <th scope="row">Student3</th>
-      <td>CS3240</td>
-      <td>quickTutor</td>
-      <td class ="demo"> <span>need to automatically add rows</span></td>
-    </tr>
+               <!--<tr>-->
+      <!--<th scope="row">Student2</th>-->
+      <!--<td>Science</td>-->
+      <!--<td>idk</td>-->
+      <!--<td class ="demo"> <span>this is a test to see how long the question can be before it is hidden: SPAMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+     <!--<th scope="row">Student3</th>-->
+      <!--<td>CS3240</td>-->
+      <!--<td>quickTutor</td>-->
+      <!--<td class ="demo"> <span>need to automatically add rows</span></td>-->
+    <!--</tr>-->
+
+
   </tbody>
 </table>
 

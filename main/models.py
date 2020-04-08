@@ -28,8 +28,11 @@ class Profile(models.Model):
     classes = ListCharField(base_field=models.CharField(max_length=15),size=15,max_length= 240,blank=True)
     bio = models.CharField(max_length=500,blank=True)
     activeStatus = models.BooleanField(default=False) #Are they an active tutor
-    connection = models.CharField(max_length=50,blank=True) #Who they are tutoring / tuteeing
-    # tutor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tutor", default=None, null=True)
+    connection = models.CharField(max_length=50,blank=True) #Who they are tutoring
+    tutorRate = models.FloatField(default=0.0,blank=True) #the rating of tutor
+    compositeRating = models.IntegerField(default=0, blank=True) #total score recieved to calculate rating
+    timesTutored = models.IntegerField(default=0,blank=True) #the number of times tutored
+    timesTutteed = models.IntegerField(default=0,blank=True) #the number of times got help
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
@@ -39,6 +42,8 @@ class Question(models.Model):
     Class_text = models.CharField(default='',max_length=200)
     Comments_text = models.CharField(default='',max_length=10000)
     File_upload = models.ImageField()
+    asker = models.CharField(default='', max_length=10)
+    person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.Question_text
 
