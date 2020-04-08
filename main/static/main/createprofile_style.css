@@ -12,13 +12,14 @@ body{
 	margin-bottom: auto;
 	background: #008080;
 	position: relative;
+	border: 1px solid black;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	padding: 10px;
-	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 10px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 10px;
 } 
 .top_layer .title{
@@ -30,20 +31,9 @@ body{
 .top_layer .body{
 	padding: 2rem;
 }
-
-.btn-circle.btn-xl { 
-    width: 100px; 
-    height: 100px; 
-    padding: 10px 16px; 
-    border-radius: 150px; 
-    font-size: 15px; 
-    font-weight: 300;
-    text-align: center; 
-    background-color: LavenderBlush;
-} 
-.btn-circle.btn-xl:hover{
-	color: Black;
+.btn.btn-light{
+	border: 2px solid black;
 }
-.btn-circle.btn-md:hover{
-	color: Black;
+.btn.btn-light:hover{
+	background-color: LightBlue;
 }

@@ -73,17 +73,21 @@ def tutoring(request):
         context = {
             "first": tutee.firstname,
             "last": tutee.lastname,
-            "question": question,
+            "topic": question.Question_text,
+            "class": question.Class_text,
+            "question": question.Comments_text
         }
     else:
         context = {
-                "first": "No",
-                "last": "one",
-                "question": "a question.",
-            }
+            "first": "No Questions",
+            "last": "",
+            "topic": "",
+            "class": "",
+            "question": "",
+        }
     return render(request, 'tutor/main.html', context)
-
-# view for the tutee page after user has clicked that option on the homepage
+    # return render(request, 'tutor/main.html')
+# view for the tutor page after user has clicked that option on the homepage
 def tuteeing(request):
     #Get current user
     o = Profile.objects.get(user=request.user)
@@ -101,7 +105,6 @@ def tuteeing(request):
         obj.Class_text = class_id
         obj.File_upload = file_upload
         obj.Comments_text = comments
-        obj.asker = o.id
         obj.person = Profile.objects.get(user=request.user)
         obj.save()
         o.save()
@@ -123,8 +126,9 @@ def results(request):
     for p in people:
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
-                if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
-                    results.append(p)
+                results.append(p)
+                # if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
+                    # results.append(p)
     context = {
         "questions_list": questions,
         "people_list": people,
@@ -223,7 +227,35 @@ def userprofile(request):
     return render(request, 'login/userprofile.html', context)
 
 def question(request):
-    return render(request, 'tutee/question.html')
+    o = Profile.objects.get(user=request.user)
+    tutee = Profile.objects.get(pk=o.connection)
+    question = Question.objects.get(person=tutee)
+    context = {
+        "user": o,
+        "tutee": tutee,
+        "question": question,
+    }
+    return render(request, 'tutee/question.html', context)
 
 def session(request):
-    return render(request, 'tutor/session.html')
+    o = Profile.objects.get(user=request.user)
+    tutee = Profile.objects.get(pk=o.connection)
+    context = {
+        "user": o,
+        "tutee": tutee,
+    }
+    return render(request, 'tutor/session.html', context)
+
+def payment(request):
+    o = Profile.objects.get(user=request.user)
+    tutee = Profile.objects.get(pk=o.connection)
+
+    o.connection = ""
+    o.save()
+    question = Question.objects.get(person = tutee)
+    question.delete()
+    context = {
+        "user": o,
+        "tutee": tutee,
+    }
+    return render(request, 'tutor/payment.html', context)
