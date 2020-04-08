@@ -4,14 +4,15 @@ body{
 	background-color: Teal !important;
 }
 
-.quickTutor_logo_container {
+.image_container {
 	position: absolute;
 	height: 185px;
 	width: 185px;
 	top: -45px;
 	margin-left: -75px;
 	margin-right: 195px;
-	background-color: LavenderBlush;
+	background-color: black;
+	border-radius: 30px;
 	padding: 5px;
 	text-align: center;
 		box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -42,8 +43,8 @@ img{
 }
 
 .top_layer{
-	height: 600px;
-	width: 650px;
+	height: 500px;
+	width: 600px;
 	shape-margin: auto;
 	margin-top: 50px;
 	margin-bottom: auto;
@@ -53,11 +54,12 @@ img{
 	justify-content: center;
 	flex-direction: column;
 	padding: 10px;
+	border: 1px solid black;
 	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border-radius: 5px;
-} 
+	border-radius: 10px;
+}
 .top_layer .title{
 	margin-bottom: 2rem;
 	font-weight: 350;
@@ -67,30 +69,6 @@ img{
 .top_layer .body{
 	padding: 2rem;
 }
-
-.xyz { 
-    background-size: auto; 
-    text-align: center; 
-    padding-top: 100px; 
-} 
-.btn-circle.btn-sm { 
-    width: 100px; 
-    height: 100px; 
-    padding: 10px 16px; 
-    border-radius: 150px; 
-    font-size: 15px; 
-    font-weight: 300;
-    text-align: center; 
-    background-color: LavenderBlush;
-} 
-.btn-circle.btn-md { 
-    width: 100px; 
-    height: 100px; 
-    padding: 10px 16px; 
-    border-radius: 150px; 
-    font-size: 9px; 
-    text-align: center; 
-} 
 .btn-circle.btn-xl { 
     width: 100px; 
     height: 100px; 
@@ -104,6 +82,6 @@ img{
 .btn-circle.btn-xl:hover{
 	background-color: Black;
 }
-.btn-circle.btn-md:hover{
-	background-color: Black;
+.profile-pic{
+	border-radius: 25px;
 }

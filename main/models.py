@@ -42,7 +42,6 @@ class Question(models.Model):
     Class_text = models.CharField(default='',max_length=200)
     Comments_text = models.CharField(default='',max_length=10000)
     File_upload = models.ImageField()
-    asker = models.CharField(default='', max_length=10)
     person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.Question_text
