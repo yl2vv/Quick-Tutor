@@ -68,7 +68,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.account',
     'allauth',
-    'multiselectfield',
 ]
 
 MIDDLEWARE = [
@@ -109,11 +108,7 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-# DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@localhost:5432/quicktutor4')} UNCOMMENT LATER
-
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@localhost:5433/quicktutor')}
-
-
+DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@localhost:5432/quicktutor4')}
 # DATABASES = {}
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 

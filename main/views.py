@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Tutee,Tutor,Profile, Question
+import re
 
 # Create your views here.
 from django.http import Http404
@@ -9,6 +10,7 @@ from django.urls import reverse
 from django.views import generic
 from django.template import loader
 from allauth.socialaccount import models as socialmodel
+import math
 
 
 def login(request):
@@ -50,6 +52,15 @@ def loggedin(request):
         return HttpResponseRedirect(reverse('login:login'))
 
 def home(request):
+    if(request.method == 'POST'):
+        p = Profile.objects.get(user=request.user)
+        p.latitude = request.POST.get('Latitude')
+        p.longitude = request.POST.get('Longitude')
+        p.save()
+        if(request.POST.get('Type') == 'tutee'):
+            return HttpResponseRedirect(reverse('login:tutee'))
+        if(request.POST.get('Type') == 'tutor'):
+            return HttpResponseRedirect(reverse('login:tutor'))
     return render(request, 'login/home.html')
 
 # view for the tutor page after user has clicked that option on the homepage
@@ -108,6 +119,7 @@ def results(request):
     questions = Question.objects.all()
     #Grab all the profiles
     people = Profile.objects.all()
+    me = Profile.objects.get(user=request.user)
     results = []
     #Check that a person took the class and is currently an active tutor 
 #WILL HAVE TO ADD LOCATION AS WELL
@@ -115,6 +127,8 @@ def results(request):
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
                 results.append(p)
+                # if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
+                    # results.append(p)
     context = {
         "questions_list": questions,
         "people_list": people,
@@ -149,14 +163,11 @@ def rating(request, tutor_id):
     }
     return render(request, "tutee/ratings.html", context)
 
-def newprofile(request): #maybe try to change to (request,id) if way to handle positional argument
+def newprofile(request):
     if request.method == "POST":
         o = Profile.objects.get(user=request.user)
         o.firstname = request.POST.get('FirstName')
         o.lastname = request.POST.get('LastName')
-        # o.gpa = request.POST.get('GPA')
-        # # o.schoolYear = request.POST.get('SchoolYear')
-        # # o.bio = request.POST.get('Bio')
         o.save()
         return HttpResponseRedirect('newprofile1')
     return render(request, 'login/newprofile.html')
@@ -172,10 +183,28 @@ def newprofile1(request):
 
 def newprofile2(request):
     # this deals with classes
-    if request.method == "POST":
-        o = Profile.objects.get(user = request.user)
+    o = Profile.objects.get(user=request.user)
+    if request.method == "POST" and len(o.classes) == 0:
+        full_string = str(request.POST.get('Classes'))
+        split_list = full_string.split(",")
+        for i in split_list:
+            if re.match(r"[A-Z]{2,4}[0-9]{4}$",i):
+                o.classes.append(i)
+                o.save()
+        return HttpResponseRedirect('newprofile2.5')
+    elif request.method == "POST" and len(o.classes) != 0:
         return HttpResponseRedirect('newprofile3')
     return render(request, 'login/newprofile2.html')
+
+def newprofile2_5(request):
+    o = Profile.objects.get(user = request.user)
+    classes = o.classes
+    context = {
+        "classes": classes,
+    }
+    if request.method == "POST":
+        return HttpResponseRedirect('newprofile3')
+    return render(request, 'login/newprofile2.5.html', context)
 
 def newprofile3(request):
     if request.method == "POST":
