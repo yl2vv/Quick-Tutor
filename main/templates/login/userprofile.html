@@ -24,11 +24,26 @@
             </div>
             <div class="body">
             <h5 class="title text-center"><p style = "font-family: Yu Gothic; font-size:70px;">User profile info</b></p></h5>
-            <form class="form-signin">
-              
+                <h6 class="title text-center"><p style = "font-family: Yu Gothic; font-size:40px;">Balance: ${{user.balance}}</b></p></h6>
+
+            <form method='POST' class="form-signin">
+                {% csrf_token %}
+
+                <!--UPDATE BALANCE-->
+              <input type="number"  class="form-control" id="updateBalance" name="updateBalance">
+                <div class="form-group">
+                        <div class="col-sm-12 text-right">
+                            <div class="btn-group mr-2" role="group" aria-label="Button group example">
+                                <button type="submit" class="btn btn-secondary btn-md">Add Balance</button>
+                            </div>
+
+                        </div>
+                    </div>
+                <!--END OF UPDATE BALANCE-->
 
               <hr class="my-4">
             </form>
+
           </div>
         </div>
       </div>

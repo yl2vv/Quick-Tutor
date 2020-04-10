@@ -64,6 +64,121 @@
 
 
 </head>
+
+
+    <script type="text/javascript" >
+        //Define vars to hold time values
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+//Define vars to hold "display" value
+let displaySeconds = 0;
+let displayMinutes = 0;
+let displayHours = 0;
+
+//Define var to hold setInterval() function
+let interval = null;
+
+//Define var to hold stopwatch status
+let status = "stopped";
+
+//Stopwatch function (logic to determine when to increment next value, etc.)
+function stopWatch(){
+
+    seconds++;
+
+    //Logic to determine when to increment next value
+    if(seconds / 60 === 1){
+        seconds = 0;
+        minutes++;
+
+        if(minutes / 60 === 1){
+            minutes = 0;
+            hours++;
+        }
+
+    }
+
+    //If seconds/minutes/hours are only one digit, add a leading 0 to the value
+    if(seconds < 10){
+        displaySeconds = "0" + seconds.toString();
+    }
+    else{
+        displaySeconds = seconds;
+    }
+
+    if(minutes < 10){
+        displayMinutes = "0" + minutes.toString();
+    }
+    else{
+        displayMinutes = minutes;
+    }
+
+    if(hours < 10){
+        displayHours = "0" + hours.toString();
+    }
+    else{
+        displayHours = hours;
+    }
+
+    //Display updated time values to user
+    document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+
+}
+
+
+
+function startStop(){
+
+    if(status === "stopped"){
+
+        //Start the stopwatch (by calling the setInterval() function)
+        interval = window.setInterval(stopWatch, 1000);
+        document.getElementById("startStop").innerHTML = "Stop";
+        status = "started";
+        <!--amount = minutes/5-->
+        <!--document.getElementByID("amount").innerHTML = "testing"-->
+
+    }
+    else{
+
+        window.clearInterval(interval);
+        document.getElementById("startStop").innerHTML = "Start";
+        status = "stopped";
+        document.getElementByID("amount").innerHTML = "testing"
+
+    }
+
+}
+
+//Function to reset the stopwatch
+function reset(){
+
+    window.clearInterval(interval);
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    document.getElementById("display").innerHTML = "00:00:00";
+    document.getElementById("startStop").innerHTML = "Start";
+
+}
+
+function calculate(){
+    temp_minutes = (hours * 60) + (minutes) + (seconds/60);
+    amount = temp_minutes/5;
+
+
+    document.getElementById("amount").value = amount.toFixed(2);
+
+
+
+}
+
+ </script>
+
+
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
     <nav class="navbar-brand text-white" >Tutoring</nav>
@@ -88,87 +203,63 @@
 
 
 <div class="container-fluid">
-	<div class="row">
-        <div class="col-sm-12">
-            <legend>Payment</legend>
+
+        <div class="col-sm-12 align-left">
+            <legend>{{tutee.firstname}}'s Payment</legend>
         </div>
-        <!-- panel preview -->
-        <div class="col-sm-5" align="left">
-            <!--<h4>Add payment:</h4>-->
-            <div class="panel panel-default">
-                <div class="panel-body form-horizontal payment-form">
-                    <div class="form-group">
-                        <label for="concept" class="col-sm-3 control-label">Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" readonly class="form-control" id="concept" name="concept" value="{{tutee.firstname}} {{tutee.lastname}}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-3 control-label">Description</label>
-                        <div class="col-sm-9">
-                            <input type="text" readonly class="form-control" id="description" name="description">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="amount" class="col-sm-3 control-label">Amount</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="amount" name="amount">
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="date" class="col-sm-3 control-label">Date</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="date" name="date">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12 text-right">
-                            <!--<div type="button" class="btn btn-secondary">-->
-                                <!--<a href="tutoring"></a> Finish-->
-                            <!--</div>-->
-                            <div class="btn-group mr-2" role="group" aria-label="Button group example">
-                    <a href="tutoring" type="button" class="btn btn-secondary btn-sm">Finish</a>
-                 </div>
 
-                        </div>
-                    </div>
+         <div class="container">
+
+                <div id="display">
+                    00:00:00
                 </div>
-            </div>
-        </div> <!-- / panel preview -->
-        <!--<div class="col-sm-7">-->
-            <!--<h4>Preview:</h4>-->
-            <!--<div class="row">-->
-                <!--<div class="col-xs-12">-->
-                    <!--<div class="table-responsive">-->
-                        <!--<table class="table preview-table">-->
-                            <!--<thead>-->
-                                <!--<tr>-->
-                                    <!--<th>Concept</th>-->
-                                    <!--<th>Description</th>-->
-                                    <!--<th>Amount</th>-->
-                                    <!--<th>Status</th>-->
-                                    <!--<th>Date</th>-->
-                                <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody></tbody> &lt;!&ndash; preview content goes here&ndash;&gt;-->
-                        <!--</table>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row text-right">-->
-                <!--<div class="col-xs-12">-->
-                    <!--<h4>Total: <strong><span class="preview-total"></span></strong></h4>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-                <!--<div class="col-xs-12">-->
-                    <!--<hr style="border:1px dashed #dddddd;">-->
-                    <!--<button type="button" class="btn btn-primary btn-block">Submit all and finish</button>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-	</div>
+
+                <div class="buttons">
+                    <button id="startStop" onclick="startStop()">Start</button>
+                    <button id="reset" onclick="reset()">Reset</button>
+                    <button id="calculate" onclick="calculate()">Calculate</button>
+                </div>
+
+
+
+             <form method='POST' class="column justify-content-center">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="Amount" class="col-sm-3 ">Amount</label>
+                        <div class="col-sm-9">
+                            <input type="float" readonly class="form-control" id="amount" name="Amount" value=0.00>
+                        </div>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <td>Hour</td>
+                            <td>Minutes</td>
+                            <td>Seconds</td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="hours" id="hour" value=0></td>
+                            <td><input type="number" name="minutes" id="minutes" value=0></td>
+                            <td><input type="number" name="seconds" id="seconds" value=0></td>
+                        </tr>
+                    </table>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-9 text-right">
+                            <div class="btn-group mr-2" role="group" aria-label="Button group example">
+                                <button type="submit" class="btn btn-secondary btn-sm">Finish</button>
+                            </div>
+
+                        </div>
+                    </div>
+             </form>
+
+
+         </div>
+
 </div>
 
 

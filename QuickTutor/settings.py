@@ -96,9 +96,12 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'quicktutor4',
-        'USER': 'groupuser',
-        'PASSWORD': 'tutoring!',
+        # 'NAME': 'quicktutor4',
+        # 'USER': 'groupuser',
+        # 'PASSWORD': 'tutoring!',
+        'NAME': 'quicktutor',
+        'USER': 'postgres',
+        'PASSWORD': 'hello',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

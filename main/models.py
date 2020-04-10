@@ -33,6 +33,7 @@ class Profile(models.Model):
     compositeRating = models.IntegerField(default=0, blank=True) #total score recieved to calculate rating
     timesTutored = models.IntegerField(default=0,blank=True) #the number of times tutored
     timesTutteed = models.IntegerField(default=0,blank=True) #the number of times got help
+    balance = models.FloatField(default=0.0,blank=True) #the person's current balance
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
