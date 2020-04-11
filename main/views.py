@@ -55,6 +55,10 @@ def home(request):
         p = Profile.objects.get(user=request.user)
         p.latitude = request.POST.get('Latitude')
         p.longitude = request.POST.get('Longitude')
+        if(request.POST.get('Type') == 'tutee'):
+            p.activeStatus = False
+        else:
+            p.activeStatus = True
         p.save()
         if(request.POST.get('Type') == 'tutee'):
             return HttpResponseRedirect(reverse('login:tutee'))
