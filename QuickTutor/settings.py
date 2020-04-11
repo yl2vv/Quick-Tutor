@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
     }
 }'''
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@localhost:5432/quicktutor4')}
+DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@localhost:5433/quicktutor2')}
 # DATABASES = {}
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
