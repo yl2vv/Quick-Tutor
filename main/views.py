@@ -100,8 +100,8 @@ def tuteeing(request):
     #Get current user
     o = Profile.objects.get(user=request.user)
     classes = o.classes
+    #add person to tutee model if it's their first time asking a question
     if Tutee.objects.filter(person = o).count() is 0:
-        print("noooo")
         tutee = Tutee(person=o)
         tutee.save()
     tutee = Tutee.objects.get(person = o)
@@ -154,6 +154,13 @@ def results(request):
     }
     return render(request, 'tutee/results.html', context)
 
+def tutorProfile(request, tutor_id):
+    tutor = Profile.objects.get(pk=tutor_id)
+    context = {
+         "tutor": tutor,
+    }
+    return render(request, 'tutee/tutorProfile.html', context)
+
 def rating(request, tutor_id):
     #Get the tutor by the tutor_id set in results page
     tutor = Profile.objects.get(pk=tutor_id)
@@ -162,25 +169,36 @@ def rating(request, tutor_id):
     me = Profile.objects.get(user=request.user)
     tutee = Tutee.objects.get(person=me)
     tutee.ratingPage = tutor_id
-    tutee.asked = True
-    print(Question.objects.filter(person = me).count())
     if tutee.tuteeStatus == "none" and Question.objects.filter(person = me).count() is 1:
         tutee.tuteeStatus = "waiting"
-    print(tutee.tuteeStatus)
+        tutee.asked = True
     tutee.save()
     if request.method == "POST":
-        #Increment total rating 
-        tutor.compositeRating = tutor.compositeRating + int(request.POST.get("rate"))
-        #Increment times tutored
-        tutor.timesTutored = tutor.timesTutored + 1
-        #Calcuate the rating of the tutor
-        tutor.tutorRate = tutor.compositeRating / tutor.timesTutored
-        #Change status
-        tutee.tuteeStatus = "none"
-        tutee.asked = False
-        tutee.save()
-
-        #Return Home
+        #if user makes it to rating
+        if 'rate' in request.POST:
+            print("gbye")
+            #Increment total rating 
+            tutor.compositeRating = tutor.compositeRating + int(request.POST.get("rate"))
+            #Increment times tutored
+            tutor.timesTutored = tutor.timesTutored + 1
+            #Calcuate the rating of the tutor
+            tutor.tutorRate = tutor.compositeRating / tutor.timesTutored
+            tutor.save()
+            #Change status
+            tutee.tuteeStatus = "none"
+            tutee.asked = False
+            tutee.save()
+            #Return Home
+        #if user decides to cancel the question
+        elif 'cancel' in request.POST:
+            print("hello")
+            tutee.tuteeStatus = "none"
+            tutee.asked = False
+            tutee.save()
+            tutor.connection = ""
+            tutor.save()
+            question = Question.objects.get(person = me)
+            question.delete()
         return HttpResponseRedirect('/home')
     context = {
         'tutor' : tutor,

@@ -38,8 +38,12 @@
       {% endif %}
 
       {% if tutee.tuteeStatus == "waiting" %}
-      <h1 class="column offset-md-3 justify-content-center p-4">waiting for {{tutor.firstname}} to respond...</h1>
-      {% endif %}
+      <form method='POST' class="column justify-content-center"> 
+        {% csrf_token %}
+        <h1 class="column offset-md-3 justify-content-center p-4">waiting for {{tutor.firstname}} to respond...</h1>
+        <button type="submit" name="cancel" value="cancel" class="btn btn-success btn-lg btn-block">Cancel Question</button>
+      </form>
+        {% endif %}
 
       {% if tutee.tuteeStatus == "accept" %}
         <h1 class="column offset-md-3 justify-content-center p-4">session with {{tutor.firstname}} in progress! </h1>
@@ -60,7 +64,7 @@
                         <option>5</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                <button type="submit" name="rate" value="rate" class="btn btn-success btn-lg btn-block">Submit</button>
             </form>
         </div>
       {% endif %}

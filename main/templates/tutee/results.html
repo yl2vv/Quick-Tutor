@@ -36,7 +36,7 @@
             {% csrf_token %}
               <tr>
                   <th scope="row">
-                    {{instance.firstname}} {{instance.lastname}}
+                    <a href='results/{{instance.id}}'>{{instance.firstname}} {{instance.lastname}}</a>
                   </th>
                   <td>{{instance.gpa}}</td>
                   <td>{{instance.email}}</td>
