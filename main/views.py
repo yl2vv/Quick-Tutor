@@ -223,7 +223,8 @@ def newprofile3(request):
 def userprofile(request):
     o = Profile.objects.get(user = request.user)
     if request.method == "POST":
-        o.balance += int(request.POST.get('updateBalance')) # person adds more money
+        temp = float(request.POST.get('updateBalance')) # person adds more money
+        o.balance += round(round(temp * 100))/100
         o.save()
     context = {
          "user": o,

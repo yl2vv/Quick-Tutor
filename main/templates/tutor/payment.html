@@ -209,7 +209,7 @@ function calculate(){
         </div>
 
 
-         <div class="container">
+         <!--<div class="container">-->
 
                 <div id="display">
                     00:00:00
@@ -219,11 +219,15 @@ function calculate(){
                     <button id="startStop" onclick="startStop()">Start</button>
                     <button id="reset" onclick="reset()">Reset</button>
                     <button id="calculate" onclick="calculate()">Calculate</button>
+
                 </div>
 
 
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
 
-             <form method='POST' class="column justify-content-center">
+                <form method='POST' class="column justify-content-center">
                     {% csrf_token %}
 
                     <div class="form-group">
@@ -255,10 +259,16 @@ function calculate(){
 
                         </div>
                     </div>
-             </form>
+                </form>
+            </div>
+  <div class="col-sm-4">
+
+  </div>
+</div>
 
 
-         </div>
+         <!--</div>-->
+
 
 </div>
 

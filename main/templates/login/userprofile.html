@@ -14,6 +14,23 @@
 </head>
 
 <body style = "background: LightBlue">
+ <nav class="navbar navbar-expand-lg navbar-light my-navbar">
+      <nav class="navbar-brand text-white" >Profile Page</nav>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+      </ul>
+
+    </div>
+  </nav>
 
     <div class="container-fluid">
     <div class="row">
@@ -30,7 +47,7 @@
                 {% csrf_token %}
 
                 <!--UPDATE BALANCE-->
-              <input type="number"  class="form-control" id="updateBalance" name="updateBalance">
+              <input type="number"  class="form-control" id="updateBalance" name="updateBalance" value=0>
                 <div class="form-group">
                         <div class="col-sm-12 text-right">
                             <div class="btn-group mr-2" role="group" aria-label="Button group example">
