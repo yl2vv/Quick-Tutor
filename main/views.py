@@ -56,17 +56,14 @@ def home(request):
         p = Profile.objects.get(user=request.user)
         p.latitude = request.POST.get('Latitude')
         p.longitude = request.POST.get('Longitude')
+        if(request.POST.get('Type') == 'tutee'):
+            p.activeStatus = False
+        else:
+            p.activeStatus = True
         p.save()
         if(request.POST.get('Type') == 'tutee'):
-        # if request.POST.get('tutee'):
-            p.activeStatus = False
-            # if Tutee.objects.filter(person = p).count() is 0:
-            #     tutee = Tutee(person=request.user)
-            #     tutee.save()
             return HttpResponseRedirect(reverse('login:tutee'))
-            # return HttpResponseRedirect('tuteeing/')
         if(request.POST.get('Type') == 'tutor'):
-            p.activeStatus = True
             return HttpResponseRedirect(reverse('login:tutor'))
     return render(request, 'login/home.html')
 
@@ -175,7 +172,7 @@ def rating(request, tutor_id):
     tutee.save()
     if request.method == "POST":
         #if user makes it to rating
-        if 'rate' in request.POST:
+        if 'submit' in request.POST:
             print("gbye")
             #Increment total rating 
             tutor.compositeRating = tutor.compositeRating + int(request.POST.get("rate"))
