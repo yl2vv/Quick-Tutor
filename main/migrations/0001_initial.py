@@ -38,6 +38,7 @@ class Migration(migrations.Migration):
                 ('tutorRate', models.FloatField(blank=True, default=0.0)),
                 ('compositeRating', models.IntegerField(blank=True, default=0)),
                 ('timesTutored', models.IntegerField(blank=True, default=0)),
+                ('balance', models.FloatField(blank=True, default=0.0)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

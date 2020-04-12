@@ -6,3 +6,4 @@ django-multiselectfield
 django-mysql
 django-phone-field
 python-dotenv
+Pillow

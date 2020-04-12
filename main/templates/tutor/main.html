@@ -23,6 +23,26 @@
 "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 
+    <style type="text/css">
+
+.table td.demo {
+   max-width: 177px;
+}
+.table td.demo span {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: inline-block;
+   white-space: nowrap;
+   max-width: 100%;
+   }
+
+  .navbar-custom {
+            background-color: #008080;
+            <!--background-color: #a7cecd; the brighter one-->
+        }
+
+    </style>
+
 <body style= "background-color:LightBlue;">
   <nav class="navbar navbar-expand-lg navbar-light my-navbar">
       <nav class="navbar-brand text-white" >Tutor Page</nav>
@@ -58,8 +78,8 @@
       <tr onclick="window.location='question'">
         <th scope="row">{{first}} {{last}}</th>
         <td>{{class}}</td>
-        <td>{{question}}</td>
-        <td class ="demo"> <span>{{topic}}</span></td>
+        <td>{{topic}}</td>
+        <td class ="demo"> <span>{{question}}</span></td>
       </tr>
     </tbody>
   </table>
