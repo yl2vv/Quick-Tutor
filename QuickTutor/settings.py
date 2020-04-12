@@ -99,11 +99,11 @@ DATABASES = {
         # 'NAME': 'quicktutor4',
         # 'USER': 'groupuser',
         # 'PASSWORD': 'tutoring!',
-        'NAME': 'quicktutor',
+        'NAME': 'quicktutor2',
         'USER': 'postgres',
-        'PASSWORD': 'hello',
+        'PASSWORD': 'Jlim1400',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 

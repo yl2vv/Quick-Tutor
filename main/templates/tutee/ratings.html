@@ -32,23 +32,43 @@
     </nav>
 
     <div class="container">
-      <div class="column col-md-6 offset-md-3 justify-content-center p-4">
-          <h1>How Would You Rate {{tutor.firstname}} ?</h1>
-          <form method='POST' class="column justify-content-center"> 
-            {% csrf_token %}
-              <div class="form-group w-50">
-                  <label for="class">Rating</label>
-                  <select class="form-control" name="rate">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                  </select>
-              </div>
-              <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
-          </form>
-      </div>
+
+      {% if tutee.tuteeStatus == "none" %}
+      <h1 class="column offset-md-3 justify-content-center p-4">Ask a question and come back!</h1>
+      {% endif %}
+
+      {% if tutee.tuteeStatus == "waiting" %}
+      <form method='POST' class="column justify-content-center"> 
+        {% csrf_token %}
+        <h1 class="column offset-md-3 justify-content-center p-4">waiting for {{tutor.firstname}} to respond...</h1>
+        <button type="submit" name="cancel" value="cancel" class="btn btn-success btn-lg btn-block">Cancel Question</button>
+      </form>
+        {% endif %}
+
+      {% if tutee.tuteeStatus == "accept" %}
+        <h1 class="column offset-md-3 justify-content-center p-4">session with {{tutor.firstname}} in progress! </h1>
+      {% endif %}
+
+      {% if tutee.tuteeStatus == "rating" %}
+        <div class="column col-md-6 offset-md-3 justify-content-center p-4">
+            <h1>How Would You Rate {{tutor.firstname}} ?</h1>
+            <form method='POST' class="column justify-content-center"> 
+              {% csrf_token %}
+                <div class="form-group w-50">
+                    <label for="class">Rating</label>
+                    <select class="form-control" name="rate">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <button type="submit" name="submit" value="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+            </form>
+        </div>
+      {% endif %}
+
   </div>
 
 </body>
