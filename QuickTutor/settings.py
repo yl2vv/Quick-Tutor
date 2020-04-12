@@ -99,17 +99,14 @@ DATABASES = {
         # 'NAME': 'quicktutor4',
         # 'USER': 'groupuser',
         # 'PASSWORD': 'tutoring!',
-        'NAME': 'quicktutor',
+        'NAME': 'quicktutor2',
         'USER': 'postgres',
-        'PASSWORD': 'hello',
+        'PASSWORD': 'Jlim1400',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:Jlim1400@localhost:5433/quicktutor2')}
-# DATABASES = {}
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
