@@ -279,30 +279,30 @@ def question(request):
 
 def session(request):
     o = Profile.objects.get(user=request.user)
-    t = Profile.objects.get(pk=o.connection)
-    tutee = Tutee.objects.get(person=t)
+    tutee = Profile.objects.get(pk=o.connection)
+    t = Tutee.objects.get(person=tutee)
     #notify tutee of acceptance
-    tutee.tuteeStatus = "accept"
-    tutee.save()
+    t.tuteeStatus = "accept"
+    t.save()
     context = {
         "user": o,
-        "tutee": t,
+        "tutee": tutee,
     }
     return render(request, 'tutor/session.html', context)
 
 def payment(request):
     o = Profile.objects.get(user=request.user)
-    t = Profile.objects.get(pk=o.connection)
-    tutee = Tutee.objects.get(person=t)
-    tutee.tuteeStatus = "rating"
-    tutee.timesTuteed = tutee.timesTuteed + 1
-    tutee.save()
+    tutee = Profile.objects.get(pk=o.connection)
+    t = Tutee.objects.get(person=tutee)
+    t.tuteeStatus = "rating"
+    t.timesTuteed = tutee.timesTuteed + 1
+    t.save()
     o.connection = ""
     o.save()
-    question = Question.objects.get(person = t)
+    question = Question.objects.get(person = tutee)
     question.delete()
     context = {
         "user": o,
-        "tutee": t,
+        "tutee": tutee,
     }
     return render(request, 'tutor/payment.html', context)
