@@ -58,6 +58,11 @@
   .buttons{
     text-align: center;
   }
+  .boxed {
+  border: 1px solid green ;
+  <!--width: 50%;-->
+  text-align: center;
+}
 
 
     </style>
@@ -160,11 +165,14 @@ function reset(){
 
 }
 
-<!--function calculate(){-->
-    <!--if(minutes < 5):-->
-    <!---->
+function calculate(){
+    temp_minutes = (hours * 60) + (minutes) + (seconds/60);
+    amount = temp_minutes/5;
 
-<!--}-->
+
+    document.getElementById("amount").value = amount;
+
+}
 
  </script>
 
@@ -200,37 +208,27 @@ function reset(){
 
 <div class="container-fluid">
     <h2 class="text-center">Session with {{user.firstname}}</h2>
-    <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
-        <div class="col-sm-5 text-center">
-            <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
-            <!--{{context.whatever}}   # as a placeholder-->
-        </div>
-
-        <div class="col-sm-7">
 
             <!--STOPWATCH CODE-->
-              <div class="container">
+            <div class="container">
 
-        <div id="display">
-            00:00:00
-        </div>
+                <div id="display">
+                    00:00:00
+                </div>
 
-        <div class="buttons">
-            <button id="startStop" onclick="startStop()">Start</button>
-            <button id="reset" onclick="reset()">Reset</button>
-            <button id="calculate" onclick="calculate()">Calculate</button>
-        </div>
+                <div class="buttons">
+                    <button id="startStop" onclick="startStop()">Start</button>
+                    <button id="reset" onclick="reset()">Reset</button>
+                    <button id="calculate" onclick="calculate()">Calculate</button>
+                </div>
 
-    </div>
-                    <div id="amount">
-                       Total amount:
-                   </div>
 
-            <!--END STOPWATCH CODE -->
+             </div>
+            <!--END OF STOPWATCH CODE -->
+
+
                <div class="btn-toolbar">
-                 <!--<div class="btn-group mr-2" role="group" aria-label="Button group example">-->
-                    <!--<a href='session' type="submit"  class="btn btn-secondary btn-sm">Accept</a>-->
-                 <!--</div>-->
+
                  <div class="btn-group mr-2" role="group" aria-label="Button group example">
                     <a href="userprofile" type="button" class="btn btn-secondary btn-sm">View Profile</a>
                  </div>
@@ -239,18 +237,8 @@ function reset(){
                     <a href="payment" type="button" class="btn btn-secondary btn-sm">Payment</a>
                  </div>
 
-
-
-                <!--<button type="button" class="btn btn-secondary btn-sm">View Profile</button>-->
-            </div>
-
-        </div>
-    </div>
-
+               </div>
 </div>
-
-
-
 
 
 

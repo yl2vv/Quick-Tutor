@@ -177,6 +177,7 @@ def newprofile1(request):
         o = Profile.objects.get(user=request.user)
         o.phoneNumber = request.POST.get('PhoneNumber')
         o.computingID = request.POST.get('ComputingID')
+        o.balance = request.POST.get("InitBalance")
         o.save()
         return HttpResponseRedirect('newprofile2')
     return render(request, 'login/newprofile1.html')
@@ -221,6 +222,10 @@ def newprofile3(request):
 
 def userprofile(request):
     o = Profile.objects.get(user = request.user)
+    if request.method == "POST":
+        temp = float(request.POST.get('updateBalance')) # person adds more money
+        o.balance += round(round(temp * 100))/100
+        o.save()
     context = {
          "user": o,
     }
@@ -240,9 +245,12 @@ def question(request):
 def session(request):
     o = Profile.objects.get(user=request.user)
     tutee = Profile.objects.get(pk=o.connection)
+    question = Question.objects.get(person=tutee)
     context = {
         "user": o,
         "tutee": tutee,
+        "question": question,
+
     }
     return render(request, 'tutor/session.html', context)
 
@@ -250,12 +258,35 @@ def payment(request):
     o = Profile.objects.get(user=request.user)
     tutee = Profile.objects.get(pk=o.connection)
 
-    o.connection = ""
-    o.save()
-    question = Question.objects.get(person = tutee)
-    question.delete()
+    question = Question.objects.get(person=tutee)
+
+    if request.method == "POST":
+
+        # determine price for inputed time
+        hours = int(request.POST.get('hours'))
+        minutes = int(request.POST.get('minutes'))
+        seconds = int(request.POST.get('seconds'))
+        temp_minutes = (hours * 60) + minutes + (seconds / 60)
+        temp_amount = (temp_minutes / 5)
+        input_amount = (round(temp_amount * 100))/100 # round to two decimals
+        tutee.balance = tutee.balance - input_amount
+        o.balance = o.balance + input_amount
+
+
+        # determine price based on stopwatch
+        amount = float(request.POST.get('Amount'))
+        tutee.balance = tutee.balance - amount
+        tutee.save()
+        o.balance = o.balance + amount
+        o.connection = ""
+        o.save()
+        question.delete()
+
+        return HttpResponseRedirect('tutoring')
+
     context = {
         "user": o,
         "tutee": tutee,
+        # "amount": "0.00"
     }
     return render(request, 'tutor/payment.html', context)
