@@ -239,6 +239,17 @@ def newprofile2(request):
         return HttpResponseRedirect('newprofile3')
     return render(request, 'login/newprofile2.html')
 
+def newprofile2_25(request):
+    o = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        temp = float(request.POST.get('updateBalance'))  # person adds more money
+        o.balance += round(round(temp * 100)) / 100
+        o.save()
+        return HttpResponseRedirect('newprofile3')
+    return render(request,'login/newprofile2.25.html')
+
+
+
 def newprofile2_5(request):
     o = Profile.objects.get(user = request.user)
     classes = o.classes
@@ -246,7 +257,7 @@ def newprofile2_5(request):
         "classes": classes,
     }
     if request.method == "POST":
-        return HttpResponseRedirect('newprofile3')
+        return HttpResponseRedirect('newprofile2.25')
     return render(request, 'login/newprofile2.5.html', context)
 
 def newprofile3(request):
