@@ -326,10 +326,10 @@ def payment(request):
 
         # update tutee model
 
-        # t = Tutee.objects.get(person=tutee)
-        # t.tuteeStatus = "rating"
-        # t.timesTuteed = tutee.timesTuteed + 1
-        # t.save()
+        t = Tutee.objects.get(person=tutee)
+        t.tuteeStatus = "rating"
+        t.timesTuteed = t.timesTuteed + 1
+        t.save()
 
         return HttpResponseRedirect('tutoring')
 

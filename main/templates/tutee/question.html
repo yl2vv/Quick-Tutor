@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <!--<html>-->
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
 
 <meta charset="utf-8">
 
@@ -44,9 +46,9 @@
     </style>
 
 
+<body style="background-color:LightBlue;">
 
-
-<nav class="navbar navbar-custom navbar-expand-lg navbar-light">
+<nav class="navbar navbar-custom navbar-expand-lg my-navbar">
     <nav class="navbar-brand text-white" >Tutoring</nav>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +81,7 @@
     <h2 class="text-center">{{tutee.firstname}}'s Question</h2>
     <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
         <div class="col-sm-5 text-center">
-            <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
+            <img style="max-width:250px;" class = "profile-pic" src = {{user.image}} >
 
 
         </div>
@@ -106,7 +108,7 @@
                     <!--<a href="userprofile" type="button" class="btn btn-secondary btn-sm">View Profile</a>-->
                  <!--</div>-->
                 <div class="btn-group mr-2" role="group" aria-label="Button group example">
-                    <a href='payment' type="submit"  class="btn btn-secondary btn-sm">Accept</a>
+                    <a href='payment' type="submit"  class="btn btn-light btn-sm">Accept</a>
                 </div>
 
             </div>
@@ -117,7 +119,7 @@
 
 </div>
 
-
+<body/>
 
 
 
