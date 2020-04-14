@@ -85,3 +85,10 @@ img{
 .profile-pic{
 	border-radius: 25px;
 }
+.my-navbar{
+	background-color:background: rgb(0,128,128);
+background: linear-gradient(90deg, rgba(0,128,128,1) 0%, rgba(173,216,230,1) 38%);;
+}
+p.line{
+	line-height: .05;
+}
