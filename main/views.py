@@ -52,11 +52,14 @@ def loggedin(request):
         return HttpResponseRedirect(reverse('login:login'))
 
 def home(request):
+    p = Profile.objects.get(user=request.user)
+
     if(request.method == 'POST'):
-        p = Profile.objects.get(user=request.user)
+        # p = Profile.objects.get(user=request.user)
         p.latitude = request.POST.get('Latitude')
         p.longitude = request.POST.get('Longitude')
         p.save()
+
         if(request.POST.get('Type') == 'tutee'):
             return HttpResponseRedirect(reverse('login:tutee'))
         if(request.POST.get('Type') == 'tutor'):
