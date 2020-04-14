@@ -303,9 +303,10 @@ def session(request):
 def payment(request):
     o = Profile.objects.get(user=request.user)
     tutee = Profile.objects.get(pk=o.connection)
-
     question = Question.objects.get(person=tutee)
-
+    t = Tutee.objects.get(person=tutee)
+    t.tuteeStatus = "accept"
+    t.save()
     if request.method == "POST":
 
         # determine price for inputed time
