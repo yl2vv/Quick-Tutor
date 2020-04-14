@@ -54,17 +54,17 @@ def loggedin(request):
 def home(request):
     if(request.method == 'POST'):
         p = Profile.objects.get(user=request.user)
-        p.latitude = request.POST.get('Latitude')
-        p.longitude = request.POST.get('Longitude')
-        if(request.POST.get('Type') == 'tutee'):
+        #p.latitude = request.POST.get('Latitude')
+        #p.longitude = request.POST.get('Longitude')
+        # if(request.POST.get('Type') == 'tutee'):
+        if 'tutee' in request.POST:
             p.activeStatus = False
-        else:
+            p.save()
+            return HttpResponseRedirect('tuteeing')
+        elif 'tutor' in request.POST:
             p.activeStatus = True
-        p.save()
-        if(request.POST.get('Type') == 'tutee'):
-            return HttpResponseRedirect(reverse('login:tutee'))
-        if(request.POST.get('Type') == 'tutor'):
-            return HttpResponseRedirect(reverse('login:tutor'))
+            p.save()
+            return HttpResponseRedirect('tutoring')
     return render(request, 'login/home.html')
 
 # view for the tutor page after user has clicked that option on the homepage
@@ -102,7 +102,9 @@ def tuteeing(request):
         tutee = Tutee(person=o)
         tutee.save()
     tutee = Tutee.objects.get(person = o)
-    print(tutee.tuteeStatus)
+    if tutee.asked == False and Question.objects.filter(person = o).count() is 1:
+        q = Question.objects.get(person = o)
+        q.delete()
     #After clicking submit
     if request.method == "POST":
         #Get the user inputs
