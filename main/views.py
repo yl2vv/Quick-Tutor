@@ -308,8 +308,8 @@ def payment(request):
         minutes = int(request.POST.get('minutes'))
         seconds = int(request.POST.get('seconds'))
         temp_minutes = (hours * 60) + minutes + (seconds / 60)
-        input_amount = (round(temp_amount * 100))/100 # round to two decimals
-        temp_amount = (temp_minutes / 5)
+        input_amount = (round(temp_minutes * 100))/100 # round to two decimals
+        input_amount = (input_amount / 5)
         tutee.balance = tutee.balance - input_amount
         o.balance = o.balance + input_amount
 
@@ -321,11 +321,15 @@ def payment(request):
         o.balance = o.balance + amount
         o.connection = ""
         o.save()
-        #update tutee model
-        t = Tutee.objects.get(person=tutee)
-        t.tuteeStatus = "rating"
-        t.timesTuteed = tutee.timesTuteed + 1
-        t.save()
+        question.delete()
+
+
+        # update tutee model
+
+        # t = Tutee.objects.get(person=tutee)
+        # t.tuteeStatus = "rating"
+        # t.timesTuteed = tutee.timesTuteed + 1
+        # t.save()
 
         return HttpResponseRedirect('tutoring')
 
