@@ -75,19 +75,13 @@ def tutoring(request):
         tutee = Profile.objects.get(pk=connection)
         question = Question.objects.get(person=tutee)
         context = {
-            "first": tutee.firstname,
-            "last": tutee.lastname,
-            "topic": question.Question_text,
-            "class": question.Class_text,
-            "question": question.Comments_text
+            "user": o,
+            "tutee": tutee,
+            "question": question
         }
     else:
         context = {
-            "first": "No Questions",
-            "last": "",
-            "topic": "",
-            "class": "",
-            "question": "",
+            "user": o
         }
     return render(request, 'tutor/main.html', context)
     # return render(request, 'tutor/main.html')
