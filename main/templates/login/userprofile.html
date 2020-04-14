@@ -14,23 +14,14 @@
 </head>
 
 <body style = "background: LightBlue">
- <nav class="navbar navbar-expand-lg navbar-light my-navbar">
-      <nav class="navbar-brand text-white" >Profile Page</nav>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-        </li>
-
-      </ul>
-
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            </div>
+          </div>
+        </div>
+    </nav>
 
     <div class="container-fluid">
     <div class="row">
@@ -40,59 +31,46 @@
                 <img class = "profile-pic" src = {{user.image}} > 
             </div>
             <div class="body">
-            <h5 class="title text-center"><p style = "font-family: Yu Gothic; font-size:70px;">User profile info</b></p></h5>
-                <h6 class="title text-center"><p style = "font-family: Yu Gothic; font-size:40px;">Balance: ${{user.balance}}</b></p></h6>
-
-            <form method='POST' class="form-signin">
-                {% csrf_token %}
-
-                <!--UPDATE BALANCE-->
-              <input type="number"  class="form-control" id="updateBalance" name="updateBalance" value=0>
-                <div class="form-group">
-                        <div class="col-sm-12 text-right">
-                            <div class="btn-group mr-2" role="group" aria-label="Button group example">
-                                <button type="submit" class="btn btn-secondary btn-md">Add Balance</button>
-                            </div>
-
-                        </div>
+                <div class = "row" style = "margin-top: 130px;">
+                    <div class = "col-5">
+                        <h1 class="title text-right" style = "margin-right:10px;"><p class = "line" style = "font-size:20px;"><b>First name:</b></p></h1>
+                        <h1 class="title text-right" style = "margin-right:10px;"><p class = "line" style = "font-size:20px;"><b>Last name:</b></p></h1>
+                        <h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>School email:</b></p></h5>
+                        <h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>Classes taken:</b></p></h5>
+                        <h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>Rating:</b></p></h5>
+                        <h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>Total tutored:</b></p></h5>
+                        <h5 class="title text-right" style = "margin-right:10px;"><p style = " font-size:20px;"><b>Bio:</b></p></h5>
+                        <h5 class="title text-right" style = "margin-right:10px;"  ><p style = " font-size:20px;"><b>Current Balance:</b></p></h5>
                     </div>
-                <!--END OF UPDATE BALANCE-->
-
-              <hr class="my-4">
-            </form>
-
-          </div>
+                    <div class = "col-7" style= "margin-left: -30px;">
+                        <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.firstname}}</p></h5>
+                        <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.lastname}}</p></h5>
+                        <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.computingID}}@virginia.edu</p></h5>
+                        <h5 class="title"><p class = "line"style = " font-size:16px;">{{user.classes}}</p></h5>
+                        <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.tutorRate}}</p></h5>
+                        <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.timesTutored}}</p></h5>
+                        <h5 class="title"><p style = " font-size:20px;">{{user.bio}}</p></h5>
+                        <h5 class="title"><p style = " font-size:20px;">{{user.balance}}</p></h5>
+                    </div>
+                    <div class = "col-2">
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col-4">
+                        <button class = "btn my-btn" onclick="window.location.href = '/updateclasses';">Update classes</button>
+                    </div>
+                    <div class = "col-4">
+                        <button class = "btn my-btn" onclick="window.location.href = '/updatebio';">Change Bio</button>
+                    </div>
+                    <div class = "col-4">
+                       <button class = "btn my-btn" onclick="window.location.href = '/updatebalance';">Add to balance</button>
+                    </div>
+                </div>
+             </div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-
-
-
-
-    <!-- <h2 class="text-center">User Profile</h2>
-    <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
-        <div class="col-sm-5 text-center">
-            <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
-            <div>Name: {{user.firstname}} {{user.lastname}}</div>
-            <div>Computing Id: {{user.computingID}}</div>
-        </div>
-
-        <div class="col-sm-7">
-            <div>Number of People Tutored:</div>
-            <div>Number of Questions Asked:</div>
-            <div>Rating:</div>
-            <div>Courses: {{user.classes}}</div>
-
-        </div>
-        <div>
-            <button class = "btn btn-light btn-circle align-right" style = "width: 110px; height: 40px;"><a href="newprofile">Change</a></button>
-        </div>
-    </div> -->
-
 </div>
-
-
-
 </body>
 </html>

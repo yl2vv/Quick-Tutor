@@ -340,3 +340,32 @@ def payment(request):
         # "amount": "0.00"
     }
     return render(request, 'tutor/payment.html', context)
+
+def updateclasses(request):
+    o = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        full_string = str(request.POST.get('Classes'))
+        split_list = full_string.split(",")
+        for i in split_list:
+            if re.match(r"[A-Z]{2,4}[0-9]{4}$", i) and i not in o.classes:
+                o.classes.append(i)
+                o.save()
+        return HttpResponseRedirect('userprofile')
+    return render(request, 'login/addclasses.html')
+
+def updatebio(request):
+    o = Profile.objects.get(user = request.user)
+    if request.method == "POST":
+        o.bio = request.POST.get('Bio')
+        o.save()
+        return HttpResponseRedirect('userprofile')
+    return render(request, 'login/newbio.html')
+
+def updatebalance(request):
+    o = Profile.objects.get(user = request.user)
+    if request.method == "POST":
+        temp = float(request.POST.get('updateBalance'))  # person adds more money
+        o.balance += round(round(temp * 100)) / 100
+        o.save()
+        return HttpResponseRedirect('userprofile')
+    return render(request, 'login/addbalance.html')
