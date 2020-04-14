@@ -42,7 +42,7 @@
                         <h5 class="title text-right" style = "margin-right:10px;"><p style = " font-size:20px;"><b>Bio:</b></p></h5>
                         <h5 class="title text-right" style = "margin-right:10px;"  ><p style = " font-size:20px;"><b>Current Balance:</b></p></h5>
                     </div>
-                    <div class = "col-5" style= "margin-left: -30px;">
+                    <div class = "col-7" style= "margin-left: -30px;">
                         <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.firstname}}</p></h5>
                         <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.lastname}}</p></h5>
                         <h5 class="title"><p class = "line"style = " font-size:20px;">{{user.computingID}}@virginia.edu</p></h5>
@@ -53,68 +53,24 @@
                         <h5 class="title"><p style = " font-size:20px;">{{user.balance}}</p></h5>
                     </div>
                     <div class = "col-2">
-                        <form method='POST' class="form-signin">
-                            {% csrf_token %}
-
-                            <!--UPDATE BALANCE-->
-                          <input type="number"  class="form-control" id="updateBalance" name="updateBalance" value=0>
-                            <div class="form-group">
-                                    <div class="col-sm-12 text-right">
-                                        <button type="submit" class="btn btn-secondary btn-md">Add Balance</button>
-
-                                    </div>
-                                </div>
-                            <!--END OF UPDATE BALANCE-->
-
-                          <hr class="my-4">
-                        </form>
                     </div>
                 </div>
-                   <!--  <div class = "row">
-                        <div class = "col-4">
-                            one
-                        </div>
-                        <div class = "col-4">
-                            two
-                        </div>
-                        <div class = "col-4">
-                            three
-                        </div>
-                    </div> -->
-
-
-          </div>
+                <div class = "row">
+                    <div class = "col-4">
+                        <button class = "btn my-btn" onclick="window.location.href = '/updateclasses';">Update classes</button>
+                    </div>
+                    <div class = "col-4">
+                        <button class = "btn my-btn" onclick="window.location.href = '/updatebio';">Change Bio</button>
+                    </div>
+                    <div class = "col-4">
+                       <button class = "btn my-btn" onclick="window.location.href = '/updatebalance';">Add to balance</button>
+                    </div>
+                </div>
+             </div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-
-
-
-
-    <!-- <h2 class="text-center">User Profile</h2>
-    <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
-        <div class="col-sm-5 text-center">
-            <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
-            <div>Name: {{user.firstname}} {{user.lastname}}</div>
-            <div>Computing Id: {{user.computingID}}</div>
-        </div>
-
-        <div class="col-sm-7">
-            <div>Number of People Tutored:</div>
-            <div>Number of Questions Asked:</div>
-            <div>Rating:</div>
-            <div>Courses: {{user.classes}}</div>
-
-        </div>
-        <div>
-            <button class = "btn btn-light btn-circle align-right" style = "width: 110px; height: 40px;"><a href="newprofile">Change</a></button>
-        </div>
-    </div> -->
-
 </div>
-
-
-
 </body>
 </html>
