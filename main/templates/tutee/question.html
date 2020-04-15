@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <!--<html>-->
 {% load static %}
 
@@ -81,7 +82,6 @@
     <h2 class="text-center">{{tutee.firstname}}'s Question</h2>
     <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
         <div class="col-sm-5 text-center">
-            <!--<img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">-->
             <img style="max-width:250px;" class = "profile-pic" src = {{user.image}} >
 
 
@@ -109,7 +109,7 @@
                     <!--<a href="userprofile" type="button" class="btn btn-secondary btn-sm">View Profile</a>-->
                  <!--</div>-->
                 <div class="btn-group mr-2" role="group" aria-label="Button group example">
-                    <a href='payment' type="submit"  class="btn btn-secondary btn-sm">Accept</a>
+                    <a href='payment' type="submit"  class="btn btn-light btn-sm">Accept</a>
                 </div>
 
             </div>
@@ -120,6 +120,7 @@
 
 </div>
 
+<body/>
 
 </body>
 

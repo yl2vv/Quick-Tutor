@@ -22,6 +22,9 @@
           </div>
         </div>
     </nav>
+
+
+    {% if not user.asked %}
     <div class="container">
         <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
             <h1 style="font-size:35px;"><b>Tutee, Ask Your Question!</b></h1>
@@ -53,6 +56,18 @@
             </form>
         </div>
     </div>
+    {% endif %}
 
+    {% if user.asked %}
+    <div class="container">
+        <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
+            <h1 style="font-size:35px;"><b>You Already Asked A Question!</b></h1>
+            <form method='POST' class="column justify-content-center"> 
+              {% csrf_token %}
+              <button type="button" onclick="window.location.href='tuteeing/results/rating/{{user.ratingPage}}'" class="btn btn-light submit-btn">Go to Results</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
 </body>
 </html>

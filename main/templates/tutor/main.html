@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+<meta http-equiv="refresh" content="10"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
@@ -23,48 +24,20 @@
 "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 
-    <style type="text/css">
-
-.table td.demo {
-   max-width: 177px;
-}
-.table td.demo span {
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: inline-block;
-   white-space: nowrap;
-   max-width: 100%;
-   }
-
-  .navbar-custom {
-            background-color: #008080;
-            <!--background-color: #a7cecd; the brighter one-->
-        }
-
-    </style>
-
 <body style= "background-color:LightBlue;">
-  <nav class="navbar navbar-expand-lg navbar-light my-navbar">
-      <nav class="navbar-brand text-white" >Tutor Page</nav>
+  <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            </div>
+          </div>
+        </div>
+    </nav>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="userprofile">Profile</a>
-        </li>
-
-      </ul>
-
-    </div>
-  </nav>
-
+  {% if user.connection == "" %}
+  <h1> No Questions Asked</h1>
+  {% endif %}
+  {% if user.connection != "" %}
   <table class="table table-hover">
     <thead>
       <tr class="bg-dark text-white">
@@ -76,11 +49,12 @@
     </thead>
     <tbody>
       <tr onclick="window.location='question'">
-        <th scope="row">{{first}} {{last}}</th>
-        <td>{{class}}</td>
-        <td>{{topic}}</td>
-        <td class ="demo"> <span>{{question}}</span></td>
+        <th scope="row">{{tutee.first}} {{tutee.last}}</th>
+        <td>{{question.Class_text}}</td>
+        <td>{{question.Comments_text}}</td>
+        <td class ="demo"> <span>{{question.Question_text}}</span></td>
       </tr>
     </tbody>
   </table>
+  {% endif %}
 </body>
