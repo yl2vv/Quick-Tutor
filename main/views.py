@@ -134,9 +134,10 @@ def results(request):
     for p in people:
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
-                results.append(p)
-                # if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
-                    # results.append(p)
+                #results.append(p)
+                #0.015 for one mil
+                if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 100):
+                    results.append(p)
     # if request.method == "POST":
     #     tutee.tuteeStatus = "waiting"
     #     tutee.save()

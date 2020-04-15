@@ -101,7 +101,7 @@ DATABASES = {
         # 'PASSWORD': 'tutoring!',
         'NAME': 'quicktutor2',
         'USER': 'postgres',
-        'PASSWORD': 'hello',
+        'PASSWORD': 'Keshav00',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
