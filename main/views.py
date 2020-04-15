@@ -71,13 +71,20 @@ def home(request):
 def tutoring(request):
     o = Profile.objects.get(user=request.user)
     connection = o.connection
+    print(connection)
     if connection != "":
-        tutee = Profile.objects.get(pk=connection)
-        question = Question.objects.get(person=tutee)
-        context = {
-            "user": o,
-            "tutee": tutee,
-            "question": question
+        try:
+            tutee = Profile.objects.get(pk=connection)
+            question = Question.objects.get(person=tutee)
+            context = {
+                "user": o,
+                "tutee": tutee,
+                "question": question
+                }
+        except:
+            print("no question")
+            context = {
+            "user": o
         }
     else:
         context = {
