@@ -63,16 +63,16 @@
                 <div class= "card top_layer my_5">
                     <div class = "body">
                     <h1 class = "title text-center"><b>
-                        Home Page</b>
+                        Tutee or Tutor</b>
                     </h1>
                     <form method='POST'>
                         {% csrf_token %}
                         <div class = "row p-4">
-                            <div class = "col-5">
-                                <button value = "tutee" onclick="getLocation(this.value)" type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;"><p style = "font-family: Ink Free; font-size:18px;"><b>Ask a question</b></p></button>
+                            <div class = "col-6">
+                                <button value = "tutee" onclick="getLocation(this.value)" type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;font-size:20px; border: 2px solid black"><b>Ask a question</b></button>
                             </div>
                             <div class = "col-5">
-                                <button value = "tutor" onclick="getLocation(this.value)"type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;"><p style = "font-family: Ink Free; font-size:18px;"><b>Answer a question</b></p></button>
+                                <button value = "tutor" onclick="getLocation(this.value)"type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;font-size:20px; border: 2px solid black"><b>Answer a question</b></button>
                             </div>
                         </div>
                         <div class = "card" style = "float: right;">
