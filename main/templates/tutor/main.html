@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+<meta http-equiv="refresh" content="10"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
@@ -33,6 +34,10 @@
         </div>
     </nav>
 
+  {% if user.connection == "" %}
+  <h1> No Questions Asked</h1>
+  {% endif %}
+  {% if user.connection != "" %}
   <table class="table table-hover">
     <thead>
       <tr class="bg-dark text-white">
@@ -44,11 +49,12 @@
     </thead>
     <tbody>
       <tr onclick="window.location='question'">
-        <th scope="row">{{first}} {{last}}</th>
-        <td>{{class}}</td>
-        <td>{{topic}}</td>
-        <td class ="demo"> <span>{{question}}</span></td>
+        <th scope="row">{{tutee.first}} {{tutee.last}}</th>
+        <td>{{question.Class_text}}</td>
+        <td>{{question.Comments_text}}</td>
+        <td class ="demo"> <span>{{question.Question_text}}</span></td>
       </tr>
     </tbody>
   </table>
+  {% endif %}
 </body>

@@ -4,52 +4,90 @@
 <head>
     <!-- link to bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/home_style.css'%}">
     <!-- javascripts from Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        function getLocation(type) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        // Get current cordinates.
+                        positionCords = [position.coords.latitude, position.coords.longitude];
+                        data = {
+                            "Type": String(type),
+                            "Latitude": positionCords[0],
+                            "Longitude": positionCords[1],
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: "home",
+                            data: data
+                        });
+                        if(type == 'tutee'){
+                            alert('Please make sure you have a balance of at least $5')
+                            window.location.href = '/tuteeing'
+                        }
+                        else{
+                            window.location.href = '/tutoring'
+                        }
+                    },
+                    function (error) {
+                        // On error code..
+                        alert("Not able to get location")
+                    },
+                    { timeout: 30000, enableHighAccuracy: true, maximumAge: 75000 }
+                );
+            }
+            else{
+                alert("No location provided, please reset permissions on browser to redo")
+                if(type == 'tutee'){
+                    window.location.href = '/tuteeing'
+                }
+                else{
+                    window.location.href = '/tutoring'
+                }
+            }
+        }
+    </script>
 </head>
-
-<body style = "background-color: LightBlue;">
+<body style = "background: LightBlue">
     <div class = "container-fluid">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
                     <h1 class = "title text-center"><b>
-                        Tutee or Tutor</b>
+                        Home Page</b>
                     </h1>
-                     
                     <form method='POST'>
                         {% csrf_token %}
                         <div class = "row p-4">
-                            <div class = "col-6">
-                                <button onclick="window.location.href = '/tuteeing';" type = "button" name="tutee" class = "btn btn-light btn-circle btn-xl" style = "color:Teal; font-size:20px; border: 2px solid black">Ask a question</button>
+                            <div class = "col-5">
+                                <button value = "tutee" onclick="getLocation(this.value)" type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;"><p style = "font-family: Ink Free; font-size:18px;"><b>Ask a question</b></p></button>
                             </div>
-                            <div class = "col-6">
-                                <button onclick="window.location.href = '/tutoring';" type = "button" name="tutor" class = "btn btn-light btn-circle btn-xl" style = "color:Teal; border: 2px solid black; font-size: 20px;">Answer a question</button>
+                            <div class = "col-5">
+                                <button value = "tutor" onclick="getLocation(this.value)"type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;"><p style = "font-family: Ink Free; font-size:18px;"><b>Answer a question</b></p></button>
                             </div>
                         </div>
-                        <div class = "card my-card" style = "float: right;">
+                        <div class = "card" style = "float: right;">
                             <div>
-                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;"><a href="userprofile" style= "color: Teal;">User Profile</a></button>
+                                <button class = "btn btn-light btn-circle" style = "width: 110px; height: 40px;"><a href="userprofile">User</a></button>
                             </div>
                             <div>
-                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;"><a href="{% url 'account_logout' %}" style= "color:Teal">Log Out</a></button>
+                                <button class = "btn btn-light btn-circle" style = "width: 110px; height: 30px;"><a href="{% url 'account_logout' %}">Log Out</a></button>
                             </div>
-                            
-                        </div> 
-        </div>
-                    </form> 
+                        </div>
+                    </form>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-
 </body>
-
-
 </html>

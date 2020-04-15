@@ -54,40 +54,41 @@ def loggedin(request):
 def home(request):
     if(request.method == 'POST'):
         p = Profile.objects.get(user=request.user)
-        p.latitude = request.POST.get('Latitude')
-        p.longitude = request.POST.get('Longitude')
-        if(request.POST.get('Type') == 'tutee'):
+        #p.latitude = request.POST.get('Latitude')
+        #p.longitude = request.POST.get('Longitude')
+        # if(request.POST.get('Type') == 'tutee'):
+        if 'tutee' in request.POST:
             p.activeStatus = False
-        else:
+            p.save()
+            return HttpResponseRedirect('tuteeing')
+        elif 'tutor' in request.POST:
             p.activeStatus = True
-        p.save()
-        if(request.POST.get('Type') == 'tutee'):
-            return HttpResponseRedirect(reverse('login:tutee'))
-        if(request.POST.get('Type') == 'tutor'):
-            return HttpResponseRedirect(reverse('login:tutor'))
+            p.save()
+            return HttpResponseRedirect('tutoring')
     return render(request, 'login/home.html')
 
 # view for the tutor page after user has clicked that option on the homepage
 def tutoring(request):
     o = Profile.objects.get(user=request.user)
     connection = o.connection
+    print(connection)
     if connection != "":
-        tutee = Profile.objects.get(pk=connection)
-        question = Question.objects.get(person=tutee)
-        context = {
-            "first": tutee.firstname,
-            "last": tutee.lastname,
-            "topic": question.Question_text,
-            "class": question.Class_text,
-            "question": question.Comments_text
+        try:
+            tutee = Profile.objects.get(pk=connection)
+            question = Question.objects.get(person=tutee)
+            context = {
+                "user": o,
+                "tutee": tutee,
+                "question": question
+                }
+        except:
+            print("no question")
+            context = {
+            "user": o
         }
     else:
         context = {
-            "first": "No Questions",
-            "last": "",
-            "topic": "",
-            "class": "",
-            "question": "",
+            "user": o
         }
     return render(request, 'tutor/main.html', context)
     # return render(request, 'tutor/main.html')
@@ -102,7 +103,9 @@ def tuteeing(request):
         tutee = Tutee(person=o)
         tutee.save()
     tutee = Tutee.objects.get(person = o)
-    print(tutee.tuteeStatus)
+    if tutee.asked == False and Question.objects.filter(person = o).count() is 1:
+        q = Question.objects.get(person = o)
+        q.delete()
     #After clicking submit
     if request.method == "POST":
         #Get the user inputs
@@ -138,9 +141,10 @@ def results(request):
     for p in people:
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
-                results.append(p)
-                # if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
-                    # results.append(p)
+                #results.append(p)
+                #0.015 for one mil
+                if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 100):
+                    results.append(p)
     # if request.method == "POST":
     #     tutee.tuteeStatus = "waiting"
     #     tutee.save()
@@ -301,9 +305,10 @@ def session(request):
 def payment(request):
     o = Profile.objects.get(user=request.user)
     tutee = Profile.objects.get(pk=o.connection)
-
     question = Question.objects.get(person=tutee)
-
+    t = Tutee.objects.get(person=tutee)
+    t.tuteeStatus = "accept"
+    t.save()
     if request.method == "POST":
 
         # determine price for inputed time
@@ -311,8 +316,8 @@ def payment(request):
         minutes = int(request.POST.get('minutes'))
         seconds = int(request.POST.get('seconds'))
         temp_minutes = (hours * 60) + minutes + (seconds / 60)
-        input_amount = (round(temp_amount * 100))/100 # round to two decimals
-        temp_amount = (temp_minutes / 5)
+        input_amount = (round(temp_minutes * 100))/100 # round to two decimals
+        input_amount = (input_amount / 5)
         tutee.balance = tutee.balance - input_amount
         o.balance = o.balance + input_amount
 
@@ -324,10 +329,14 @@ def payment(request):
         o.balance = o.balance + amount
         o.connection = ""
         o.save()
-        #update tutee model
+        question.delete()
+
+
+        # update tutee model
+
         t = Tutee.objects.get(person=tutee)
         t.tuteeStatus = "rating"
-        t.timesTuteed = tutee.timesTuteed + 1
+        t.timesTuteed = t.timesTuteed + 1
         t.save()
 
         return HttpResponseRedirect('tutoring')
@@ -338,3 +347,32 @@ def payment(request):
         # "amount": "0.00"
     }
     return render(request, 'tutor/payment.html', context)
+
+def updateclasses(request):
+    o = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        full_string = str(request.POST.get('Classes'))
+        split_list = full_string.split(",")
+        for i in split_list:
+            if re.match(r"[A-Z]{2,4}[0-9]{4}$", i) and i not in o.classes:
+                o.classes.append(i)
+                o.save()
+        return HttpResponseRedirect('userprofile')
+    return render(request, 'login/addclasses.html')
+
+def updatebio(request):
+    o = Profile.objects.get(user = request.user)
+    if request.method == "POST":
+        o.bio = request.POST.get('Bio')
+        o.save()
+        return HttpResponseRedirect('userprofile')
+    return render(request, 'login/newbio.html')
+
+def updatebalance(request):
+    o = Profile.objects.get(user = request.user)
+    if request.method == "POST":
+        temp = float(request.POST.get('updateBalance'))  # person adds more money
+        o.balance += round(round(temp * 100)) / 100
+        o.save()
+        return HttpResponseRedirect('userprofile')
+    return render(request, 'login/addbalance.html')
