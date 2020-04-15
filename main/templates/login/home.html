@@ -57,7 +57,7 @@
     </script>
 </head>
 <body style = "background: LightBlue">
-    <div class = "container-fluid">
+     <div class = "container-fluid">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
@@ -65,6 +65,7 @@
                     <h1 class = "title text-center"><b>
                         Tutee or Tutor</b>
                     </h1>
+                     
                     <form method='POST'>
                         {% csrf_token %}
                         <div class = "row p-4">
@@ -75,19 +76,20 @@
                                 <button value = "tutor" onclick="getLocation(this.value)"type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;font-size:20px; border: 2px solid black"><b>Answer a question</b></button>
                             </div>
                         </div>
-                        <div class = "card" style = "float: right;">
+                        <div class = "card my-card" style = "float: right;">
                             <div>
-                                <button class = "btn btn-light btn-circle" style = "width: 110px; height: 40px;"><a href="userprofile">User</a></button>
+                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;"><a href="userprofile" style= "color: Teal;">User Profile</a></button>
                             </div>
                             <div>
-                                <button class = "btn btn-light btn-circle" style = "width: 110px; height: 30px;"><a href="{% url 'account_logout' %}">Log Out</a></button>
+                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;"><a href="{% url 'account_logout' %}" style= "color:Teal">Log Out</a></button>
                             </div>
-                        </div>
-                    </form>
+                            
+                        </div> 
+        </div>
+                    </form> 
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </body>
 </html>
