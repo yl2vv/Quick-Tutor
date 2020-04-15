@@ -32,7 +32,7 @@ class Profile(models.Model):
     tutorRate = models.FloatField(default=0.0,blank=True) #the rating of tutor
     compositeRating = models.IntegerField(default=0, blank=True) #total score recieved to calculate rating
     timesTutored = models.IntegerField(default=0,blank=True) #the number of times tutored
-    timesTutteed = models.IntegerField(default=0,blank=True) #the number of times got help
+    balance = models.FloatField(default=0.0,blank=True) #the person's current balance
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
@@ -42,31 +42,26 @@ class Question(models.Model):
     Class_text = models.CharField(default='',max_length=200)
     Comments_text = models.CharField(default='',max_length=10000)
     File_upload = models.ImageField()
+    #asker= models.CharField(default='',max_length=10000)
     person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.Question_text
 
-# class User(models.Model):
-#     userid = models.CharField(max_length=300)
-#     name = models.CharField(max_length=50)
-#     email = models.EmailField()
-#     image = models.CharField(max_length=300)
-#     latitude = models.FloatField()
-#     longitude = models.FloatField()
-#     formCompleted = models.BooleanField()
+# class Tutor(models.Model):
+#     #from google API
+#     tutor_ID = models.CharField(max_length = 100) #not sure how long these IDs are
 
-class Tutor(models.Model):
-    #from google API
-    tutor_ID = models.CharField(max_length = 100) #not sure how long these IDs are
-
-    def __str__(self):
-        #change this to what we actually want to return
-        return self.tutor_ID
+#     def __str__(self):
+#         #change this to what we actually want to return
+#         return self.tutor_ID
 
 
 class Tutee(models.Model):
-    #from google API
-    tutee_ID = models.CharField(max_length = 100)
+    person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
+    tuteeStatus = models.CharField(default="none", max_length=10) #current status of tutee // none, waiting, accept, rating
+    timesTuteed = models.IntegerField(default=0,blank=True) #the number of times got help
+    ratingPage = models.CharField(default="", max_length=100) #stores ratings page id
+    asked = models.BooleanField(default=False) #Did they ask a question already?
     def __str__(self):
         # change this to what we actually want to return
-        return self.tutee_ID
+        return self.person.firstname
