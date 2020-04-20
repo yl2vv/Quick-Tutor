@@ -71,13 +71,20 @@ def home(request):
 def tutoring(request):
     o = Profile.objects.get(user=request.user)
     connection = o.connection
+    print(connection)
     if connection != "":
-        tutee = Profile.objects.get(pk=connection)
-        question = Question.objects.get(person=tutee)
-        context = {
-            "user": o,
-            "tutee": tutee,
-            "question": question
+        try:
+            tutee = Profile.objects.get(pk=connection)
+            question = Question.objects.get(person=tutee)
+            context = {
+                "user": o,
+                "tutee": tutee,
+                "question": question
+                }
+        except:
+            print("no question")
+            context = {
+            "user": o
         }
     else:
         context = {
@@ -134,9 +141,10 @@ def results(request):
     for p in people:
         if questions.last().Class_text.upper() in p.classes:
             if p.activeStatus == True:
-                results.append(p)
-                # if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 0.015):
-                    # results.append(p)
+                #results.append(p)
+                #0.015 for one mil
+                if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 100):
+                    results.append(p)
     # if request.method == "POST":
     #     tutee.tuteeStatus = "waiting"
     #     tutee.save()
@@ -213,7 +221,6 @@ def newprofile1(request):
         o = Profile.objects.get(user=request.user)
         o.phoneNumber = request.POST.get('PhoneNumber')
         o.computingID = request.POST.get('ComputingID')
-        o.balance = request.POST.get("InitBalance")
         o.save()
         return HttpResponseRedirect('newprofile2')
     return render(request, 'login/newprofile1.html')
@@ -229,8 +236,6 @@ def newprofile2(request):
                 o.classes.append(i)
                 o.save()
         return HttpResponseRedirect('newprofile2.5')
-    elif request.method == "POST" and len(o.classes) != 0:
-        return HttpResponseRedirect('newprofile3')
     return render(request, 'login/newprofile2.html')
 
 def newprofile2_5(request):
@@ -240,8 +245,18 @@ def newprofile2_5(request):
         "classes": classes,
     }
     if request.method == "POST":
-        return HttpResponseRedirect('newprofile3')
+        return HttpResponseRedirect('newprofile2.75')
     return render(request, 'login/newprofile2.5.html', context)
+
+def newprofile2_75(request):
+    o = Profile.objects.get(user = request.user)
+    if request.method == "POST":
+        temp = float(request.POST.get('updateBalance'))  # person adds more money
+        o.balance += round(round(temp * 100)) / 100
+        o.save()
+        return HttpResponseRedirect('newprofile3')
+    return render(request, 'login/newprofile2.75.html')
+
 
 def newprofile3(request):
     if request.method == "POST":
@@ -308,8 +323,8 @@ def payment(request):
         minutes = int(request.POST.get('minutes'))
         seconds = int(request.POST.get('seconds'))
         temp_minutes = (hours * 60) + minutes + (seconds / 60)
-        input_amount = (round(temp_amount * 100))/100 # round to two decimals
-        temp_amount = (temp_minutes / 5)
+        input_amount = (round(temp_minutes * 100))/100 # round to two decimals
+        input_amount = (input_amount / 5)
         tutee.balance = tutee.balance - input_amount
         o.balance = o.balance + input_amount
 
@@ -321,10 +336,14 @@ def payment(request):
         o.balance = o.balance + amount
         o.connection = ""
         o.save()
-        #update tutee model
+        question.delete()
+
+
+        # update tutee model
+
         t = Tutee.objects.get(person=tutee)
         t.tuteeStatus = "rating"
-        t.timesTuteed = tutee.timesTuteed + 1
+        t.timesTuteed = t.timesTuteed + 1
         t.save()
 
         return HttpResponseRedirect('tutoring')

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+<meta charset="utf-8">
 
 <meta charset="utf-8">
 
@@ -59,6 +63,37 @@
     text-align: center;
   }
 
+  .input-group-addon {
+    background-color: transparent;
+    border-left: 0;
+}
+
+.cc-number.identified {
+    background-repeat: no-repeat;
+	background-position-y: 3px;
+	background-position-x: 99%;
+}
+
+
+
+.one-card > div {
+    height: 150px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.two-card > div {
+    height: 80px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 48%;
+}
+
+.two-card div.amex-cvc-preview {
+    float: right;
+}
+
 
     </style>
 
@@ -66,8 +101,9 @@
 </head>
 
 
-    <script type="text/javascript" >
-        //Define vars to hold time values
+<script type="text/javascript"> //Stopwatch code source: https://www.youtube.com/watch?v=1INmsFnD-u4
+
+//Define vars to hold time values
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
@@ -137,8 +173,6 @@ function startStop(){
         interval = window.setInterval(stopWatch, 1000);
         document.getElementById("startStop").innerHTML = "Stop";
         status = "started";
-        <!--amount = minutes/5-->
-        <!--document.getElementByID("amount").innerHTML = "testing"-->
 
     }
     else{
@@ -164,23 +198,21 @@ function reset(){
 
 }
 
+// Added function to calculate total cost for $1 for every 5 minutes
 function calculate(){
     temp_minutes = (hours * 60) + (minutes) + (seconds/60);
     amount = temp_minutes/5;
 
 
     document.getElementById("amount").value = amount.toFixed(2);
-
-
-
 }
 
  </script>
 
 
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+<body style="background-color:LightBlue;">
+<nav class="navbar navbar-expand-lg navbar-light my-navbar">
     <nav class="navbar-brand text-white" >Tutoring</nav>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -202,78 +234,84 @@ function calculate(){
 </nav>
 
 
-<div class="container-fluid">
+<div class="container-fluid py-3">
+    <div class="row">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+           <h3> {{tutee.firstname}}'s Payment</h3>
+            <div id="pay-invoice" class="card">
+                <div class="card-body">
 
-        <div class="col-sm-12 align-left">
-            <legend>{{tutee.firstname}}'s Payment</legend>
-        </div>
+                    <div class="card-title">
 
+                         <div id="display">
+                            00:00:00
+                        </div>
 
-         <!--<div class="container">-->
+                        <div class="buttons">
+                            <button class="btn btn-circle btn-light" id="startStop" onclick="startStop()">Start</button>
+                            <button class="btn btn-circle btn-light" id="reset" onclick="reset()">Reset</button>
+                            <button class="btn btn-circle btn-light" id="calculate" onclick="calculate()">Calculate</button>
 
-                <div id="display">
-                    00:00:00
-                </div>
-
-                <div class="buttons">
-                    <button id="startStop" onclick="startStop()">Start</button>
-                    <button id="reset" onclick="reset()">Reset</button>
-                    <button id="calculate" onclick="calculate()">Calculate</button>
-
-                </div>
-
-
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-
-                <form method='POST' class="column justify-content-center">
+                        </div>
+                    </div>
+                    <!--<hr>-->
+                    <form method='POST' class="column justify-content-center">
                     {% csrf_token %}
 
-                    <div class="form-group">
-                        <label for="Amount" class="col-sm-3 ">Amount</label>
-                        <div class="col-sm-9">
-                            <input type="float" readonly class="form-control" id="amount" name="Amount" value=0.00>
+
+                        <div class="form-group">
+                            <label for="Amount" class="control-label mb-1">Total Amount</label>
+                            <input type="number" readonly class="form-control" id="amount" name="Amount" value=0.00>
                         </div>
-                    </div>
-
-                    <table>
-                        <tr>
-                            <td>Hour</td>
-                            <td>Minutes</td>
-                            <td>Seconds</td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" name="hours" id="hour" value=0></td>
-                            <td><input type="number" name="minutes" id="minutes" value=0></td>
-                            <td><input type="number" name="seconds" id="seconds" value=0></td>
-                        </tr>
-                    </table>
 
 
-                    <div class="form-group">
-                        <div class="col-sm-9 text-right">
-                            <div class="btn-group mr-2" role="group" aria-label="Button group example">
-                                <button type="submit" class="btn btn-secondary btn-sm">Finish</button>
+
+
+
+                        <div class="row">
+                            <div class="col-4">
+                                    <label class="control-label mb-1">Hours</label>
+                                    <input  type="number" name="hours" id="hours" class="form-control cc-exp" value=0>
                             </div>
-
+                            <div class="col-4">
+                                <label class="control-label mb-1">Minutes</label>
+                                <input type="number" name="minutes" id="minutes" class="form-control cc-cvc" value="0">
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-1">Seconds</label>
+                                    <input type="number" name="seconds" id="seconds" class="form-control cc-cvc" value="0">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <!--<div class="form-group">-->
+                            <!--<label for="x_zip" class="control-label mb-1">Postal code</label>-->
+                            <!--<input id="x_zip" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the ZIP/Postal code" autocomplete="postal-code">-->
+                            <!--<span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>-->
+                        <!--</div>-->
+                         <!--<div class="form-group">-->
+                            <!--<label for="x_promotion" class="control-label mb-1">Promotion Code</label>-->
+                            <!--<input id="x_promotion" name="x_prom" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Promotion  code" >-->
+                            <!--<span class="help-block" data-valmsg-for="x_promotion" data-valmsg-replace="true"></span>-->
+                        <!--</div>-->
+                        <div>
+                            <button type="submit" class="btn btn-lg btn-secondary btn-block">Finish</button>
+                        </div>
+
+
+                    </form>
+                </div>
             </div>
-  <div class="col-sm-4">
-
-  </div>
-</div>
-
-
-         <!--</div>-->
-
-
+        </div>
+    </div>
 </div>
 
 
 </body>
 </html>
+
+
+
+
 
 
