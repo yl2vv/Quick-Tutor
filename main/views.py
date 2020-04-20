@@ -187,9 +187,12 @@ def rating(request, tutor_id):
     #Get the tutor by the tutor_id set in results page
     tutor = Profile.objects.get(pk=tutor_id)
     #tutor.connection = Profile.objects.get(user=request.user).id
-    tutor.questionsReceived.append(Profile.objects.get(user=request.user).id)
-    tutor.save()
     me = Profile.objects.get(user=request.user)
+    tutee = Tutee.objects.get(person=me)
+    if not (str(Profile.objects.get(user=request.user).id) in tutor.questionsReceived) :
+        if tutee.tuteeStatus != "rating":
+            tutor.questionsReceived.append(Profile.objects.get(user=request.user).id)
+            tutor.save()
     tutee = Tutee.objects.get(person=me)
     tutee.ratingPage = tutor_id
     if tutee.tuteeStatus == "none" and Question.objects.filter(person = me).count() is 1:
@@ -303,15 +306,19 @@ def userprofile(request):
     }
     return render(request, 'login/userprofile.html', context)
 
-def question(request):
+def question(request, tutee_id):
     o = Profile.objects.get(user=request.user)
-    tutee = Profile.objects.get(pk=o.connection)
+    tutee = Profile.objects.get(pk=tutee_id)
     question = Question.objects.get(person=tutee)
     context = {
         "user": o,
         "tutee": tutee,
         "question": question,
     }
+    if request.method == "POST":
+        o.connection = tutee_id
+        o.save()
+        return HttpResponseRedirect("/payment")
     return render(request, 'tutee/question.html', context)
 
 def session(request):

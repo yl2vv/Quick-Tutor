@@ -55,7 +55,7 @@
     </thead>
     <tbody>
       {% for question in questions %}
-        <tr onclick="window.location='question'">
+        <tr onclick="window.location='question/{{question.person.id}}'">
           <th scope="row">{{question.person.firstname}} {{question.person.lastname}}</th>
           <td>{{question.Class_text}}</td>
           <td>{{question.Question_text}}</td>
