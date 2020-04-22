@@ -66,7 +66,7 @@
       </li>
 
          <li class="nav-item">
-        <a class="nav-link" href="tutoring">Tutor Page</a>
+        <a class="nav-link" href="/tutoring">Tutor Page</a>
       </li>
 
     </ul>
@@ -109,7 +109,10 @@
                     <!--<a href="userprofile" type="button" class="btn btn-secondary btn-sm">View Profile</a>-->
                  <!--</div>-->
                 <div class="btn-group mr-2" role="group" aria-label="Button group example">
-                    <a href='payment' type="submit"  class="btn btn-light btn-sm">Accept</a>
+                    <form method='POST'>
+                        {% csrf_token %}
+                    <button type="submit"  class="btn btn-light btn-sm">Accept</button>
+                    </form>
                 </div>
 
             </div>
