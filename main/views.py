@@ -64,6 +64,7 @@ def home(request):
         elif 'tutor' in request.POST:
             p.activeStatus = True
             p.save()
+            print("oiwqejijows")
             return HttpResponseRedirect('tutoring')
     return render(request, 'login/home.html')
 
@@ -71,12 +72,15 @@ def home(request):
 def tutoring(request):
     o = Profile.objects.get(user=request.user)
     connection = o.connection
-    print(connection)
+    qr = o.questionsReceived
+    questionsBool = False
     if connection != "":
+        questionsBool = True
         try:
             tutee = Profile.objects.get(pk=connection)
             question = Question.objects.get(person=tutee)
             context = {
+                "questionsReceived": questionsBool,
                 "user": o,
                 "tutee": tutee,
                 "question": question
@@ -84,10 +88,27 @@ def tutoring(request):
         except:
             print("no question")
             context = {
+            "questionsReceived": questionsBool,
             "user": o
         }
+    elif len(qr) > 0:
+        questionsBool = True
+        tutees = []
+        questions = []
+        for q in qr:
+            tutee = Profile.objects.get(pk=q)
+            question = Question.objects.get(person=tutee)
+            tutees.append(tutee)
+            questions.append(question) 
+        context = {
+            "questionsReceived": questionsBool,
+            "user": o,
+            "tutees": tutees,
+            "questions": questions,
+                }
     else:
         context = {
+            "questionsReceived": questionsBool,
             "user": o
         }
     return render(request, 'tutor/main.html', context)
@@ -165,9 +186,13 @@ def tutorProfile(request, tutor_id):
 def rating(request, tutor_id):
     #Get the tutor by the tutor_id set in results page
     tutor = Profile.objects.get(pk=tutor_id)
-    tutor.connection = Profile.objects.get(user=request.user).id
-    tutor.save()
+    #tutor.connection = Profile.objects.get(user=request.user).id
     me = Profile.objects.get(user=request.user)
+    tutee = Tutee.objects.get(person=me)
+    if not (str(Profile.objects.get(user=request.user).id) in tutor.questionsReceived) :
+        if tutee.tuteeStatus != "rating":
+            tutor.questionsReceived.append(Profile.objects.get(user=request.user).id)
+            tutor.save()
     tutee = Tutee.objects.get(person=me)
     tutee.ratingPage = tutor_id
     if tutee.tuteeStatus == "none" and Question.objects.filter(person = me).count() is 1:
@@ -177,7 +202,6 @@ def rating(request, tutor_id):
     if request.method == "POST":
         #if user makes it to rating
         if 'submit' in request.POST:
-            print("gbye")
             #Increment total rating 
             tutor.compositeRating = tutor.compositeRating + int(request.POST.get("rate"))
             #Increment times tutored
@@ -196,7 +220,7 @@ def rating(request, tutor_id):
             tutee.tuteeStatus = "none"
             tutee.asked = False
             tutee.save()
-            tutor.connection = ""
+            tutor.questionsReceived.remove(Profile.objects.get(user=request.user).id)
             tutor.save()
             question = Question.objects.get(person = me)
             question.delete()
@@ -282,15 +306,19 @@ def userprofile(request):
     }
     return render(request, 'login/userprofile.html', context)
 
-def question(request):
+def question(request, tutee_id):
     o = Profile.objects.get(user=request.user)
-    tutee = Profile.objects.get(pk=o.connection)
+    tutee = Profile.objects.get(pk=tutee_id)
     question = Question.objects.get(person=tutee)
     context = {
         "user": o,
         "tutee": tutee,
         "question": question,
     }
+    if request.method == "POST":
+        o.connection = tutee_id
+        o.save()
+        return HttpResponseRedirect("/payment")
     return render(request, 'tutee/question.html', context)
 
 def session(request):
@@ -334,6 +362,7 @@ def payment(request):
         tutee.balance = tutee.balance - amount
         tutee.save()
         o.balance = o.balance + amount
+        o.questionsReceived.remove(o.connection)
         o.connection = ""
         o.save()
         question.delete()

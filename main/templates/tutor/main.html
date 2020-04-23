@@ -34,26 +34,34 @@
         </div>
     </nav>
 
-  {% if user.connection == "" %}
+  {% if not questionsReceived %}
   <h1> No Questions Asked</h1>
   {% endif %}
-  {% if user.connection != "" %}
+
+  {% if questionsReceived and user.connection != "" %}
+  <h1> Go back to session with {{tutee.firstname}}</h1>
+
+  {% endif %}
+
+  {% if questionsReceived and user.connection == "" %}
   <table class="table table-hover">
     <thead>
       <tr class="bg-dark text-white">
         <th scope="col">Tutee</th>
         <th scope="col">Class</th>
-        <th scope="col">Topic</th>
         <th scope="col">Question</th>
+        <th scope="col">Comment</th>
       </tr>
     </thead>
     <tbody>
-      <tr onclick="window.location='question'">
-        <th scope="row">{{tutee.first}} {{tutee.last}}</th>
-        <td>{{question.Class_text}}</td>
-        <td>{{question.Comments_text}}</td>
-        <td class ="demo"> <span>{{question.Question_text}}</span></td>
-      </tr>
+      {% for question in questions %}
+        <tr onclick="window.location='question/{{question.person.id}}'">
+          <th scope="row">{{question.person.firstname}} {{question.person.lastname}}</th>
+          <td>{{question.Class_text}}</td>
+          <td>{{question.Question_text}}</td>
+          <td class ="demo"> <span>{{question.Comments_text}}</span></td>
+        </tr>
+      {% endfor %}
     </tbody>
   </table>
   {% endif %}

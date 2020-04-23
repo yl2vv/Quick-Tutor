@@ -70,10 +70,10 @@
                         {% csrf_token %}
                         <div class = "row p-4">
                             <div class = "col-6">
-                                <button onclick="getLocation(this.value)" type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal; font-size:20px; border: 2px solid black">Ask a question</button>
+                                <button value = "tutee" name="tutee" onclick="getLocation(this.value)" type = "submit" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;font-size:20px; border: 2px solid black"><b>Ask a question</b></button>
                             </div>
-                            <div class = "col-6">
-                                <button onclick="getLocation(this.value)" type = "button" class = "btn btn-light btn-circle btn-xl" style = "color:Teal; border: 2px solid black; font-size: 20px;">Answer a question</button>
+                            <div class = "col-5">
+                                <button value = "tutor" name="tutor" onclick="getLocation(this.value)"type = "submit" class = "btn btn-light btn-circle btn-xl" style = "color:Teal;font-size:20px; border: 2px solid black"><b>Answer a question</b></button>
                             </div>
                         </div>
                         <div class = "card my-card" style = "float: right;">
