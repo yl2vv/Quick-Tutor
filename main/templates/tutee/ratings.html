@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<meta http-equiv="refresh" content="5"/>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel = "stylesheet" type = "text/css" href = "{% static 'main/userprofile_style.css'%}">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutee Results Page</title>
+</head>
+<body style = "background-color: LightBlue;">
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            </div>
+          </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+      {% if tutee.tuteeStatus == "none" %}
+      <h1 class="column offset-md-3 justify-content-center p-4">Ask a question and come back!</h1>
+      {% endif %}
+
+      {% if tutee.tuteeStatus == "waiting" %}
+      <form method='POST' class="column justify-content-center"> 
+        {% csrf_token %}
+        <h1 class="column offset-md-3 justify-content-center p-4">Waiting for <b>{{tutor.firstname}}</b> to respond...</h1>
+          <button type = "submit" name="cancel" value="cancel" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Cancel Question</button> 
+      </form>
+        {% endif %}
+
+      {% if tutee.tuteeStatus == "accept" %}
+        <h1 class="column offset-md-3 justify-content-center p-4">session with <b>{{tutor.firstname}}</b> in progress! </h1>
+      {% endif %}
+
+      {% if tutee.tuteeStatus == "rating" %}
+        <div class="column col-md-6 offset-md-3 justify-content-center p-4">
+            <h1>How Would You Rate <b>{{tutor.firstname}}</b> ?</h1>
+            <form method='POST' class="column justify-content-center"> 
+              {% csrf_token %}
+                <div class="form-group w-50">
+                    <label for="class">Rating</label>
+                    <select class="form-control" name="rate">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <button type = "submit" name="submit" value="submit" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Submit</button> 
+            </form>
+        </div>
+      {% endif %}

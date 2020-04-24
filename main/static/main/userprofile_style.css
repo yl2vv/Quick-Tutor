@@ -1,0 +1,100 @@
+STATIC_URL = '/static/'
+body{
+	height: 100%;
+	background-color: Teal !important;
+}
+
+.image_container {
+	position: absolute;
+	height: 185px;
+	width: 185px;
+	top: -45px;
+	margin-left: -75px;
+	margin-right: 195px;
+	background-color: black;
+	border-radius: 30px;
+	padding: 5px;
+	text-align: center;
+		box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.card.user-card{
+	height:500px;  
+	margin-top: 80px;
+	background-color:Teal;
+	box-shadow: 0 20px 15px 0 rgba(0, 0, 0, 0.2), 0 20px 30px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card.image-card{
+	height:400px;
+	margin-top: 20px;
+	margin-left:30px;
+	background-color:white;
+
+}
+
+.top_layer{
+	height: 500px;
+	width: 600px;
+	shape-margin: auto;
+	margin-top: 50px;
+	margin-bottom: auto;
+	background: #008080;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	border: 1px solid black;
+	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+}
+.top_layer .title{
+	margin-bottom: 2rem;
+	font-weight: 350;
+	font-size: 40px;
+}
+
+.top_layer .body{
+	padding: 2rem;
+}
+.btn-circle.btn-xl { 
+    width: 100px; 
+    height: 100px; 
+    padding: 10px 16px; 
+    border-radius: 150px; 
+    font-size: 15px; 
+    font-weight: 300;
+    text-align: center; 
+    background-color: LavenderBlush;
+} 
+.btn-circle.btn-xl:hover{
+	background-color: Black;
+}
+.profile-pic{
+	border-radius: 25px;
+}
+.my-navbar{
+	background-color:background: rgb(0,128,128);
+background: linear-gradient(90deg, rgba(0,128,128,1) 0%, rgba(173,216,230,1) 38%);;
+}
+p.line{
+	line-height: .05;
+}
+.my-btn{
+	border:1px solid black;
+}
+.my-btn:hover{
+	background-color:LightBlue;
+}

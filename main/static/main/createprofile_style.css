@@ -1,0 +1,39 @@
+STATIC_URL = '/static/'
+body{
+	height: 100%;
+	background-color: Teal !important;
+}
+
+.top_layer{
+	height: 500px;
+	width: 400px;
+	shape-margin: auto;
+	margin-top: 50px;
+	margin-bottom: auto;
+	background: #008080;
+	position: relative;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	box-shadow: 0 10px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+} 
+.top_layer .title{
+	margin-bottom: 2rem;
+	font-weight: 350;
+	font-size: 40px;
+}
+
+.top_layer .body{
+	padding: 2rem;
+}
+.btn.btn-light{
+	border: 2px solid black;
+}
+.btn.btn-light:hover{
+	background-color: LightBlue;
+}

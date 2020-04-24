@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Profile
+from .models import Profile, Question, Tutee
 
 # class ProfileInline(admin.StackedInline):
 #     model = Profile
@@ -21,3 +21,5 @@ from .models import Profile
 
 #admin.site.unregister(User)
 admin.site.register(Profile)
+admin.site.register(Question)
+admin.site.register(Tutee)

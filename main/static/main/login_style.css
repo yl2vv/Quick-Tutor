@@ -1,7 +1,6 @@
 STATIC_URL = '/static/'
-body{
-	height: 100%;
-	background-color: Teal !important;
+body,html{
+	height:100%;
 }
 
 .quickTutor_logo_container {
@@ -11,20 +10,34 @@ body{
 	top: -45px;
 	margin-left: -75px;
 	margin-right: 195px;
-	border-radius: 300px;/*
-	border-bottom-left-radius: 140px;
-	border-bottom-right-radius: 140px;*/
-	background-color: LavenderBlush;
+	border-radius: 300px;
+	background-color: black;
 	padding: 5px;
 	text-align: center;
-		box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
 }
+
+/*.img{
+	border-radius: 20px;
+}*/
+
 
 img{
 	max-width: 100%;
 	max-height: 100%;
+}
+
+.crop {
+	width: 175px;
+	height: 175px;
+	overflow: hidden;
+}
+
+.crop img{
+	width: 450px;
+	height: 450px;
 }
 
 .mark{
@@ -39,13 +52,14 @@ img{
 	margin-bottom: auto;
 	background: #008080;
 	position: relative;
+	border: 1px solid black;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	padding: 10px;
-	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 10px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 10px 0 rgba(0, 0, .4, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 10px;
 } 
 .top_layer .title{
@@ -57,27 +71,6 @@ img{
 .top_layer .body{
 	padding: 2rem;
 }
-.xyz { 
-    background-size: auto; 
-    text-align: center; 
-    padding-top: 100px; 
-} 
-.btn-circle.btn-sm { 
-    width: 30px; 
-    height: 30px; 
-    padding: 6px 0px; 
-    border-radius: 15px; 
-    font-size: 8px; 
-    text-align: center; 
-} 
-.btn-circle.btn-md { 
-    width: 50px; 
-    height: 50px; 
-    padding: 7px 10px; 
-    border-radius: 25px; 
-    font-size: 10px; 
-    text-align: center; 
-} 
 .btn-circle.btn-xl { 
     width: 100px; 
     height: 100px; 
@@ -86,11 +79,9 @@ img{
     font-size: 15px; 
     font-weight: 300;
     text-align: center; 
-    background-color: LavenderBlush;
+    background-color: Teal;
+    border: 2px solid black;
 } 
 .btn-circle.btn-xl:hover{
 	background-color: Black;
 }
-
-
-

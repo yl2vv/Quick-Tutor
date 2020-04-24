@@ -11,24 +11,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
-import dotenv
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# This is new:
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -44,7 +36,7 @@ SECRET_KEY = '0=+%_)z8*!16i@e(v!1kome^xrly#-d4b#(hz@(qxkx7sc+0k!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['cs4life-quicktutor.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -68,12 +60,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.account',
     'allauth',
-    'phone_field',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -102,57 +92,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'QuickTutor.wsgi.application'
 
-'''DATABASES = {
+
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'quicktutor3',
+        'USER': 'postgres',
+        'PASSWORD': 'Jlim1400',
+        # 'NAME': 'quicktutor3',
+        # 'USER': 'postgres',
+        # 'PASSWORD': '10721744Cross!',
+        'HOST': '127.0.0.1',
+        'PORT': '5433',
     }
-}'''
+}
 
-DATABASES = {'default': dj_database_url.parse('postgres://postgres:adm!n1847@localhost:5432/quicktutor4')}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'quickTutor',
-#         'USER': 'kailaney',
-#         'PASSWORD': 'Keshav00',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }}
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-# if 'HEROKU' in os.environ:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'd6humjm2sv80ba',
-#             'USER': 'bonxsspvtuuons',
-#             'PASSWORD': '2c88c692268646249453ec7448aed5dbc5c3ce859738794d5a9e86abd004fd1d',
-#             'HOST': 'ec2-3-234-169-147.compute-1.amazonaws.com',
-#             'PORT': '5432',
-#         }
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'quicktutor4',
-#             'USER': 'groupuser',
-#             'PASSWORD': 'tutoring!',
-#             'HOST': '127.0.0.1',
-#             'PORT': '5432',
-#         }
-#     }
-
-
-# install postgres on this machine
-# you'll enter root user credentials in the process
-# use the credentials to create another user (this should be the same for all your group memebers)
-# create a database (this should be the same for all your group memebers)
-# give that user the permissions to modify/access the database
-# try running the server
 
 
 # Password validation
@@ -186,10 +140,11 @@ LOGIN_REDIRECT_URL = "/loggedIn"
 #AUTH_USER_MODEL = 'main.CustomUser'
 
 # Activate Django-Heroku.
-# django_heroku.settings(locals())
-if 'HEROKU' in os.environ:
+try:
     import django_heroku
     django_heroku.settings(locals())
+except ImportError:
+    pass
 
 ACCOUNT_LOGOUT_ON_GET = True
 

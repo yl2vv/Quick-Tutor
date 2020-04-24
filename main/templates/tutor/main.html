@@ -1,12 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tutor Main Page</title>
-</head>
-<body>
-<h1>Answer a Question</h1>
-<button onclick="window.location.href = '/home';">Back to Home</button>
+{% load static %}
+<html>
+<meta http-equiv="refresh" content="10"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- static/login_style.css -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+<meta charset="utf-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+<body style= "background-color:LightBlue;">
+  <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            </div>
+          </div>
+        </div>
+    </nav>
+
+  {% if not questionsReceived %}
+  <h1> No Questions Asked</h1>
+  {% endif %}
+
+  {% if questionsReceived and user.connection != "" %}
+  <h1> Go back to session with {{tutee.firstname}}</h1>
+
+  {% endif %}
+
+  {% if questionsReceived and user.connection == "" %}
+  <table class="table table-hover">
+    <thead>
+      <tr class="bg-dark text-white">
+        <th scope="col">Tutee</th>
+        <th scope="col">Class</th>
+        <th scope="col">Question</th>
+        <th scope="col">Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for question in questions %}
+        <tr onclick="window.location='question/{{question.person.id}}'">
+          <th scope="row">{{question.person.firstname}} {{question.person.lastname}}</th>
+          <td>{{question.Class_text}}</td>
+          <td>{{question.Question_text}}</td>
+          <td class ="demo"> <span>{{question.Comments_text}}</span></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
 </body>
-</html>
