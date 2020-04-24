@@ -101,7 +101,10 @@ DATABASES = {
         'PASSWORD': 'Keshav00',
         # 'NAME': 'quicktutor3',
         # 'USER': 'postgres',
-        # 'PASSWORD': '10721744Cross!',
+        # 'PASSWORD': 'Jlim1400',
+        'NAME': 'quicktutor',
+        'USER': 'postgres',
+        'PASSWORD': 'adm!n1847',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
