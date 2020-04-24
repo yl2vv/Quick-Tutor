@@ -39,8 +39,15 @@
   {% endif %}
 
   {% if questionsReceived and user.connection != "" %}
-  <h1 class = "title text-center" style = "color: Teal;"> Go back to session with {{tutee.firstname}}</h1>
-  <button class= "btn btn-light" onclick="window.location.href = '/payment';"><b style = "color: Teal;">Home Page</b></button>
+    <h1 class = "title text-center" style = "color: Teal; margin-top:40px;"><b> Go back to session with {{tutee.firstname}}</b></h1>
+    <div class = "row">
+      <div class = "col-4">
+      </div>
+      <div class = "col-4 text-center">
+        <button class= "btn my-btn" onclick="window.location.href = '/payment';" style = "margin-top:20px;border: 3px solid Teal;"><b style = "color: Teal;">Go to Jessie's session >></b></button>
+      </div>
+      <div class = "col-4">
+      </div>
   {% endif %}
 
   {% if questionsReceived and user.connection == "" %}
