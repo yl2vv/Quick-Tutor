@@ -22,15 +22,15 @@
     <div class="container">
 
       {% if tutee.tuteeStatus == "none" %}
-      <h1 class="column offset-md-3 justify-content-center p-4">Ask a question and come back!</h1>
+        <h1 class="column offset-md-3 justify-content-center p-4">Ask a question and come back!</h1>
       {% endif %}
 
       {% if tutee.tuteeStatus == "waiting" %}
-      <form method='POST' class="column justify-content-center"> 
-        {% csrf_token %}
-        <h1 class="column offset-md-3 justify-content-center p-4">Waiting for <b>{{tutor.firstname}}</b> to respond...</h1>
-          <button type = "submit" name="cancel" value="cancel" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Cancel Question</button> 
-      </form>
+        <form method='POST' class="column justify-content-center"> 
+          {% csrf_token %}
+          <h1 class="column offset-md-3 justify-content-center p-4">Waiting for <b>{{tutor.firstname}}</b> to respond...</h1>
+            <button type = "submit" name="cancel" value="cancel" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Cancel Question</button> 
+        </form>
         {% endif %}
 
       {% if tutee.tuteeStatus == "accept" %}
@@ -55,4 +55,13 @@
                 <button type = "submit" name="submit" value="submit" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Submit</button> 
             </form>
         </div>
+      {% endif %}
+
+      {% if tutee.tuteeStatus == "decline" %}
+        <h1 class="column offset-md-3 justify-content-center p-4">{{tutor.firstname}} declined your question :(</h1>
+        <form method='POST' class="column justify-content-center"> 
+          {% csrf_token %}
+          <button type = "submit" name="goResult" value="goResult" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Go back to results</button> 
+          <button type = "submit" name="backHome" value="backHome" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Go back to home page</button>
+        </form>
       {% endif %}

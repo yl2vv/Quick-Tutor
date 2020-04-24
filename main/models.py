@@ -42,7 +42,7 @@ class Question(models.Model):
     Question_text = models.CharField(default='',max_length=200)
     Class_text = models.CharField(default='',max_length=200)
     Comments_text = models.CharField(default='',max_length=10000)
-    File_upload = models.ImageField()
+    #File_upload = models.ImageField()
     #asker= models.CharField(default='',max_length=10000)
     person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     def __str__(self):
@@ -59,7 +59,7 @@ class Question(models.Model):
 
 class Tutee(models.Model):
     person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
-    tuteeStatus = models.CharField(default="none", max_length=10) #current status of tutee // none, waiting, accept, rating
+    tuteeStatus = models.CharField(default="none", max_length=10) #current status of tutee // none, waiting, accept, rating, decline
     timesTuteed = models.IntegerField(default=0,blank=True) #the number of times got help
     ratingPage = models.CharField(default="", max_length=100) #stores ratings page id
     asked = models.BooleanField(default=False) #Did they ask a question already?

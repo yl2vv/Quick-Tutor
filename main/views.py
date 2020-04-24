@@ -151,17 +151,16 @@ def tuteeing(request):
         q = Question.objects.get(person = o)
         q.delete()
     #After clicking submit
+    print(Tutee.objects.get(person = o).asked)
     if request.method == "POST":
         #Get the user inputs
         question = request.POST.get('Question')
         class_id = request.POST.get('class')
-        file_upload = request.POST.get('upload')
         comments = request.POST.get('comments')
         #Store in model
         obj = Question() 
         obj.Question_text = question
         obj.Class_text = class_id
-        obj.File_upload = file_upload
         obj.Comments_text = comments
         obj.person = Profile.objects.get(user=request.user)
         obj.save()
@@ -169,6 +168,7 @@ def tuteeing(request):
         return HttpResponseRedirect('tuteeing/results')
     context = {
          "classes": classes,
+         "me": o,
          "user": tutee,
     }
     return render(request, 'tutee/main.html', context)
@@ -179,21 +179,18 @@ def results(request):
     #Grab all the profiles
     people = Profile.objects.all()
     me = Profile.objects.get(user=request.user)
+    question = questions.get(person=me)
     tutee = Tutee.objects.get(person=me)
     results = []
     #Check that a person took the class and is currently an active tutor 
     for p in people:
-        if questions.last().Class_text.upper() in p.classes:
+        if question.Class_text.upper() in p.classes:
             if p.activeStatus == True:
                 #results.append(p)
                 #0.015 for one mil
                 if(math.sqrt((me.latitude - p.latitude)**2 + (me.longitude - p.longitude)**2) < 100):
                     results.append(p)
-    # if request.method == "POST":
-    #     tutee.tuteeStatus = "waiting"
-    #     tutee.save()
     context = {
-        "questions_list": questions,
         "people_list": people,
         "results": results,
     }
@@ -239,12 +236,23 @@ def rating(request, tutor_id):
             #Return Home
         #if user decides to cancel the question
         elif 'cancel' in request.POST:
-            print("hello")
             tutee.tuteeStatus = "none"
             tutee.asked = False
             tutee.save()
-            tutor.questionsReceived.remove(Profile.objects.get(user=request.user).id)
+            tutor.questionsReceived.remove(str(Profile.objects.get(user=request.user).id))
             tutor.save()
+            question = Question.objects.get(person = me)
+            question.delete()
+        elif 'goResult' in request.POST:
+            tutee.asked = False
+            tutee.tuteeStatus = "none"
+            tutee.save()
+            return HttpResponseRedirect('/tuteeing/results')
+        elif 'backHome' in request.POST:
+            #delete question
+            tutee.asked = False
+            tutee.tuteeStatus = "none"
+            tutee.save()
             question = Question.objects.get(person = me)
             question.delete()
         return HttpResponseRedirect('/home')
@@ -339,9 +347,19 @@ def question(request, tutee_id):
         "question": question,
     }
     if request.method == "POST":
-        o.connection = tutee_id
-        o.save()
-        return HttpResponseRedirect("/payment")
+        if 'accept' in request.POST:
+            o.connection = tutee_id
+            o.save()
+            return HttpResponseRedirect("/payment")
+        elif 'decline' in request.POST:
+            print(o.questionsReceived)
+            print(Profile.objects.get(pk=tutee_id).id)
+            o.questionsReceived.remove(str(Profile.objects.get(pk=tutee_id).id))
+            o.save()
+            t = Tutee.objects.get(person=tutee)
+            t.tuteeStatus = "decline"
+            t.save()
+            return HttpResponseRedirect("/tutoring")
     return render(request, 'tutee/question.html', context)
 
 def session(request):

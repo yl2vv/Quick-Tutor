@@ -53,8 +53,8 @@
   {% endif %}
 
   {% if questionsReceived and user.connection != "" %}
-  <h1> Go back to session with {{tutee.firstname}}</h1>
-
+    <h1> Go back to session with {{tutee.firstname}}</h1>
+    <button type = "button" onclick="window.location.href ='payment'" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Session</button> 
   {% endif %}
 
   {% if questionsReceived and user.connection == "" %}
