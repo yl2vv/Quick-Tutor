@@ -26,20 +26,20 @@
 
 <body style= "background-color:LightBlue;">
   <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+        <button class= "btn btn-light" onclick="window.location.href = '/home';"><b style = "color: Teal;">Home Page</b></button>
           <div class="nav-item ">
-            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
             </div>
           </div>
         </div>
     </nav>
 
   {% if not questionsReceived %}
-  <h1> No Questions Asked</h1>
+  <h1 class = "title text-center" style = "color: Teal;"> <b>No questions asked </b></h1>
   {% endif %}
 
   {% if questionsReceived and user.connection != "" %}
-  <h1> Go back to session with {{tutee.firstname}}</h1>
+  <h1 class = "title text-center" style = "color: Teal;"> Go back to session with {{tutee.firstname}}</h1>
 
   {% endif %}
 

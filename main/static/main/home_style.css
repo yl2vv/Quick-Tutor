@@ -1,7 +1,6 @@
 STATIC_URL = '/static/'
 body{
 	height: 100%;
-	background-color: Teal !important;
 }
  
 .top_layer{
@@ -16,10 +15,9 @@ body{
 	justify-content: center;
 	flex-direction: column;
 	padding: 10px;
-	border: 1px solid black;
-	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 10px;
 } 
 .top_layer .title{
@@ -40,10 +38,10 @@ body{
     font-size: 17px; 
     font-weight: 500;
     text-align: center; 
-    background-color: LavenderBlush;
+    background-color: White;
 } 
 .btn-circle.btn-xl:hover{
-	background-color: Black;
+	background-color: black;
 }
 
 .my-card{

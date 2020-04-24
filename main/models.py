@@ -26,7 +26,7 @@ class Profile(models.Model):
     gpa = models.FloatField(default=0.0,blank=True)
     schoolYear = models.IntegerField(default=0,blank=True)
     classes = ListCharField(base_field=models.CharField(max_length=15),size=15,max_length= 240,blank=True)
-    bio = models.CharField(max_length=500,blank=True)
+    bio = models.CharField(max_length=500,blank=False)
     activeStatus = models.BooleanField(default=False) #Are they an active tutor
     connection = models.CharField(max_length=50,blank=True) #Who they are tutoring
     tutorRate = models.FloatField(default=0.0,blank=True) #the rating of tutor

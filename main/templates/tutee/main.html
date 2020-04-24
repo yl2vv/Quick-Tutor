@@ -15,9 +15,9 @@
 
 
     <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';" style = "color:Teal;"><b>Home Page</b></button>
           <div class="nav-item ">
-            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b style = "color:black ;">Your Profile</b></button>
             </div>
           </div>
         </div>
@@ -27,31 +27,27 @@
     {% if not user.asked %}
     <div class="container">
         <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
-            <h1 style="font-size:35px;"><b>Tutee, Ask Your Question!</b></h1>
+            <h1 style="font-size:35px;"><b style = "color: LIghtBlue;">Tutee, Ask Your Question!</b></h1>
             <form method='POST' class="column justify-content-center"> 
               {% csrf_token %}
                 <div class="form-group">
-                    <label for="Question"><b>What is your question?</b></label>
-                    <input type="question" class="form-control" name="Question">
+                    <label for="Question"><b style = "color: LIghtBlue;">What is your question?</b></label>
+                    <input type="question" class="form-control" name="Question" required>
                 </div>
                 <div class="form-group w-50">
-                    <label for="class"><b>Class</b></label>
-                    <select class="form-control" name="class">
+                    <label for="class" required><b style = "color: LIghtBlue;">Class</b></label>
+                    <select class="form-control" name="class" required>
                       {% for instance in classes %}
                         <option>{{instance}}</option>
                       {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlFile1"><b>Upload Image of Question:</b></label>
-                    <input type="file" class="form-control-file" name="upload">
-                </div>
-                <div class="form-group">
-                    <label for="comments"><b>Additional Comments:</b></label>
+                    <label for="comments"><b style = "color: LIghtBlue;">Additional Comments:</b></label>
                     <textarea class="form-control" name="comments" rows="3"></textarea>
                   </div>
                   <div style="margin-left:380px;">
-                <button type="submit" class="btn btn-light submit-btn">Submit</button>
+                <button type="submit" class="btn submit-btn" ><b style = "color:LightBlue;">Submit</b></button>
               </div>
             </form>
         </div>
@@ -61,10 +57,10 @@
     {% if user.asked %}
     <div class="container">
         <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
-            <h1 style="font-size:35px;"><b>You Already Asked A Question!</b></h1>
+            <h1 style="font-size:35px;"><b style = "color: LightBLue;">You Already Asked A Question!</b></h1>
             <form method='POST' class="column justify-content-center"> 
               {% csrf_token %}
-              <button type="button" onclick="window.location.href='tuteeing/results/rating/{{user.ratingPage}}'" class="btn btn-light submit-btn">Go to Results</button>
+              <button type="button" onclick="window.location.href='tuteeing/results/rating/{{user.ratingPage}}'" class="btn btn-light submit-btn"><b style = "color: LightBlue;">Go to Results</b></button>
             </form>
         </div>
     </div>

@@ -15,33 +15,32 @@
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b>Add funds!</b></h5>  
+                    <h5 class="title text-center"><b style = "color: LightBlue">Add funds!</b></h5>  
                         <div class = "row">
-                            <div class = "col-8"><b>Credit card number</b>
-                                    <input class="form-control" placeholder = "1234-5678-1234-5678" style = "border: 1px solid black;">
+                            <div class = "col-8"><b style = "color: LightBlue">Credit card number</b>
+                                    <input class="form-control" placeholder = "1234-5678-1234-5678">
                             </div>
                         </div>
                         <div class = "row">
                             <div class = "col-8">
-                                <b>Exp. date</b>
-                                <input class="form-control" placeholder = "04/2021" style = "border: 1px solid black;">
+                                <b style = "color: LightBlue">Exp. date</b>
+                                <input class="form-control" placeholder = "04/2021">
                             </div>
                             <div class = "col-3">
-                                <b>CVV</b>
-                                <input class="form-control" placeholder = "123" style = "border: 1px solid black;">
+                                <b style = "color: LightBlue">CVV</b>
+                                <input class="form-control" placeholder = "123">
 
                             </div>
                         </div>
                         <div class = "row"style =>
-                            <div class = "col-1">
-                            </div>
-                            <div class = "col-10" style = "margin-top:20px;">
+                            
+                            <div class = "col-10" style = "margin-top:50px;">
                                 <form method='POST' class="form-signin">
-                                <b>Enter amount you want to add</b>
+                                <b style = "color: LightBlue">Enter amount to transfer:</b>
                                 {% csrf_token %}
-                                    <input type="number"  class="form-control" id="updateBalance" name="updateBalance" style = "border: 1px solid black;"value=0>
+                                    <input style = "width: 85px;" type="number"  class="form-control" id="updateBalance" name="updateBalance" value=0>
                                     <div class="form-group">
-                                            <button type = "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:20px;">Transfer</button> 
+                                            <button type = "submit" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; margin-top:20px; color: LightBlue;">Transfer</button> 
                                     </div>
                                 </form>
                             </div>
