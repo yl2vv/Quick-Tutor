@@ -3,7 +3,7 @@ body{
 	height: 100%;
 	background-color: Teal !important;
 }
- 
+
 .top_layer{
 	height: 500px;
 	width: 600px;
@@ -55,3 +55,4 @@ body{
 	justify-content: space-around;
 	flex-direction: column;
 }
+

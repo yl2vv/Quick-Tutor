@@ -7,6 +7,8 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/userprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
     <!-- javascripts from Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -14,13 +16,12 @@
 </head>
 
 <body style = "background: LightBlue">
-    <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+<div id="wrapper">
+        <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light"style = "border: 2px solid black; width: relative;" onclick="window.location.href = '/home';">Home Page</button>
           <div class="nav-item ">
             <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"> {{tutor.firstname}} {{tutor.lastname}}'s Profile</button>
             </div>
-          </div>
-        </div>
     </nav>
 
     <div class="container-fluid">
@@ -28,7 +29,7 @@
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card top_layer my-5">
             <div class = "image_container">
-                <img class = "profile-pic" src = {{tutor.image}} > 
+                <img class = "profile-pic" src = {{tutor.image}} >
             </div>
             <div class="body">
                 <div class = "row" style = "margin-top: 130px;">
@@ -49,14 +50,17 @@
                     <div class = "col-2">
                     </div>
                 </div>
-                <div class = "row">
+                <div style="text-align: right;">
                   <button onclick="window.location.href='/tuteeing/results'" type="button" class = "btn btn-light" style = "border: 2px solid black;">Back to results</button>
                 </div>
+
              </div>
             </div>
         </div>
         </div>
     </div>
 </div>
+<footer >Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
+
 </body>
 </html>

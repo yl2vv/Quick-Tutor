@@ -8,15 +8,18 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
 </head>
 
 <body style = "background: LightBlue;">
-    <div class = "container">
+ <div id="wrapper">
+        <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h1 class="title text-center"><p style="font-size:30px;"><b>You successfully entered the following classes:</b></p></h1>  
+                    <h1 class="title text-center"><p style="font-size:30px;"><b>You successfully entered the following classes:</b></p></h1>
                     <form method='POST'>
                         {% csrf_token %}
                             {% for instance in classes %}
@@ -27,12 +30,14 @@
                         <div style= "float:right;">
                             <button onclick="window.location.href = '/newprofile3';" type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black;">Next</button>
                         </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+ </div>
+<footer >Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 
 </body>
 </html>

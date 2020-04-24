@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+<link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
 
 <meta charset="utf-8">
 
@@ -44,77 +46,61 @@
             background-color: #008080;
             <!--background-color: #a7cecd; the brighter one-->
         }
+
     </style>
 
 
 <body style="background-color:LightBlue;">
 
-<nav class="navbar navbar-custom navbar-expand-lg my-navbar">
-    <nav class="navbar-brand text-white" >Tutoring</nav>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userprofile">Profile</a>
-      </li>
-
-         <li class="nav-item">
-        <a class="nav-link" href="/tutoring">Tutor Page</a>
-      </li>
-
-    </ul>
-
-  </div>
-</nav>
+<div id="wrapper">
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light" style = "border: 2px solid black; width: relative;" onclick="window.location.href = '/home';">Home Page</button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+              <button class = "btn profile-btn" onclick="window.location.href = '/tutoring';">Tutoring Page</button>
+            </div>
 
 
+    </nav>
 
 
 
 <div class="container-fluid">
     <h2 class="text-center">{{tutee.firstname}}'s Question</h2>
-    <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
+    <div class="row" style="background: #008080; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
         <div class="col-sm-5 text-center">
-            <img style="max-width:250px;" class = "profile-pic" src = {{user.image}} >
+            <img style="max-width:250px; padding-top: 20px;" class = "profile-pic" src = {{tutee.image}} >
 
 
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-7" >
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Email:</label>
+            <div class="form-group row" style="padding-top: 20px;">
+                <label class="col-sm-2 col-form-label" style="color: white;">Email:</label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control" value={{tutee.email}}>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Question:</label>
+            <div class="form-group row" style="padding-top: 40px;">
+                <label class="col-sm-2 col-form-label" style="color: white;">Question:</label>
                 <div class="col-sm-10">
                     <textarea type="text" readonly class="form-control"  rows="3">{{question.Comments_text}}</textarea>
                 </div>
 
             </div>
 
-            <div class="btn-toolbar">
+            <div class="btn-toolbar" style="float: right; padding-top: 50px;">
 
-                 <!--<div class="btn-group mr-2" role="group" aria-label="Button group example">-->
-                    <!--<a href="userprofile" type="button" class="btn btn-secondary btn-sm">View Profile</a>-->
-                 <!--</div>-->
-                <div class="btn-group mr-2" role="group" aria-label="Button group example">
-                    <form method='POST'>
+
+                <div class="btn-group mr-2" role="group" aria-label="Button group example" >
+                    <form method='POST' >
                         {% csrf_token %}
-                    <button type="submit"  class="btn btn-light btn-sm">Accept</button>
+                        <button type="submit"  style = "border: 2px solid black;" class="btn btn-light btn-sm">Accept</button>
+
                     </form>
                 </div>
-
             </div>
 
         </div>
@@ -122,8 +108,9 @@
 </div>
 
 </div>
+</div>
 
-<body/>
+<footer >Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 
 </body>
 

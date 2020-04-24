@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+
+
 <meta charset="utf-8">
 
 <meta charset="utf-8">
@@ -31,9 +35,9 @@
     <style type="text/css">
 
 
-<!--.table td.demo {-->
-   <!--max-width: 177px;-->
-<!--}-->
+.table td.demo {
+   max-width: 177px;
+}
 .table td.demo span {
    overflow: hidden;
    text-overflow: ellipsis;
@@ -41,11 +45,6 @@
    white-space: nowrap;
    max-width: 100%;
    }
-
-  .navbar-custom {
-            background-color: #008080;
-            <!--background-color: #a7cecd; the brighter one-->
-        }
 
   .container{
     height: 300px;
@@ -63,37 +62,6 @@
     text-align: center;
   }
 
-  .input-group-addon {
-    background-color: transparent;
-    border-left: 0;
-}
-
-.cc-number.identified {
-    background-repeat: no-repeat;
-	background-position-y: 3px;
-	background-position-x: 99%;
-}
-
-
-
-.one-card > div {
-    height: 150px;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-
-.two-card > div {
-    height: 80px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 48%;
-}
-
-.two-card div.amex-cvc-preview {
-    float: right;
-}
-
 
     </style>
 
@@ -101,7 +69,7 @@
 </head>
 
 
-<script type="text/javascript"> //Stopwatch code source: https://www.youtube.com/watch?v=1INmsFnD-u4
+<script type="text/javascript"> //Stopwatch code source: https://www.youtube.com/watch?v=1INmsFnD-u4 //Added calculate function
 
 //Define vars to hold time values
 let seconds = 0;
@@ -212,36 +180,24 @@ function calculate(){
 
 
 <body style="background-color:LightBlue;">
-<nav class="navbar navbar-expand-lg navbar-light my-navbar">
-    <nav class="navbar-brand text-white" >Tutoring</nav>
+<div id="wrapper">
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light" style = "border: 2px solid black; width: relative;" onclick="window.location.href = '/home';">Home Page</button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            </div>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userprofile">Profile</a>
-      </li>
-
-    </ul>
-
-  </div>
-</nav>
+    </nav>
 
 
 <div class="container-fluid py-3">
-    <div class="row">
+    <div class="row" >
         <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
-           <h3> {{tutee.firstname}}'s Payment</h3>
+           <h3 style="text-align: center;padding-bottom: 20px;"> {{tutee.firstname}}'s Payment</h3>
             <div id="pay-invoice" class="card">
-                <div class="card-body">
+                <div class="card-body" style="background: #008080;">
 
-                    <div class="card-title">
+                    <div class="card-title" >
 
                          <div id="display">
                             00:00:00
@@ -259,31 +215,34 @@ function calculate(){
                     {% csrf_token %}
 
 
-                        <div class="form-group">
+                        <div class="form-group" style="padding-left: 20px; padding-right: 20px;">
                             <label for="Amount" class="control-label mb-1">Total Amount</label>
-                            <input type="number" readonly class="form-control" id="amount" name="Amount" value=0.00>
+                            <input style="padding: 10px;" type="number" readonly class="form-control" id="amount" name="Amount" value=0.00>
                         </div>
 
 
 
 
 
-                        <div class="row">
-                            <div class="col-4">
-                                    <label class="control-label mb-1">Hours</label>
-                                    <input  type="number" name="hours" id="hours" class="form-control cc-exp" value=0>
-                            </div>
-                            <div class="col-4">
-                                <label class="control-label mb-1">Minutes</label>
-                                <input type="number" name="minutes" id="minutes" class="form-control cc-cvc" value="0">
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label class="control-label mb-1">Seconds</label>
-                                    <input type="number" name="seconds" id="seconds" class="form-control cc-cvc" value="0">
-                                </div>
-                            </div>
-                        </div>
+                        <!--MANUAL TIME INPUT-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-4">-->
+                                    <!--<label class="control-label mb-1">Hours</label>-->
+                                    <!--<input  type="number" name="hours" id="hours" class="form-control cc-exp" value=0>-->
+                            <!--</div>-->
+                            <!--<div class="col-4">-->
+                                <!--<label class="control-label mb-1">Minutes</label>-->
+                                <!--<input type="number" name="minutes" id="minutes" class="form-control cc-cvc" value="0">-->
+                            <!--</div>-->
+                            <!--<div class="col-4">-->
+                                <!--<div class="form-group">-->
+                                    <!--<label class="control-label mb-1">Seconds</label>-->
+                                    <!--<input type="number" name="seconds" id="seconds" class="form-control cc-cvc" value="0">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--END MANUAL TIME INPUT-->
+
                         <!--<div class="form-group">-->
                             <!--<label for="x_zip" class="control-label mb-1">Postal code</label>-->
                             <!--<input id="x_zip" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the ZIP/Postal code" autocomplete="postal-code">-->
@@ -294,22 +253,26 @@ function calculate(){
                             <!--<input id="x_promotion" name="x_prom" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Promotion  code" >-->
                             <!--<span class="help-block" data-valmsg-for="x_promotion" data-valmsg-replace="true"></span>-->
                         <!--</div>-->
-                        <div>
-                            <button type="submit" class="btn btn-lg btn-secondary btn-block">Finish</button>
+                        <div style="padding-top: 20px; text-align: center;">
+                            <button type="submit" class="btn btn-light" style = "border: 2px solid black;width: 120px;;">Finish</button>
                         </div>
 
 
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 
 
 </body>
-</html>
 
+</html>
 
 
 

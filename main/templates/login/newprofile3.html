@@ -8,6 +8,8 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
     <!-- javascripts from Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -15,18 +17,19 @@
 </head>
 
 <body style = "background: LightBlue">
-    <div class = "container">
+<div id="wrapper">
+        <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b><b>Final Step!</b></h5>  
+                        <h5 class="title text-center"><b><b>Final Step!</b></b></h5>
                     <form method='POST'>
                         {% csrf_token %}
 
                         <div class = "row">
                             <div class = "col-6"><b>Graduation Year:</b>
-                                <div class="form-group" style = "width: 164px">
+                                <div class="form-group" style = "width: relative;">
                                 <input type="newchoolYear" class="form-control" placeholder = "Ex: 2021" name="SchoolYear" style = "border: 1px solid black;">
                                 </div>
                             </div>
@@ -43,12 +46,14 @@
                         <div style= "float:right;">
                             <button onclick="window.location.href = '/home';" type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top: 15px;">Submit</a></button>
                         </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<footer >Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 
 </body>
 </html>

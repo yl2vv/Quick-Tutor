@@ -349,14 +349,14 @@ def payment(request):
     if request.method == "POST":
 
         # determine price for inputed time
-        hours = int(request.POST.get('hours'))
-        minutes = int(request.POST.get('minutes'))
-        seconds = int(request.POST.get('seconds'))
-        temp_minutes = (hours * 60) + minutes + (seconds / 60)
-        input_amount = (round(temp_minutes * 100))/100 # round to two decimals
-        input_amount = (input_amount / 5)
-        tutee.balance = tutee.balance - input_amount
-        o.balance = o.balance + input_amount
+        # hours = int(request.POST.get('hours'))
+        # minutes = int(request.POST.get('minutes'))
+        # seconds = int(request.POST.get('seconds'))
+        # temp_minutes = (hours * 60) + minutes + (seconds / 60)
+        # input_amount = (round(temp_minutes * 100))/100 # round to two decimals
+        # input_amount = (input_amount / 5)
+        # tutee.balance = tutee.balance - input_amount
+        # o.balance = o.balance + input_amount
 
 
         # determine price based on stopwatch

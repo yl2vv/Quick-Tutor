@@ -10,6 +10,8 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/login_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
 
     <!-- google api -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -68,19 +70,20 @@
 
 <body style = "background-color: LightBlue;">
 
-  <div class="container">
+<div id="wrapper">
+      <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card top_layer my-5">
             <div class = "quickTutor_logo_container">
                 <div class = "crop">
-                    <img src = "https://media.giphy.com/media/RkAwUt4dQF1tu/giphy.gif" style = "border-radius:250px;"> 
+                    <img src = "https://media.giphy.com/media/RkAwUt4dQF1tu/giphy.gif" style = "border-radius:250px;">
                 </div>
             </div>
             <div class="body">
             <h5 class="title text-center">Welcome to <b>quickTutor!</b></h5>
             <form class="form-signin">
-              
+
 
               <hr class="my-4">
 
@@ -93,6 +96,8 @@
       </div>
     </div>
   </div>
+</div>
+<footer >Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 
 </body>
 
