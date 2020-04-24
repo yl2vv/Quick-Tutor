@@ -40,7 +40,7 @@
 
   {% if questionsReceived and user.connection != "" %}
   <h1 class = "title text-center" style = "color: Teal;"> Go back to session with {{tutee.firstname}}</h1>
-
+  <button class= "btn btn-light" onclick="window.location.href = '/payment';"><b style = "color: Teal;">Home Page</b></button>
   {% endif %}
 
   {% if questionsReceived and user.connection == "" %}

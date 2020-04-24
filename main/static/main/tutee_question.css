@@ -1,9 +1,9 @@
 STATIC_URL = '/static/'
-.btn.btn-light{
-	border: 1px solid black;
+.btn.my-btn{
+	background-color:Teal;
 }
-.btn.btn-light:hover{
-	background-color: LightBlue;
+.btn.my-btn:hover{
+	background-color:white;
 }
 .my-navbar{
 	background-color:background: rgb(0,128,128);

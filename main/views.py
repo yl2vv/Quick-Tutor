@@ -320,10 +320,12 @@ def question(request, tutee_id):
         "tutee": tutee,
         "question": question,
     }
-    if request.method == "POST":
+    if 'accept' in request.POST:
         o.connection = tutee_id
         o.save()
         return HttpResponseRedirect("/payment")
+    elif 'back' in request.POST:
+        return HttpResponseRedirect("/tutoring#")
     return render(request, 'tutee/question.html', context)
 
 def session(request):

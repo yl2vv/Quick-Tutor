@@ -11,26 +11,30 @@
 </head>
 <body style = "background-color: LightBlue;">
     <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
           <div class="nav-item ">
-            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
             </div>
           </div>
         </div>
     </nav>
-
-    <div class="container">
 
       {% if tutee.tuteeStatus == "none" %}
       <h1 class="column offset-md-3 justify-content-center p-4">Ask a question and come back!</h1>
       {% endif %}
 
       {% if tutee.tuteeStatus == "waiting" %}
-      <form method='POST' class="column justify-content-center"> 
+        <form method='POST' class="column justify-content-center"> 
         {% csrf_token %}
-        <h1 class="column offset-md-3 justify-content-center p-4">Waiting for <b>{{tutor.firstname}}</b> to respond...</h1>
-          <button type = "submit" name="cancel" value="cancel" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Cancel Question</button> 
-      </form>
+          <h1 class="title text-center" style = "margin-top: 50px; color: Teal;">Waiting for <b>{{tutor.firstname}}</b> to arrive...</h1>
+          <div class = "row">
+            <div class = "col-4">
+            </div>
+            <div class = "col-4 text-center">
+            <button type = "submit" name="cancel" value="cancel" class = "btn btn-circle btn-light text-center" style = "border: 2px solid Teal; margin-top:40px;"><b style = "color:teal">Cancel Question</b></button> 
+            </div>
+          </div>
+        </form>
         {% endif %}
 
       {% if tutee.tuteeStatus == "accept" %}
