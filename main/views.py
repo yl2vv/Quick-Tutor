@@ -14,6 +14,17 @@ import math
 
 
 def login(request):
+    if(request.user != 'AnonymousUser'):
+        try:
+            p = Profile.objects.get(user=request.user)
+            p.activeStatus = False
+            p.save()
+            # request.user.is_active = False
+            # request.user.save()
+            print('worked')
+            return HttpResponseRedirect('accounts/logout')
+        except:
+            print('Anonymous User')
     return render(request, 'login/index.html')
 
 
@@ -57,19 +68,31 @@ def home(request):
         #p.latitude = request.POST.get('Latitude')
         #p.longitude = request.POST.get('Longitude')
         # if(request.POST.get('Type') == 'tutee'):
+        print(request.POST)
         if 'tutee' in request.POST:
             p.activeStatus = False
             p.save()
-            return HttpResponseRedirect('tuteeing')
+            return HttpResponseRedirect(reverse('login:tutee'))
         elif 'tutor' in request.POST:
             p.activeStatus = True
             p.save()
             print("oiwqejijows")
-            return HttpResponseRedirect('tutoring')
+            return HttpResponseRedirect(reverse('login:tutor'))
+        # elif 'profile' in request.POST:
+        #     return HttpResponseRedirect(reverse('login:userprofile'))
+        # else:
+        #     p.activeStatus = False
+        #     p.save()
+        #     return HttpResponseRedirect('accounts/logout')
     return render(request, 'login/home.html')
 
 # view for the tutor page after user has clicked that option on the homepage
 def tutoring(request):
+    # if(request.method == 'POST'):
+    #     p = Profile.objects.get(user=request.user)
+    #     if(request.POST.get('leftPage') == True):
+    #         p.activeStatus = False
+    #         p.save()
     o = Profile.objects.get(user=request.user)
     connection = o.connection
     qr = o.questionsReceived
@@ -120,11 +143,11 @@ def tuteeing(request):
     o = Profile.objects.get(user=request.user)
     classes = o.classes
     #add person to tutee model if it's their first time asking a question
-    if Tutee.objects.filter(person = o).count() is 0:
+    if Tutee.objects.filter(person = o).count() == 0:
         tutee = Tutee(person=o)
         tutee.save()
     tutee = Tutee.objects.get(person = o)
-    if tutee.asked == False and Question.objects.filter(person = o).count() is 1:
+    if tutee.asked == False and Question.objects.filter(person = o).count() == 1:
         q = Question.objects.get(person = o)
         q.delete()
     #After clicking submit
@@ -195,7 +218,7 @@ def rating(request, tutor_id):
             tutor.save()
     tutee = Tutee.objects.get(person=me)
     tutee.ratingPage = tutor_id
-    if tutee.tuteeStatus == "none" and Question.objects.filter(person = me).count() is 1:
+    if tutee.tuteeStatus == "none" and Question.objects.filter(person = me).count() == 1:
         tutee.tuteeStatus = "waiting"
         tutee.asked = True
     tutee.save()
@@ -355,6 +378,7 @@ def payment(request):
         input_amount = (input_amount / 5)
         tutee.balance = tutee.balance - input_amount
         o.balance = o.balance + input_amount
+        o.activeStatus = True
 
 
         # determine price based on stopwatch

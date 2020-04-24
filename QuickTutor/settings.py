@@ -98,12 +98,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'quicktutor3',
         'USER': 'postgres',
-        'PASSWORD': 'Jlim1400',
+        'PASSWORD': 'Keshav00',
         # 'NAME': 'quicktutor3',
         # 'USER': 'postgres',
         # 'PASSWORD': '10721744Cross!',
         'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'PORT': '5432',
     }
 }
 
