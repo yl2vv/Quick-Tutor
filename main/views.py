@@ -76,14 +76,7 @@ def home(request):
         elif 'tutor' in request.POST:
             p.activeStatus = True
             p.save()
-            print("oiwqejijows")
-            return HttpResponseRedirect(reverse('login:tutor'))
-        # elif 'profile' in request.POST:
-        #     return HttpResponseRedirect(reverse('login:userprofile'))
-        # else:
-        #     p.activeStatus = False
-        #     p.save()
-        #     return HttpResponseRedirect('accounts/logout')
+            return HttpResponseRedirect('tutoring')
     return render(request, 'login/home.html')
 
 # view for the tutor page after user has clicked that option on the homepage
@@ -283,13 +276,17 @@ def newprofile1(request):
 def newprofile2(request):
     # this deals with classes
     o = Profile.objects.get(user=request.user)
-    if request.method == "POST" and len(o.classes) == 0:
+    if 'enter' in request.POST:
         full_string = str(request.POST.get('Classes'))
         split_list = full_string.split(",")
         for i in split_list:
             if re.match(r"[A-Z]{2,4}[0-9]{4}$",i):
                 o.classes.append(i)
                 o.save()
+        return HttpResponseRedirect('newprofile2')
+    if 'other' in request.POST:
+        return HttpResponseRedirect('newprofile2.5')
+    elif 'next' in request.POST:
         return HttpResponseRedirect('newprofile2.5')
     return render(request, 'login/newprofile2.html')
 
@@ -299,7 +296,9 @@ def newprofile2_5(request):
     context = {
         "classes": classes,
     }
-    if request.method == "POST":
+    if 'back' in request.POST:
+        return HttpResponseRedirect('newprofile2')
+    elif 'next' in request.POST:
         return HttpResponseRedirect('newprofile2.75')
     return render(request, 'login/newprofile2.5.html', context)
 
@@ -428,29 +427,55 @@ def payment(request):
 
 def updateclasses(request):
     o = Profile.objects.get(user=request.user)
-    if request.method == "POST":
+    if 'add' in request.POST:
         full_string = str(request.POST.get('Classes'))
         split_list = full_string.split(",")
         for i in split_list:
             if re.match(r"[A-Z]{2,4}[0-9]{4}$", i) and i not in o.classes:
                 o.classes.append(i)
                 o.save()
+        return HttpResponseRedirect('updateclasses')
+    if 'delete' in request.POST:
+        full_string = str(request.POST.get('Classes'))
+        if re.match(r"[A-Z]{2,4}[0-9]{4}$", full_string) and full_string in o.classes:
+            o.classes.remove(request.POST.get('Classes'))
+            o.save()
+        return HttpResponseRedirect('updateclasses')
+    if 'classes' in request.POST:
+        return HttpResponseRedirect('classes')
+    elif 'profile' in request.POST:
         return HttpResponseRedirect('userprofile')
     return render(request, 'login/addclasses.html')
 
 def updatebio(request):
     o = Profile.objects.get(user = request.user)
-    if request.method == "POST":
+    if 'update' in request.POST:
         o.bio = request.POST.get('Bio')
         o.save()
+        return HttpResponseRedirect('userprofile')
+    elif 'back' in request.POST:
         return HttpResponseRedirect('userprofile')
     return render(request, 'login/newbio.html')
 
 def updatebalance(request):
     o = Profile.objects.get(user = request.user)
-    if request.method == "POST":
+    if 'balance' in request.POST:
         temp = float(request.POST.get('updateBalance'))  # person adds more money
         o.balance += round(round(temp * 100)) / 100
         o.save()
         return HttpResponseRedirect('userprofile')
+    if 'profile' in request.POST:
+        return HttpResponseRedirect('userprofile')
     return render(request, 'login/addbalance.html')
+
+def classes(request):
+    o = Profile.objects.get(user=request.user)
+    classes = o.classes
+    context = {
+        "classes": classes,
+    }
+    if 'back' in request.POST:
+        return HttpResponseRedirect('userprofile')
+    elif 'next' in request.POST:
+        return HttpResponseRedirect('updateclasses')
+    return render(request, 'login/classes.html', context)

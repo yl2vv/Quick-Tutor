@@ -47,78 +47,51 @@
 
 
 <body style="background-color:LightBlue;">
-
-<nav class="navbar navbar-custom navbar-expand-lg my-navbar">
-    <nav class="navbar-brand text-white" >Tutoring</nav>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userprofile">Profile</a>
-      </li>
-
-         <li class="nav-item">
-        <a class="nav-link" href="/tutoring">Tutor Page</a>
-      </li>
-
-    </ul>
-
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
+            </div>
+          </div>
+        </div>
+    </nav>
 
 
 
 
 
 <div class="container-fluid">
-    <h2 class="text-center">{{tutee.firstname}}'s Question</h2>
-    <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
+    <h2 class="text-center" style = "margin-top:40px;"><b style = "color: Teal;">{{tutee.firstname}}'s Question</b></h2>
+    <div class="row" style="background-color: Teal;box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+      -webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+      -moz-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+        padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
         <div class="col-sm-5 text-center">
-            <img style="max-width:250px;" class = "profile-pic" src = {{user.image}} >
+            <img style="max-width:250px; border: 3px solid white; border-radius: 30px;" class = "profile-pic" src = {{user.image}} >
 
 
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-7" style = "margin-top:40px;">
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Email:</label>
+                <label class="col-sm-2 col-form-label"><b style = "color: LightBlue;">Email</b></label>
                 <div class="col-sm-10">
                     <input type="text" readonly class="form-control" value={{tutee.email}}>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Question:</label>
+                <label class="col-sm-2 col-form-label"><b style = "color: LightBlue;">Question</b></label>
                 <div class="col-sm-10">
-                    <textarea type="text" readonly class="form-control"  rows="3">{{question.Comments_text}}</textarea>
+                    <textarea type="text" readonly class="form-control"  rows="3">{{question.Question_text}}</textarea>
                 </div>
 
             </div>
-
-            <div class="btn-toolbar">
-
-                 <!--<div class="btn-group mr-2" role="group" aria-label="Button group example">-->
-                    <!--<a href="userprofile" type="button" class="btn btn-secondary btn-sm">View Profile</a>-->
-                 <!--</div>-->
-                <div class="btn-group mr-2" role="group" aria-label="Button group example">
                     <form method='POST'>
                         {% csrf_token %}
-                    <button type="submit"  name="accept" value="accept" class="btn btn-light btn-sm">Accept</button>
-                    <button type="submit" name="decline" value="decline" class="btn btn-light btn-sm">Decline</button>
+                    <button type="submit" name = "back" value = "back"class="btn my-btn" style = "float: left;"><b><< Go back</b></button>
+                    <button type="submit" name = "accept" value = "accept" class="btn my-btn" style = "border: 3px solid LightBlue; float: right;"><b style = "color: LightBlue;">Accept</b></button>
                     </form>
-                </div>
-
-            </div>
-
-        </div>
-
 </div>
 
 </div>

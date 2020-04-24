@@ -4,22 +4,20 @@
 <html lang="en">
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel = "stylesheet" type = "text/css" href = "{% static 'main/userprofile_style.css'%}">
+<link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
 <head>
     <meta charset="UTF-8">
     <title>Tutee Results Page</title>
 </head>
 <body style = "background-color: LightBlue;">
     <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
           <div class="nav-item ">
-            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
             </div>
           </div>
         </div>
     </nav>
-
-    <div class="container">
 
       {% if tutee.tuteeStatus == "none" %}
         <h1 class="column offset-md-3 justify-content-center p-4">Ask a question and come back!</h1>
@@ -27,9 +25,15 @@
 
       {% if tutee.tuteeStatus == "waiting" %}
         <form method='POST' class="column justify-content-center"> 
-          {% csrf_token %}
-          <h1 class="column offset-md-3 justify-content-center p-4">Waiting for <b>{{tutor.firstname}}</b> to respond...</h1>
-            <button type = "submit" name="cancel" value="cancel" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Cancel Question</button> 
+        {% csrf_token %}
+          <h1 class="title text-center" style = "margin-top: 50px; color: Teal;">Waiting for <b>{{tutor.firstname}}</b> to arrive...<p style = "font-size:14px; margin-top:30px;">Contact {{tutor.firstname}} for an update: {{tutor.computingID}}@virginia.edu</h1>
+          <div class = "row">
+            <div class = "col-4">
+            </div>
+            <div class = "col-4 text-center">
+            <button type = "submit" name="cancel" value="cancel" class = "btn btn-circle btn-light text-center" style = "border: 2px solid Teal; margin-top:40px;"><b style = "color:teal">Cancel Question</b></button> 
+            </div>
+          </div>
         </form>
         {% endif %}
 
@@ -39,20 +43,28 @@
 
       {% if tutee.tuteeStatus == "rating" %}
         <div class="column col-md-6 offset-md-3 justify-content-center p-4">
-            <h1>How Would You Rate <b>{{tutor.firstname}}</b> ?</h1>
+            <h1 class = "title text-center"><b style = "color:Teal">How Would You Rate <b>{{tutor.firstname}}</b> ?</b></h1>
             <form method='POST' class="column justify-content-center"> 
               {% csrf_token %}
-                <div class="form-group w-50">
-                    <label for="class">Rating</label>
-                    <select class="form-control" name="rate">
+                <form>
+                  <div class = "row">
+                    <div class = "col-4">
+                    </div>
+                    <div class = "col-4">
+                      <label for="class"><b style = "color:Teal;">Rating</b></label>
+                      <select class="form-control text-center" name="rate">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                         <option>4</option>
                         <option>5</option>
-                    </select>
-                </div>
-                <button type = "submit" name="submit" value="submit" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Submit</button> 
+                      </select>
+                    </div>
+                  </div>
+                <div class = "row">
+                  <div class = "col text-center">
+                    <button type = "submit" name="submit" value="submit" class = "btn my-btn" style = "border: 2px solid Teal; margin-top:40px;"><b style = "color:Teal">Submit</b></button> 
+                  </div>
             </form>
         </div>
       {% endif %}

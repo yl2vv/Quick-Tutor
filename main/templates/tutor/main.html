@@ -42,9 +42,9 @@
 </script>
 <body style= "background-color:LightBlue;">
   <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+        <button class= "btn btn-light" onclick="window.location.href = '/home';"><b style = "color: Teal;">Home Page</b></button>
           <div class="nav-item ">
-            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
             </div>
           </div>
         </div>
@@ -53,12 +53,19 @@
     </nav>
 
   {% if not questionsReceived %}
-  <h1> No Questions Asked</h1>
+  <h1 class = "title text-center" style = "color: Teal;"> <b>No questions asked </b></h1>
   {% endif %}
 
   {% if questionsReceived and user.connection != "" %}
-    <h1> Go back to session with {{tutee.firstname}}</h1>
-    <button type = "button" onclick="window.location.href ='payment'" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Session</button> 
+    <h1 class = "title text-center" style = "color: Teal; margin-top:40px;"><b> Go back to session with {{tutee.firstname}}</b></h1>
+    <div class = "row">
+      <div class = "col-4">
+      </div>
+      <div class = "col-4 text-center">
+        <button class= "btn my-btn" onclick="window.location.href = '/payment';" style = "margin-top:20px;border: 3px solid Teal;"><b style = "color: Teal;">Go to Jessie's session >></b></button>
+      </div>
+      <div class = "col-4">
+      </div>
   {% endif %}
 
   {% if questionsReceived and user.connection == "" %}

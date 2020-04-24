@@ -136,8 +136,6 @@ function stopWatch(){
         }
 
     }
-
-    //If seconds/minutes/hours are only one digit, add a leading 0 to the value
     if(seconds < 10){
         displaySeconds = "0" + seconds.toString();
     }
@@ -158,14 +156,9 @@ function stopWatch(){
     else{
         displayHours = hours;
     }
-
-    //Display updated time values to user
     document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
 
 }
-
-
-
 function startStop(){
 
     if(status === "stopped"){
@@ -213,33 +206,20 @@ function calculate(){
 
 
 <body style="background-color:LightBlue;">
-<nav class="navbar navbar-expand-lg navbar-light my-navbar">
-    <nav class="navbar-brand text-white" >Tutoring</nav>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userprofile">Profile</a>
-      </li>
-
-    </ul>
-    <button type="button" class="btn btn-light" style="background: none!important; border: none; padding: none!important;" data-toggle="modal" data-target="#myModal"><b>Info</b></button>
-
-  </div>
-
-</nav>
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
+            </div>
+          </div>
+        </div>
+    </nav>
 
 
 <div class="container-fluid py-3">
     <div class="row">
         <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+           <h1 class = "title text-center"><b style = "color:Teal"> {{tutee.firstname}}'s Session Payment</b></h1>
             <div id="pay-invoice" class="card">
                 <div class="card-body">
 
