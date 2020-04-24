@@ -3,6 +3,8 @@
 <html>
 <meta http-equiv="refresh" content="10"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/4.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
 <meta charset="utf-8">
@@ -32,6 +34,8 @@
             </div>
           </div>
         </div>
+        <button type="button" class="btn btn-light" style="margin-left: 10px; background: none!important; border: none; padding: none!important;" data-toggle="modal" data-target="#myModal"><b>Info</b></button>
+
     </nav>
 
   {% if not questionsReceived %}
@@ -44,8 +48,6 @@
   {% endif %}
 
   {% if questionsReceived and user.connection == "" %}
-  <div class="container" style="padding-top: 10px">
-  <h5 class="text-center">Here is a list of students that need help. Select one, and choose to accept their question!</h5>
   <table class="table table-hover border border-dark">
     <thead>
       <tr class="bg-dark text-white">
@@ -67,6 +69,23 @@
     </tbody>
   </table>
   {% endif %}
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Info</h4>
+    </div>
+    <div class="modal-body">
+      <p>Here is a list of students that need help. Select one, and choose to accept their question!</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
   </div>
 
+</div>
+</div>
 </body>
