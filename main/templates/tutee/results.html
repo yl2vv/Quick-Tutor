@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+<meta http-equiv="refresh" content="10" />
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!-- static/login_style.css -->
-    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/tutee_question.css'%}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Tutee Results Page</title>
+  <meta charset="UTF-8">
+  <title>Tutee Results Page</title>
 </head>
+
 <body style="background-color:LightBlue;">
-    <nav class="navbar navbar-expand-lg my-navbar">
-        <button class = "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-       
-        </div>
-    </nav>
-      <table class="table">
-          <thead class="thead-dark">
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">GPA</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Bio</th>
-                <th scope="col"></th>
-              </tr>
-          </thead>
-          <tbody>
-          {% for instance in results %}
-            <form method='POST'>
-            {% csrf_token %}
-              <tr>
-                  <th scope="row">
-                    <a href='results/{{instance.id}}'>{{instance.firstname}} {{instance.lastname}}</a>
-                  </th>
-                  <td>{{instance.gpa}}</td>
-                  <td>{{instance.email}}</td>
-                  <td>{{instance.phoneNumber}}</td>
-                  <td>{{instance.bio}}</td>
-                  <!-- Save the id of instance so I can Profile.objects.get() -->
-                  <td><button type="button" onclick="window.location.href='results/rating/{{instance.id}}'">select</button></td>
-              </tr>
-            </form>
-          {% endfor %}
-          </tbody>
-      </table>
+  <nav class="navbar navbar-expand-lg my-navbar">
+    <button class="btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    </div>
+  </nav>
+  {% if not results %}
+  <h1> No Current Tutors</h1>
+  {% endif %}
+  {% if results %}
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">GPA</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Bio</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for instance in results %}
+      <form method='POST'>
+        {% csrf_token %}
+        <tr>
+          <th scope="row">
+            <a href='results/{{instance.id}}'>{{instance.firstname}} {{instance.lastname}}</a>
+          </th>
+          <td>{{instance.gpa}}</td>
+          <td>{{instance.email}}</td>
+          <td>{{instance.phoneNumber}}</td>
+          <td>{{instance.bio}}</td>
+          <!-- Save the id of instance so I can Profile.objects.get() -->
+          <td><button type="button" onclick="window.location.href='results/rating/{{instance.id}}'">select</button></td>
+        </tr>
+      </form>
+      {% endfor %}
+      {% endif %}
+
+    </tbody>
+  </table>
 
 </body>
+
 </html>
