@@ -73,7 +73,9 @@
         <h1 class="column offset-md-3 justify-content-center p-4">{{tutor.firstname}} declined your question :(</h1>
         <form method='POST' class="column justify-content-center"> 
           {% csrf_token %}
-          <button type = "submit" name="goResult" value="goResult" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Go back to results</button> 
-          <button type = "submit" name="backHome" value="backHome" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top:40px;">Go back to home page</button>
+          <div class = "col text-center">
+            <button type = "submit" name="goResult" value="goResult" class = "btn my-btn" style = "border: 2px solid Teal; margin-top:40px;"><b style = "color:Teal">Go back to results</b></button> 
+            <button type = "submit" name="backHome" value="backHome" class = "btn my-btn" style = "border: 2px solid Teal; margin-top:40px;"><b style = "color:Teal">Go back to home page</b></button>
+          </div>
         </form>
       {% endif %}
