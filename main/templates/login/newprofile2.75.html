@@ -7,15 +7,18 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
 </head>
 
 <body style = "background: LightBlue;">
-    <div class = "container">
+<div id="wrapper">
+        <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b style = "color: LightBlue">Add funds!</b></h5>  
+                    <h5 class="title text-center"><b style = "color: LightBlue">Add funds!</b></h5>
                     <p class="text-center">Put some money in your account if you would like to receive help from a tutor!</p>
                         <div class = "row">
                             <div class = "col-8"><b style = "color: LightBlue">Credit card number</b>
@@ -34,14 +37,14 @@
                             </div>
                         </div>
                         <div class = "row"style =>
-                            
+
                             <div class = "col-10" style = "margin-top:50px;">
                                 <form method='POST' class="form-signin">
                                 <b style = "color: LightBlue">Enter amount to transfer:</b>
                                 {% csrf_token %}
                                     <input style = "width: 85px;" type="number"  class="form-control" id="updateBalance" name="updateBalance" value=0>
                                     <div class="form-group">
-                                            <button type = "submit" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; margin-top:20px; color: LightBlue;">Transfer</button> 
+                                            <button type = "submit" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; margin-top:20px; color: LightBlue;">Transfer</button>
                                     </div>
                                 </form>
                             </div>
@@ -53,6 +56,7 @@
             </div>
         </div>
     </div>
-
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

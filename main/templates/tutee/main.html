@@ -4,23 +4,19 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+<link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 <head>
     <meta charset="UTF-8">
     <title>Tutee Main Page</title>
 </head>
 <body style="background-color:LightBlue;">
-
-
-
-
-
-    <nav class="navbar navbar-expand-lg my-navbar">
+<div id="wrapper">
+        <nav class="navbar navbar-expand-lg my-navbar">
         <button class= "btn btn-light go-home" onclick="window.location.href = '/home';" style = "color:Teal;"><b>Home Page</b></button>
           <div class="nav-item ">
             <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b style = "color:black ;">Your Profile</b></button>
             </div>
-          </div>
-        </div>
+
     </nav>
 
 
@@ -28,7 +24,7 @@
     <div class="container">
         <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
             <h1 style="font-size:35px;"><b style = "color: LIghtBlue;">{{me.firstname}}, Ask Your Question!</b></h1>
-            <form method='POST' class="column justify-content-center"> 
+            <form method='POST' class="column justify-content-center">
               {% csrf_token %}
                 <div class="form-group">
                     <label for="Question"><b style = "color: LIghtBlue;">What is your question?</b></label>
@@ -57,13 +53,15 @@
     {% if user.asked %}
     <div class="container">
         <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
-            <h1 style="font-size:35px;"><b style = "color: LightBLue;">You Already Asked A Question!</b></h1>
-            <form method='POST' class="column justify-content-center"> 
+            <h1 style="font-size:35px; text-align: center;"><b style = "color: LightBLue;">You Already Asked A Question!</b></h1>
+            <form method='POST' class="column justify-content-center" style="text-align:center; padding-top:20px;" >
               {% csrf_token %}
-              <button type="button" onclick="window.location.href='tuteeing/results/rating/{{user.ratingPage}}'" class="btn btn-light submit-btn"><b style = "color: LightBlue;">Go to Results</b></button>
+              <button type="button" onclick="window.location.href='tuteeing/results/rating/{{user.ratingPage}}'" class="btn btn-light submit-btn"><b style = "color: Teal; ">Go to Results</b></button>
             </form>
         </div>
     </div>
     {% endif %}
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

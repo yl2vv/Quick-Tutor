@@ -8,28 +8,31 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <!-- static/login_style.css -->
 <link rel="stylesheet" type="text/css" href="{% static 'main/tutee_question.css'%}">
+<link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 
 <head>
   <meta charset="UTF-8">
   <title>Tutee Results Page</title>
+
 </head>
 
 <body style="background-color:LightBlue;">
-    <nav class="navbar navbar-expand-lg my-navbar">
+<div id="wrapper">
+        <nav class="navbar navbar-expand-lg my-navbar">
         <button class = "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <button type="button" class="btn btn-light" style="background: none!important; border: none; padding: none!important;" data-toggle="modal" data-target="#myModal"><b>Info</b></button>
 
-       
-        </div>
+
+
     </nav>
     {% if not results %}
     <h1> No Current Tutors</h1>
     {% endif %}
     {% if results %}
-    <table class="table">
+    <table class="table table-hover">
           <thead class="thead-dark">
               <tr>
                 <th scope="col">Name</th>
@@ -53,7 +56,7 @@
                   <td>{{instance.phoneNumber}}</td>
                   <td>{{instance.bio}}</td>
                   <!-- Save the id of instance so I can Profile.objects.get() -->
-                  <td><button type="button" onclick="window.location.href='results/rating/{{instance.id}}'">select</button></td>
+                  <td><button style = "color:Teal;font-size:17px; border: 2px solid LightBlue;" type="button" onclick="window.location.href='results/rating/{{instance.id}}'">select</button></td>
               </tr>
             </form>
           {% endfor %}
@@ -79,6 +82,9 @@
 
 </div>
 </div>
+</div>
+
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 
 </html>

@@ -8,6 +8,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/home_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
     <script>
         function getLocation(type) {
             if (navigator.geolocation) {
@@ -80,7 +81,8 @@
     </script> -->
 </head>
 <body style = "background: LightBlue">
-     <div class = "container-fluid">
+<div id="wrapper">
+         <div class = "container-fluid">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
@@ -88,7 +90,7 @@
                     <h1 class = "title text-center"><b style = "font-size: 60px; color: LightBlue;">
                         Tutee or Tutor</b>
                     </h1>
-                     
+
                     <form method='POST'>
                         {% csrf_token %}
                         <div class = "row p-4">
@@ -98,21 +100,24 @@
                             <div class = "col-5">
                                 <button value = "tutor" name="tutor" onclick="getLocation(this.value)"type = "submit" class = "btn btn-circle btn-xl" style = "color:Teal;font-size:20px; border: 2px solid LightBlue"><b>Answer a question</b></button>
                             </div>
-                            
+
                         </div>
-                        <div class = "card my-card" style = "float: right;">
-                            <div>
-                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;"><a href="userprofile" style= "color: Teal;">User Profile</a></button>
+                        <div  style = "float: right;">
+                            <div style="padding-bottom: 4px;">
+                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;  border: 2px solid LightBlue"><a href="userprofile" style= "color: Teal;">User Profile</a></button>
                             </div>
                             <div>
-                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;"><a href="/" style= "color:Teal">Log Out</a></button>
-                            </div> 
+                                <button class = "btn btn-light btn-circle" style = "width: 150px; height: 40px;  border: 2px solid LightBlue" ><a href="/" style= "color:Teal">Log Out</a></button>
+                            </div>
                     </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+     </div>
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 
 </html>

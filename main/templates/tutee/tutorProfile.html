@@ -7,16 +7,17 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/userprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 </head>
 
 <body style = "background: LightBlue">
-    <nav class="navbar navbar-expand-lg my-navbar">
+<div id="wrapper">
+        <nav class="navbar navbar-expand-lg my-navbar">
         <button class= "btn go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
           <div class="nav-item ">
             <h1 class = "btn profile-btn"><b>{{tutor.firstname}} {{tutor.lastname}}'s Profile</b></h1>
             </div>
-          </div>
-        </div>
+
     </nav>
 
     <div class="container-fluid">
@@ -24,7 +25,7 @@
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card top_layer my-5">
             <div class = "image_container">
-                <img class = "profile-pic" src = {{tutor.image}} > 
+                <img class = "profile-pic" src = {{tutor.image}} >
             </div>
             <div class="body">
                 <div class = "row" style = "margin-top: 50px;">
@@ -58,5 +59,6 @@
         </div>
     </div>
 </div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

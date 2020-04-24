@@ -8,23 +8,24 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 </head>
 
 <body style = "background: LightBlue;">
-     <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn go-home" onclick="window.location.href = '/home';"><b style = "color: Teal;">Home Page</b></button>
-          <div class="nav-item ">
-            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
-            </div>
-          </div>
-        </div>
-    </nav>
+<div id="wrapper">
+         <nav class="navbar navbar-expand-lg my-navbar">
+            <button class= "btn go-home" onclick="window.location.href = '/home';"><b style = "color: Teal;">Home Page</b></button>
+              <div class="nav-item ">
+                <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
+              </div>
+
+        </nav>
     <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                        <h1 class="title text-center"><p style="font-size:30px;"><b style = "color: LightBlue; font-size: 40px;">Your Classes</b></p></h1>  
+                        <h1 class="title text-center"><p style="font-size:30px;"><b style = "color: LightBlue; font-size: 40px;">Your Classes</b></p></h1>
                     <form method='POST'>
                         {% csrf_token %}
                             {% for instance in classes %}
@@ -34,16 +35,18 @@
                             {% endfor %}
                         <div style= "float:left;">
                             <button type= "submit" name = "back" value = "back" class = "btn btn-circle btn-light" style = "margin-top: 30px; border: 2px solid LightBlue; color: LightBLue;"><< Your Profile</button>
-                        </div>    
+                        </div>
                         <div style= "float:right;">
                             <button type= "submit" name = "next" value = "next" class = "btn btn-circle btn-light" style = "margin-top: 30px; border: 2px solid LightBlue; color: LightBLue;">Update >></button>
                         </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 
 </body>
 </html>

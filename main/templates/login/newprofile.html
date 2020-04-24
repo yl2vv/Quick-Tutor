@@ -7,15 +7,18 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
   </head>
 
   <body style = "background: LightBlue">
-    <div class = "container">
+<div id="wrapper">
+        <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer">
                     <div class = "body">
-                    <h5 class="title text-center" style = "color: Lightblue"><b>Create your Profile!</b></h5>  
+                    <h5 class="title text-center" style = "color: Lightblue"><b>Create your Profile!</b></h5>
                     <form method='POST' class="column justify-content-center">
                         {% csrf_token %}
                         <div class = "row" style = "margin-top: 60px;">
@@ -31,11 +34,13 @@
                             </div>
                         </div>
                             <button type= "submit" class = "btn btn-light" style = " color: LightBlue; float:right; margin-top: 20px;">Next</a></button>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

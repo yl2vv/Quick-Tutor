@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
 <meta charset="utf-8">
@@ -40,14 +41,52 @@
 //     });
 // };
 </script>
+<head>
+        <style type="text/css">
+
+
+.table td.demo {
+   max-width: 177px;
+}
+.table td.demo span {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: inline-block;
+   white-space: nowrap;
+   max-width: 100%;
+   }
+
+  .navbar-custom {
+            background-color: #008080;
+            <!--background-color: #a7cecd; the brighter one-->
+        }
+
+  .container{
+    height: 300px;
+    width: 100%;
+  }
+
+  #display{
+    width: 100%;
+    font-size: 72px;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .buttons{
+    text-align: center;
+  }
+
+    </style>
+</head>
 <body style= "background-color:LightBlue;">
-  <nav class="navbar navbar-expand-lg my-navbar">
+<div id="wrapper">
+    <nav class="navbar navbar-expand-lg my-navbar">
         <button class= "btn btn-light" onclick="window.location.href = '/home';"><b style = "color: Teal;">Home Page</b></button>
           <div class="nav-item ">
             <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
             </div>
-          </div>
-        </div>
+
         <button type="button" class="btn btn-light" style="background: none!important; border: none; padding: none!important;" data-toggle="modal" data-target="#myModal"><b>Info</b></button>
 
     </nav>
@@ -76,15 +115,18 @@
         <th scope="col">Class</th>
         <th scope="col">Question</th>
         <th scope="col">Comment</th>
+          <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       {% for question in questions %}
-        <tr onclick="window.location='question/{{question.person.id}}'">
+        <tr>
           <th scope="row">{{question.person.firstname}} {{question.person.lastname}}</th>
           <td>{{question.Class_text}}</td>
           <td>{{question.Question_text}}</td>
           <td class ="demo"> <span>{{question.Comments_text}}</span></td>
+            <td><button style = "color:Teal;font-size:17px; border: 2px solid LightBlue;" type="button" onclick="window.location.href='question/{{question.person.id}}'">select</button></td>
+
         </tr>
       {% endfor %}
     </tbody>
@@ -109,4 +151,7 @@
 
 </div>
 </div>
+    </div>
+</div>
+      <footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>

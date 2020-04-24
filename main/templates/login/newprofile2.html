@@ -7,14 +7,17 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
 </head>
 
 <body style = "background: LightBlue;">
-    <div class = "container">
+<div id="wrapper">
+        <div class = "container">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer" style = "background-color: Teal;">
                     <div class = "body">
-                    <h5 class="title text-center" style = "color: LightBLue;"><b>Enter classes you have taken!</b><p style = "font-size: 14px; margin-top:14px;">Classes you enter will be available for others to see.</p></h5>  
+                    <h5 class="title text-center" style = "color: LightBLue;"><b>Enter classes you have taken!</b><p style = "font-size: 14px; margin-top:14px;">Classes you enter will be available for others to see.</p></h5>
                     <form method='POST'>
                         {% csrf_token %}
                         <div class = "row" style = "margin-top:50px;">
@@ -25,7 +28,7 @@
 
                             </div>
                             <div class = "col-3">
-                                <button type = "submit" name = "enter" value = "enter" class = "btn enter-btn" style = "border: 1px solid black; height: 38px;"><p style = "color: black;">Enter</p></button> 
+                                <button type = "submit" name = "enter" value = "enter" class = "btn enter-btn" style = "border: 1px solid black; height: 38px;"><p style = "color: black;">Enter</p></button>
                             </div>
                         </div>
                         <div class = "row">
@@ -36,17 +39,18 @@
                         </div>
                         <div class = "col-4">
                             <div style = "float:right; margin-top: 45px;">
-                                <button type = "submit" name = "next" value = "next" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; color:LightBlue;"><b>Next</b></button> 
+                                <button type = "submit" name = "next" value = "next" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; color:LightBlue;"><b>Next</b></button>
                             </div>
                         </div>
                         <div class = "col-4">
                         </div>
                     </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
-
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

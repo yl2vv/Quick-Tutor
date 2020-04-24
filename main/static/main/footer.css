@@ -1,0 +1,15 @@
+STATIC_URL = '/static/'
+body{
+	height: 100%;
+
+}
+
+#wrapper{
+    min-width:100vh;
+    min-height: 94vh;
+}
+
+footer {
+    text-align: center;
+    font-size: 15px;
+}

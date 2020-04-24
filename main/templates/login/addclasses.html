@@ -8,23 +8,24 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 </head>
 
 <body style = "background: LightBlue;">
-    <nav class="navbar navbar-expand-lg my-navbar">
+<div id="wrapper">
+        <nav class="navbar navbar-expand-lg my-navbar">
         <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color: Teal;">Home Page</b></button>
           <div class="nav-item ">
             <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
             </div>
-          </div>
-        </div>
+
     </nav>
     <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b style = "color: LightBlue;">Update your classes</b></h5>  
+                    <h5 class="title text-center"><b style = "color: LightBlue;">Update your classes</b></h5>
                     <form method='POST'>
                         {% csrf_token %}
                         <div class = "row">
@@ -45,14 +46,15 @@
                             <button type = "submit" name = "classes" value = "classes" class = "btn" style = " height: 38px;"><p style = "font-size: 14px; margin-bottom: 30px;color: black;"><< See your classes</p></button>
                         </div>
                             <div style = "float:left; margin-top:60px;">
-                                <button type = "submit" name = "profile" value = "profile" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue;"><b style = "color: LightBlue;"><< Your Profile</b></button> 
+                                <button type = "submit" name = "profile" value = "profile" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue;"><b style = "color: LightBlue;"><< Your Profile</b></button>
                             </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>
