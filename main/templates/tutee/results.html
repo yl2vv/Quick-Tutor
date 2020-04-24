@@ -15,11 +15,13 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+
        
         </div>
     </nav>
-      <table class="table">
+    <div class="container" style="padding-top: 10px">
+        <h5 class="text-center">Here is a list of available tutors that are nearby. Select one that looks good and they will come to you!</h5>
+        <table class="table border border-dark">
           <thead class="thead-dark">
               <tr>
                 <th scope="col">Name</th>
@@ -49,6 +51,7 @@
           {% endfor %}
           </tbody>
       </table>
+    </div>
 
 </body>
 </html>

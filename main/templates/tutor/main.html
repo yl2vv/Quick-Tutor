@@ -44,7 +44,9 @@
   {% endif %}
 
   {% if questionsReceived and user.connection == "" %}
-  <table class="table table-hover">
+  <div class="container" style="padding-top: 10px">
+  <h5 class="text-center">Here is a list of students that need help. Select one, and choose to accept their question!</h5>
+  <table class="table table-hover border border-dark">
     <thead>
       <tr class="bg-dark text-white">
         <th scope="col">Tutee</th>
@@ -65,4 +67,6 @@
     </tbody>
   </table>
   {% endif %}
+  </div>
+
 </body>
