@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+<meta charset="utf-8">
+
+<meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+    <style type="text/css">
+
+
+<!--.table td.demo {-->
+   <!--max-width: 177px;-->
+<!--}-->
+.table td.demo span {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: inline-block;
+   white-space: nowrap;
+   max-width: 100%;
+   }
+
+  .navbar-custom {
+            background-color: #008080;
+            <!--background-color: #a7cecd; the brighter one-->
+        }
+
+  .container{
+    height: 300px;
+    width: 100%;
+  }
+
+  #display{
+    width: 100%;
+    font-size: 72px;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .buttons{
+    text-align: center;
+  }
+
+  .input-group-addon {
+    background-color: transparent;
+    border-left: 0;
+}
+
+.cc-number.identified {
+    background-repeat: no-repeat;
+	background-position-y: 3px;
+	background-position-x: 99%;
+}
+
+
+
+.one-card > div {
+    height: 150px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.two-card > div {
+    height: 80px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 48%;
+}
+
+.two-card div.amex-cvc-preview {
+    float: right;
+}
+
+
+    </style>
+
+
+</head>
+
+
+<script type="text/javascript"> //Stopwatch code source: https://www.youtube.com/watch?v=1INmsFnD-u4
+
+//Define vars to hold time values
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+//Define vars to hold "display" value
+let displaySeconds = 0;
+let displayMinutes = 0;
+let displayHours = 0;
+
+//Define var to hold setInterval() function
+let interval = null;
+
+//Define var to hold stopwatch status
+let status = "stopped";
+
+//Stopwatch function (logic to determine when to increment next value, etc.)
+function stopWatch(){
+
+    seconds++;
+
+    //Logic to determine when to increment next value
+    if(seconds / 60 === 1){
+        seconds = 0;
+        minutes++;
+
+        if(minutes / 60 === 1){
+            minutes = 0;
+            hours++;
+        }
+
+    }
+
+    //If seconds/minutes/hours are only one digit, add a leading 0 to the value
+    if(seconds < 10){
+        displaySeconds = "0" + seconds.toString();
+    }
+    else{
+        displaySeconds = seconds;
+    }
+
+    if(minutes < 10){
+        displayMinutes = "0" + minutes.toString();
+    }
+    else{
+        displayMinutes = minutes;
+    }
+
+    if(hours < 10){
+        displayHours = "0" + hours.toString();
+    }
+    else{
+        displayHours = hours;
+    }
+
+    //Display updated time values to user
+    document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+
+}
+
+
+
+function startStop(){
+
+    if(status === "stopped"){
+
+        //Start the stopwatch (by calling the setInterval() function)
+        interval = window.setInterval(stopWatch, 1000);
+        document.getElementById("startStop").innerHTML = "Stop";
+        status = "started";
+
+    }
+    else{
+
+        window.clearInterval(interval);
+        document.getElementById("startStop").innerHTML = "Start";
+        status = "stopped";
+        document.getElementByID("amount").innerHTML = "testing"
+
+    }
+
+}
+
+//Function to reset the stopwatch
+function reset(){
+
+    window.clearInterval(interval);
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    document.getElementById("display").innerHTML = "00:00:00";
+    document.getElementById("startStop").innerHTML = "Start";
+
+}
+
+// Added function to calculate total cost for $1 for every 5 minutes
+function calculate(){
+    temp_minutes = (hours * 60) + (minutes) + (seconds/60);
+    amount = temp_minutes/5;
+
+
+    document.getElementById("amount").value = amount.toFixed(2);
+}
+
+ </script>
+
+
+
+<body style="background-color:LightBlue;">
+<nav class="navbar navbar-expand-lg navbar-light my-navbar">
+    <nav class="navbar-brand text-white" >Tutoring</nav>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userprofile">Profile</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+
+<div class="container-fluid py-3">
+    <div class="row">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+           <h3> {{tutee.firstname}}'s Payment</h3>
+            <div id="pay-invoice" class="card">
+                <div class="card-body">
+
+                    <div class="card-title">
+
+                         <div id="display">
+                            00:00:00
+                        </div>
+
+                        <div class="buttons">
+                            <button class="btn btn-circle btn-light" id="startStop" onclick="startStop()">Start</button>
+                            <button class="btn btn-circle btn-light" id="reset" onclick="reset()">Reset</button>
+                            <button class="btn btn-circle btn-light" id="calculate" onclick="calculate()">Calculate</button>
+
+                        </div>
+                    </div>
+                    <!--<hr>-->
+                    <form method='POST' class="column justify-content-center">
+                    {% csrf_token %}
+
+
+                        <div class="form-group">
+                            <label for="Amount" class="control-label mb-1">Total Amount</label>
+                            <input type="number" readonly class="form-control" id="amount" name="Amount" value=0.00>
+                        </div>
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-4">
+                                    <label class="control-label mb-1">Hours</label>
+                                    <input  type="number" name="hours" id="hours" class="form-control cc-exp" value=0>
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label mb-1">Minutes</label>
+                                <input type="number" name="minutes" id="minutes" class="form-control cc-cvc" value="0">
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-1">Seconds</label>
+                                    <input type="number" name="seconds" id="seconds" class="form-control cc-cvc" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label for="x_zip" class="control-label mb-1">Postal code</label>-->
+                            <!--<input id="x_zip" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the ZIP/Postal code" autocomplete="postal-code">-->
+                            <!--<span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>-->
+                        <!--</div>-->
+                         <!--<div class="form-group">-->
+                            <!--<label for="x_promotion" class="control-label mb-1">Promotion Code</label>-->
+                            <!--<input id="x_promotion" name="x_prom" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Promotion  code" >-->
+                            <!--<span class="help-block" data-valmsg-for="x_promotion" data-valmsg-replace="true"></span>-->
+                        <!--</div>-->
+                        <div>
+                            <button type="submit" class="btn btn-lg btn-secondary btn-block">Finish</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+

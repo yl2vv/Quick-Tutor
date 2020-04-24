@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <!-- link to bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- static/login_style.css -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+</head>
+
+<body style = "background: LightBlue;">
+    <div class = "container">
+        <div class = "row">
+            <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class= "card top_layer my_5">
+                    <div class = "body">
+                    <h1 class="title text-center"><p style="font-size:30px;"><b>You successfully entered the following classes:</b></p></h1>  
+                    <form method='POST'>
+                        {% csrf_token %}
+                            {% for instance in classes %}
+                            <div class = "col">
+                            <li> {{ instance }} </li>
+                            </div>
+                            {% endfor %}
+                        <div style= "float:right;">
+                            <button onclick="window.location.href = '/newprofile3';" type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black;">Next</button>
+                        </div>
+                    </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

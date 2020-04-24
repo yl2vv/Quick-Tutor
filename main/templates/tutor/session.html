@@ -58,6 +58,11 @@
   .buttons{
     text-align: center;
   }
+  .boxed {
+  border: 1px solid green ;
+  <!--width: 50%;-->
+  text-align: center;
+}
 
 
     </style>
@@ -133,6 +138,8 @@ function startStop(){
         interval = window.setInterval(stopWatch, 1000);
         document.getElementById("startStop").innerHTML = "Stop";
         status = "started";
+        <!--amount = minutes/5-->
+        <!--document.getElementByID("amount").innerHTML = "testing"-->
 
     }
     else{
@@ -140,6 +147,7 @@ function startStop(){
         window.clearInterval(interval);
         document.getElementById("startStop").innerHTML = "Start";
         status = "stopped";
+        document.getElementByID("amount").innerHTML = "testing"
 
     }
 
@@ -156,7 +164,17 @@ function reset(){
     document.getElementById("startStop").innerHTML = "Start";
 
 }
-    </script>
+
+function calculate(){
+    temp_minutes = (hours * 60) + (minutes) + (seconds/60);
+    amount = temp_minutes/5;
+
+
+    document.getElementById("amount").value = amount;
+
+}
+
+ </script>
 
     <!--END js CODE -->
 
@@ -178,6 +196,9 @@ function reset(){
       <li class="nav-item">
         <a class="nav-link" href="userprofile">Profile</a>
       </li>
+        <li class="nav-item">
+        <a class="nav-link" href="tutoring">Tutor Page</a>
+      </li>
 
     </ul>
 
@@ -186,49 +207,38 @@ function reset(){
 
 
 <div class="container-fluid">
-    <h2 class="text-center">Session with Tutee</h2>
-    <div class="row" style="background: #eee; padding: 20px; border-radius: 5px; max-width: 800px; margin: 0 auto;">
-        <div class="col-sm-5 text-center">
-            <img style="max-width:250px;" src="https://pwco.com.sg/wp-content/uploads/Generic-Profile-Placeholder-v3.png">
-            <!--{{context.whatever}}   # as a placeholder-->
-        </div>
-
-        <div class="col-sm-7">
+    <h2 class="text-center">Session with {{user.firstname}}</h2>
 
             <!--STOPWATCH CODE-->
-              <div class="container">
+            <div class="container">
 
-        <div id="display">
-            00:00:00
-        </div>
+                <div id="display">
+                    00:00:00
+                </div>
 
-        <div class="buttons">
-            <button id="startStop" onclick="startStop()">Start</button> <button id="reset" onclick="reset()">Reset</button>
-        </div>
+                <div class="buttons">
+                    <button id="startStop" onclick="startStop()">Start</button>
+                    <button id="reset" onclick="reset()">Reset</button>
+                    <button id="calculate" onclick="calculate()">Calculate</button>
+                </div>
 
-    </div>
+
+             </div>
+            <!--END OF STOPWATCH CODE -->
 
 
-            <!--END STOPWATCH CODE -->
                <div class="btn-toolbar">
-                 <!--<div class="btn-group mr-2" role="group" aria-label="Button group example">-->
-                    <!--<a href='session' type="submit"  class="btn btn-secondary btn-sm">Accept</a>-->
-                 <!--</div>-->
+
                  <div class="btn-group mr-2" role="group" aria-label="Button group example">
                     <a href="userprofile" type="button" class="btn btn-secondary btn-sm">View Profile</a>
                  </div>
 
+                   <div class="btn-group mr-2" role="group" aria-label="Button group example">
+                    <a href="payment" type="button" class="btn btn-secondary btn-sm">Payment</a>
+                 </div>
 
-                <!--<button type="button" class="btn btn-secondary btn-sm">View Profile</button>-->
-            </div>
-
-        </div>
-    </div>
-
+               </div>
 </div>
-
-
-
 
 
 

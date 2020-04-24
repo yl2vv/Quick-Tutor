@@ -13,12 +13,6 @@
 
     <!-- google api -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- javascripts from Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
 </head>
 
 <!-- scripts using google api creating Google User -->
@@ -72,14 +66,16 @@
 
 
 
-<body style= "background-color: LavenderBlush;">
+<body style = "background-color: LightBlue;">
 
   <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card top_layer my-5">
             <div class = "quickTutor_logo_container">
-                <img src = "{% static "main/logo.png" %}" > 
+                <div class = "crop">
+                    <img src = "https://media.giphy.com/media/RkAwUt4dQF1tu/giphy.gif" style = "border-radius:250px;"> 
+                </div>
             </div>
             <div class="body">
             <h5 class="title text-center">Welcome to <b>quickTutor!</b></h5>
@@ -89,37 +85,14 @@
               <hr class="my-4">
 
               <div style= "text-align: center;">
-                 <button type= "button" class = "btn btn-light btn-circle btn-xl"><a href="{% provider_login_url "google" %}" style="color:Teal">Sign in</a></button>
+                 <button type= "button" class = "btn btn-light btn-circle btn-xl"><a href="{% provider_login_url "google" %}" style="color:white">Sign in</a></button>
               </div>
-              <!-- <button type= "button" class = "btn btn-light btn-circle btn-xl"><a href="{% url 'account_logout' %}">Log Out</a></button> -->
-
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-    <!-- <div class="container h-100">
-        <div class = "d-flex jusitfy-content-center h-100"
-            <div class = "top_layer">
-                <div class = "d-flex jusitfy-content-center">
-                    <div class = "quickTutor_logo_container">
-                        <img src = "{% static "main/quickTutorLogo.png" %}" > 
-                    </div>
-                </div>
-
-                <div class="d-flex jusitfy-content-center">
-
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 </body>
 

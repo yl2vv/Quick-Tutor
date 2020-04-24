@@ -1,67 +1,73 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- static/login_style.css -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
 <head>
     <meta charset="UTF-8">
     <title>Tutee Main Page</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
-        <button onclick="window.location.href = '/home';">Back to Home</button>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link text-white" href="#">Tutee <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Profile
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Profile</a>
-              <a class="dropdown-item" href="#">Logout</a>
+<body style="background-color:LightBlue;">
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
             </div>
           </div>
         </div>
     </nav>
+
+
+    {% if not user.asked %}
     <div class="container">
-        <div class="column col-md-6 offset-md-3 justify-content-center p-4">
-            <h1>Tutee Ask Your Question!</h1>
+        <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
+            <h1 style="font-size:35px;"><b>Tutee, Ask Your Question!</b></h1>
             <form method='POST' class="column justify-content-center"> 
               {% csrf_token %}
                 <div class="form-group">
-                    <label for="Question">What is your question?</label>
+                    <label for="Question"><b>What is your question?</b></label>
                     <input type="question" class="form-control" name="Question">
                 </div>
                 <div class="form-group w-50">
-                    <label for="class">Class</label>
+                    <label for="class"><b>Class</b></label>
                     <select class="form-control" name="class">
                       {% for instance in classes %}
                         <option>{{instance}}</option>
                       {% endfor %}
-                        <!-- <option>CS3240</option>
-                        <option>STAT1601</option>
-                        <option>Not CS3240</option> -->
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Upload Image of Question:</label>
+                    <label for="exampleFormControlFile1"><b>Upload Image of Question:</b></label>
                     <input type="file" class="form-control-file" name="upload">
                 </div>
                 <div class="form-group">
-                    <label for="comments">Additional Comments:</label>
+                    <label for="comments"><b>Additional Comments:</b></label>
                     <textarea class="form-control" name="comments" rows="3"></textarea>
                   </div>
-                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
-                <!-- <a href="tuteeing/results" type="submit" class="btn btn-success btn-lg btn-block" role="button">Submit</a> -->
+                  <div style="margin-left:380px;">
+                <button type="submit" class="btn btn-light submit-btn">Submit</button>
+              </div>
             </form>
         </div>
     </div>
+    {% endif %}
 
+    {% if user.asked %}
+    <div class="container">
+        <div class="column col-md-6 offset-md-3 justify-content-center p-4 question-card">
+            <h1 style="font-size:35px;"><b>You Already Asked A Question!</b></h1>
+            <form method='POST' class="column justify-content-center"> 
+              {% csrf_token %}
+              <button type="button" onclick="window.location.href='tuteeing/results/rating/{{user.ratingPage}}'" class="btn btn-light submit-btn">Go to Results</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
 </body>
 </html>

@@ -1,0 +1,26 @@
+STATIC_URL = '/static/'
+.btn.btn-light{
+	border: 1px solid black;
+}
+.btn.btn-light:hover{
+	background-color: LightBlue;
+}
+.my-navbar{
+	background-color:background: rgb(0,128,128);
+background: linear-gradient(90deg, rgba(0,128,128,1) 0%, rgba(173,216,230,1) 38%);;
+}
+.go-home{
+	border:1px solid black;
+}
+.question-card{
+	background-color:Teal;
+	margin-top: 40px;
+	border: 1px solid black;
+	border-radius:10px;
+}
+.profile-btn{
+	/*opacity: .6;*/
+}
+.submit-btn{
+	border: 2px solid black;
+}
