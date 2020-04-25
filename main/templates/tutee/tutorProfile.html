@@ -12,13 +12,19 @@
 
 <body style = "background: LightBlue">
 <div id="wrapper">
-        <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
-          <div class="nav-item ">
-            <h1 class = "btn profile-btn"><b>{{tutor.firstname}} {{tutor.lastname}}'s Profile</b></h1>
-            </div>
+        <!--<nav class="navbar navbar-expand-lg my-navbar">-->
+        <!--<button class= "btn go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>-->
+          <!--<div class="nav-item ">-->
+            <!--</div>-->
 
-    </nav>
+    <!--</nav>-->
+    <nav class="navbar navbar-expand-lg my-navbar">
+            <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
+          <div class="nav-item ">
+              <h1 class = "btn profile-btn"><b>{{tutor.firstname}} {{tutor.lastname}}'s Profile</b></h1>
+
+            </div>
+        </nav>
 
     <div class="container-fluid">
     <div class="row">
@@ -34,23 +40,23 @@
                         <h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>Rating:</b></p></h5>
                         <h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>Total tutored:</b></p></h5>
                         <h5 class="title text-right" style = "margin-right:10px;"><p style = " font-size:20px;"><b>Bio:</b></p></h5>
-                        <h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>Classes taken:</b></p></h5>
+                        <!--<h5 class="title text-right" style = "margin-right:10px;"><p class = "line"style = "font-size:20px;"><b>Classes taken:</b></p></h5>-->
                     </div>
                     <div class = "col-5" style= "margin-left: -30px;">
-                        <h5 class="title"><p class = "line"style = " font-size:20px;"><b style = "color:LightBlue">{{tutor.computingID}}@virginia.edu</b></p></h5>
+                        <h5 class="title"><p class = "line"style = " font-size:18px;"><b style = "color:LightBlue">{{tutor.computingID}}@virginia.edu</b></p></h5>
                         <h5 class="title"><p class = "line"style = " font-size:20px;"><b style = "color:LightBlue">{{tutor.tutorRate}}</b></p></h5>
                         <h5 class="title"><p class = "line"style = " font-size:20px;"><b style = "color:LightBlue">{{tutor.timesTutored}}</b></p></h5>
                         <h5 class="title"><p style = " font-size:20px;"><b style = "color:LightBlue">{{tutor.bio}}</b></p></h5>
-                        <h5 class="title"><p class = "line"><b style = "color:LightBlue">{% for instance in tutor.classes %}
-                            <div class = "col">
-                            <li style = "color: LightBlue; font-size:20px;"> {{ instance }} </li>
-                            </div>
-                            {% endfor %}</b></p></h5>
+                        <!--<h5 class="title"><p class = "line"><b style = "color:LightBlue;">{% for instance in tutor.classes %}-->
+                            <!--<div class = "col">-->
+                            <!--<li style = "color: LightBlue; font-size:18px;"> {{ instance }} </li>-->
+                            <!--</div>-->
+                            <!--{% endfor %}</b></p></h5>-->
                     </div>
                     <div class = "col-2">
                     </div>
                 </div>
-                <div class = "row">
+                <div class = "row" style="padding-left: 30px; padding-top: 10px;">
                   <button onclick="window.location.href='/tuteeing/results'" type="button" class = "btn my-btn" style = "border: 2px solid LightBlue;"><b style = "color:LightBlue"><< Back to results</b></button>
                 </div>
              </div>

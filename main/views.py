@@ -403,6 +403,9 @@ def payment(request):
         tutee.balance = tutee.balance - amount
         tutee.save()
         o.balance = o.balance + amount
+        if tutee.balance < 0:
+            tutee.balance = 0
+            tutee.save()
         o.questionsReceived.remove(o.connection)
         o.connection = ""
         o.save()

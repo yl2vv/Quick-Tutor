@@ -73,7 +73,7 @@
       {% endif %}
 
       {% if tutee.tuteeStatus == "decline" %}
-        <h1 class="column offset-md-3 justify-content-center p-4">{{tutor.firstname}} declined your question :(</h1>
+        <h1 style="text-align: center; padding-top: 20px;">{{tutor.firstname}} declined your question :(</h1>
         <form method='POST' class="column justify-content-center">
           {% csrf_token %}
           <div class = "col text-center">

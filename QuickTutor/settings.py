@@ -98,9 +98,9 @@ WSGI_APPLICATION = 'QuickTutor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'quicktutor',
+        'NAME': 'quicktutor3',
         'USER': 'postgres',
-        'PASSWORD': 'adm!n1847',
+        'PASSWORD': 'hello',
         # 'NAME': 'quicktutor3',
         # 'USER': 'postgres',
         # 'PASSWORD': 'Jlim1400',

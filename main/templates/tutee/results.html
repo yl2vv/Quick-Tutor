@@ -29,7 +29,7 @@
 
     </nav>
     {% if not results %}
-    <h1> No Current Tutors</h1>
+    <h1 style="text-align: center; padding-top: 20px;"> No Current Tutors</h1>
     {% endif %}
     {% if results %}
     <table class="table table-hover">
@@ -56,7 +56,7 @@
                   <td>{{instance.phoneNumber}}</td>
                   <td>{{instance.bio}}</td>
                   <!-- Save the id of instance so I can Profile.objects.get() -->
-                  <td><button style = "color:Teal;font-size:17px; border: 2px solid LightBlue;" type="button" onclick="window.location.href='results/rating/{{instance.id}}'">select</button></td>
+                  <td><button style ="border: 2px solid Teal; border-radius: 5px;" type="button" onclick="window.location.href='results/rating/{{instance.id}}'"><b style = "color: Teal;">select</b></button></td>
               </tr>
             </form>
           {% endfor %}
