@@ -26,7 +26,7 @@ class Profile(models.Model):
     gpa = models.FloatField(default=0.0,blank=True)
     schoolYear = models.IntegerField(default=0,blank=True)
     classes = ListCharField(base_field=models.CharField(max_length=15),size=15,max_length= 240,blank=True)
-    bio = models.CharField(max_length=500,blank=False)
+    bio = models.CharField(max_length=80,blank=False)
     activeStatus = models.BooleanField(default=False) #Are they an active tutor
     connection = models.CharField(max_length=50,blank=True) #Who they are tutoring
     tutorRate = models.FloatField(default=0.0,blank=True) #the rating of tutor
@@ -42,8 +42,6 @@ class Question(models.Model):
     Question_text = models.CharField(default='',max_length=200)
     Class_text = models.CharField(default='',max_length=200)
     Comments_text = models.CharField(default='',max_length=10000)
-    #File_upload = models.ImageField()
-    #asker= models.CharField(default='',max_length=10000)
     person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.Question_text

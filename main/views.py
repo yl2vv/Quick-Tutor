@@ -280,7 +280,7 @@ def newprofile2(request):
         full_string = str(request.POST.get('Classes'))
         split_list = full_string.split(",")
         for i in split_list:
-            if re.match(r"[A-Z]{2,4}[0-9]{4}$",i):
+            if re.match(r"[A-Z]{2,4}[0-9]{4}$",i) and i not in o.classes:
                 o.classes.append(i)
                 o.save()
         return HttpResponseRedirect('newprofile2')
