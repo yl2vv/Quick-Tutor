@@ -181,6 +181,8 @@ function calculate(){
           <div class="nav-item ">
             <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
             </div>
+        <button type="button" class="btn btn-light" style="background: none!important; border: none; padding: none!important;" data-toggle="modal" data-target="#myModal"><b>Info</b></button>
+
 
     </nav>
 
@@ -258,7 +260,7 @@ function calculate(){
       <h4 class="modal-title">Info</h4>
     </div>
     <div class="modal-body">
-      <p>Once you get to {{tutee.firstname}}, press the Start/Stop button to begin/end the session. Once the session is over, press Calculate to determine your fee and Finish to transfer the funds!</p>
+      <p>Once you get to {{tutee.firstname}}'s location, press the Start/Stop button to begin/end the session. Once the session is over, press Calculate to determine your fee and then press Finish to transfer the funds!</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
