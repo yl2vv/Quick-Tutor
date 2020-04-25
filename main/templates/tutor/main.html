@@ -114,7 +114,6 @@
         <th scope="col">Tutee</th>
         <th scope="col">Class</th>
         <th scope="col">Question</th>
-        <th scope="col">Comment</th>
           <th scope="col"></th>
       </tr>
     </thead>
@@ -124,8 +123,7 @@
           <th scope="row">{{question.person.firstname}} {{question.person.lastname}}</th>
           <td>{{question.Class_text}}</td>
           <td>{{question.Question_text}}</td>
-          <td class ="demo"> <span>{{question.Comments_text}}</span></td>
-            <td><button style = "color:Teal;font-size:17px; border: 2px solid LightBlue;" type="button" onclick="window.location.href='question/{{question.person.id}}'">select</button></td>
+            <td><button  style = "border: 2px solid Teal; border-radius: 5px;" type="button" onclick="window.location.href='question/{{question.person.id}}'"><b style = "color: Teal;">select</b></button></td>
 
         </tr>
       {% endfor %}
