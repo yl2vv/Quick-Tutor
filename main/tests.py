@@ -5,10 +5,10 @@ from django.urls import resolve
 from allauth.socialaccount import models as socialmodel
 from django.urls import reverse
 
-from .models import Profile
+from .models import Profile, Question, Tutee
 from django.test.client import RequestFactory
-from .views import loggedin
-from django.contrib.auth.models import User, AnonymousUser
+from .views import loggedin, tuteeing, results
+from django.contrib.auth.models import User
 
 
 # Create your tests here.
@@ -32,6 +32,29 @@ class LoggedInViewTestCase(TestCase):
         resolver = resolve('/loggedIn')
         self.assertEqual(resolver.view_name, 'login:loggedin')
 
+class NewProfileTestCase(TestCase):
+
+    def test_new_profile_view(self):
+        resolver = resolve('/newprofile')
+        self.assertEqual(resolver.view_name, 'login:newprofile')
+
+class NewProfile1TestCase(TestCase):
+
+    def test_new_profile1_view(self):
+        resolver = resolve('/newprofile1')
+        self.assertEqual(resolver.view_name, 'login:newprofile1')
+
+class NewProfile2TestCase(TestCase):
+
+    def test_new_profile2_view(self):
+        resolver = resolve('/newprofile2')
+        self.assertEqual(resolver.view_name, 'login:newprofile2')
+
+class NewProfile3TestCase(TestCase):
+
+    def test_new_profile3_view(self):
+        resolver = resolve('/newprofile3')
+        self.assertEqual(resolver.view_name, 'login:newprofile3')
 
 class HomeViewTestCase(TestCase):
 
@@ -90,5 +113,25 @@ class LoginTestCase(TestCase):
         self.assertEqual(response.url, '/home')
 
 
+class TuteeingTestCase(TestCase):
+    def setUp(self) -> None:
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(username='testuser', email='test@quicktutor.com', password='password')
 
+    # def test_tuteeing(self):
+    #     request = self.factory.get('/home')
+    #     request.user = self.user
+    #     request.socialmodel = socialmodel.SocialAccount.objects.create(user=self.user)
+    #     request.Profile = Profile.objects.create(user=self.user, Uid="1", formCompleted=True)
+    #     response = tuteeing(request)
+    #     self.assertEqual(response.url, '/tuteeing/results')
 
+    # def test_results(self):
+    #     request = self.factory.get('/tutee')
+    #     request.user = self.user
+    #     request.socialmodel = socialmodel.SocialAccount.objects.create(user=self.user)
+    #     request.Profile = Profile.objects.create(user=self.user, Uid="1", classes="[CS3240]", formCompleted=True)
+    #     request.Question = Question.objects.create(Question_text="???", Class_text="CS3240", person=request.Profile)
+    #     request.Tutee = Tutee.objects.create(person=request.Profile, tuteeStatus="waiting", asked=True)
+    #     response = results(request)
+    #     self.assertEqual(response.url, '/tutee/results')
