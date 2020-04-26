@@ -113,6 +113,7 @@ def tutoring(request):
         questions = []
         for q in qr:
             tutee = Profile.objects.get(pk=q)
+            print(tutee)
             question = Question.objects.get(person=tutee)
             tutees.append(tutee)
             questions.append(question) 
@@ -144,7 +145,6 @@ def tuteeing(request):
         q = Question.objects.get(person = o)
         q.delete()
     #After clicking submit
-    print(Tutee.objects.get(person = o).asked)
     if request.method == "POST":
         #Get the user inputs
         question = request.POST.get('Question')
@@ -203,7 +203,7 @@ def rating(request, tutor_id):
     me = Profile.objects.get(user=request.user)
     tutee = Tutee.objects.get(person=me)
     if not (str(Profile.objects.get(user=request.user).id) in tutor.questionsReceived) :
-        if tutee.tuteeStatus != "rating":
+        if tutee.tuteeStatus != "rating" and tutee.tuteeStatus != "decline":
             tutor.questionsReceived.append(Profile.objects.get(user=request.user).id)
             tutor.save()
     tutee = Tutee.objects.get(person=me)
@@ -351,8 +351,6 @@ def question(request, tutee_id):
             o.save()
             return HttpResponseRedirect("/payment")
         elif 'decline' in request.POST:
-            print(o.questionsReceived)
-            print(Profile.objects.get(pk=tutee_id).id)
             o.questionsReceived.remove(str(Profile.objects.get(pk=tutee_id).id))
             o.save()
             t = Tutee.objects.get(person=tutee)

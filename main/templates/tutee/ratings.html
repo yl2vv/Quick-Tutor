@@ -28,7 +28,7 @@
       {% if tutee.tuteeStatus == "waiting" %}
         <form method='POST' class="column justify-content-center">
         {% csrf_token %}
-          <h1 class="title text-center" style = "margin-top: 50px; color: Teal;">Waiting for <b>{{tutor.firstname}}</b> to arrive...<p style = "font-size:14px; margin-top:30px;">Contact {{tutor.firstname}} for an update: {{tutor.computingID}}@virginia.edu</h1>
+          <h1 class="title text-center" style = "margin-top: 50px; color: Teal;">Waiting for <b>{{tutor.firstname}}</b> to respond...<p style = "font-size:14px; margin-top:30px;">Contact {{tutor.firstname}} for an update: {{tutor.computingID}}@virginia.edu</h1>
           <div class = "row">
             <div class = "col-4">
             </div>
@@ -40,7 +40,7 @@
         {% endif %}
 
       {% if tutee.tuteeStatus == "accept" %}
-        <h1 class="column offset-md-3 justify-content-center p-4">session with <b>{{tutor.firstname}}</b> in progress! </h1>
+        <h1 class="column offset-md-3 justify-content-center p-4">Session with <b>{{tutor.firstname}}</b> in progress! </h1>
       {% endif %}
 
       {% if tutee.tuteeStatus == "rating" %}
