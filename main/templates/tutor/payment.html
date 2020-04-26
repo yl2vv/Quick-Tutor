@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/tutee_question.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 <meta charset="utf-8">
 
 <meta charset="utf-8">
@@ -63,38 +65,6 @@
     text-align: center;
   }
 
-  .input-group-addon {
-    background-color: transparent;
-    border-left: 0;
-}
-
-.cc-number.identified {
-    background-repeat: no-repeat;
-	background-position-y: 3px;
-	background-position-x: 99%;
-}
-
-
-
-.one-card > div {
-    height: 150px;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-
-.two-card > div {
-    height: 80px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 48%;
-}
-
-.two-card div.amex-cvc-preview {
-    float: right;
-}
-
-
     </style>
 
 
@@ -135,8 +105,6 @@ function stopWatch(){
         }
 
     }
-
-    //If seconds/minutes/hours are only one digit, add a leading 0 to the value
     if(seconds < 10){
         displaySeconds = "0" + seconds.toString();
     }
@@ -157,14 +125,9 @@ function stopWatch(){
     else{
         displayHours = hours;
     }
-
-    //Display updated time values to user
     document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
 
 }
-
-
-
 function startStop(){
 
     if(status === "stopped"){
@@ -212,34 +175,22 @@ function calculate(){
 
 
 <body style="background-color:LightBlue;">
-<nav class="navbar navbar-expand-lg navbar-light my-navbar">
-    <nav class="navbar-brand text-white" >Tutoring</nav>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userprofile">Profile</a>
-      </li>
-
-    </ul>
-
-  </div>
-</nav>
+<div id="wrapper">
+        <nav class="navbar navbar-expand-lg my-navbar">
+            <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color:Teal">Home Page</b></button>
+          <div class="nav-item ">
+            <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';"><b>Your Profile</b></button>
+            </div>
+            <button type="button" class="btn btn-light" style="background: none!important; border: none; padding: none!important;" data-toggle="modal" data-target="#myModal"><b>Info</b></button>
+        </nav>
 
 
 <div class="container-fluid py-3">
     <div class="row">
         <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
-           <h3> {{tutee.firstname}}'s Payment</h3>
+           <h1 class = "title text-center"><b style = "color:Teal"> {{tutee.firstname}}'s Session Payment</b></h1>
             <div id="pay-invoice" class="card">
-                <div class="card-body">
+                <div class="card-body" style="border: 2px solid LightBlue;">
 
                     <div class="card-title">
 
@@ -247,10 +198,10 @@ function calculate(){
                             00:00:00
                         </div>
 
-                        <div class="buttons">
-                            <button class="btn btn-circle btn-light" id="startStop" onclick="startStop()">Start</button>
-                            <button class="btn btn-circle btn-light" id="reset" onclick="reset()">Reset</button>
-                            <button class="btn btn-circle btn-light" id="calculate" onclick="calculate()">Calculate</button>
+                        <div class="buttons" style="padding-bottom: 10px;">
+                            <button style = "color:Teal;font-size:17px; border: 2px solid LightBlue;" class="btn btn-sm btn-light" id="startStop" onclick="startStop()">Start</button>
+                            <button style = "color:Teal;font-size:17px; border: 2px solid LightBlue;" class="btn btn-sm btn-light" id="reset" onclick="reset()">Reset</button>
+                            <button style = "color:Teal;font-size:17px; border: 2px solid LightBlue;" class="btn btn-sm btn-light" id="calculate" onclick="calculate()">Calculate</button>
 
                         </div>
                     </div>
@@ -259,43 +210,34 @@ function calculate(){
                     {% csrf_token %}
 
 
-                        <div class="form-group">
+                        <div class="form-group" style="padding-left: 20px; padding-right:20px;">
                             <label for="Amount" class="control-label mb-1">Total Amount</label>
                             <input type="number" readonly class="form-control" id="amount" name="Amount" value=0.00>
                         </div>
 
+                        <!--MANUAL TIME INPUT-->
 
-
-
-
-                        <div class="row">
-                            <div class="col-4">
-                                    <label class="control-label mb-1">Hours</label>
-                                    <input  type="number" name="hours" id="hours" class="form-control cc-exp" value=0>
-                            </div>
-                            <div class="col-4">
-                                <label class="control-label mb-1">Minutes</label>
-                                <input type="number" name="minutes" id="minutes" class="form-control cc-cvc" value="0">
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label class="control-label mb-1">Seconds</label>
-                                    <input type="number" name="seconds" id="seconds" class="form-control cc-cvc" value="0">
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="form-group">-->
-                            <!--<label for="x_zip" class="control-label mb-1">Postal code</label>-->
-                            <!--<input id="x_zip" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the ZIP/Postal code" autocomplete="postal-code">-->
-                            <!--<span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-4">-->
+                                    <!--<label class="control-label mb-1">Hours</label>-->
+                                    <!--<input  type="number" name="hours" id="hours" class="form-control cc-exp" value=0>-->
+                            <!--</div>-->
+                            <!--<div class="col-4">-->
+                                <!--<label class="control-label mb-1">Minutes</label>-->
+                                <!--<input type="number" name="minutes" id="minutes" class="form-control cc-cvc" value="0">-->
+                            <!--</div>-->
+                            <!--<div class="col-4">-->
+                                <!--<div class="form-group">-->
+                                    <!--<label class="control-label mb-1">Seconds</label>-->
+                                    <!--<input type="number" name="seconds" id="seconds" class="form-control cc-cvc" value="0">-->
+                                <!--</div>-->
+                            <!--</div>-->
                         <!--</div>-->
-                         <!--<div class="form-group">-->
-                            <!--<label for="x_promotion" class="control-label mb-1">Promotion Code</label>-->
-                            <!--<input id="x_promotion" name="x_prom" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Promotion  code" >-->
-                            <!--<span class="help-block" data-valmsg-for="x_promotion" data-valmsg-replace="true"></span>-->
-                        <!--</div>-->
-                        <div>
-                            <button type="submit" class="btn btn-lg btn-secondary btn-block">Finish</button>
+
+                        <!--END TIME INPUT-->
+
+                        <div style="text-align: center;padding-top: 20px;">
+                            <button style = "color:Teal;font-size:17px; border: 2px solid LightBlue; width: 150px;" type="submit" class="btn btn-lg btn-light">Finish</button>
                         </div>
 
 
@@ -306,7 +248,27 @@ function calculate(){
     </div>
 </div>
 
+<!-- Modal (code gotten from https://www.w3schools.com/bootstrap/bootstrap_modal.asp)-->
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
 
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Info</h4>
+    </div>
+    <div class="modal-body">
+      <p>Once you get to {{tutee.firstname}}'s location, press the Start/Stop button to begin/end the session. Once the session is over, press Calculate to determine your fee and then press Finish to transfer the funds!</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>
 

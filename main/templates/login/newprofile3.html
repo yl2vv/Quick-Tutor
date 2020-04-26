@@ -8,47 +8,47 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
-    <!-- javascripts from Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
+
 </head>
 
 <body style = "background: LightBlue">
-    <div class = "container">
+<div id="wrapper">
+        <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b><b>Final Step!</b></h5>  
+                    <h5 class="title text-center"><b style = "color: LIghtBlue;">Final Step!</b></h5>
                     <form method='POST'>
                         {% csrf_token %}
 
                         <div class = "row">
-                            <div class = "col-6"><b>Graduation Year:</b>
+                            <div class = "col-6"><b style = "color: LIghtBlue;">Graduation Year</b>
                                 <div class="form-group" style = "width: 164px">
-                                <input type="newchoolYear" class="form-control" placeholder = "Ex: 2021" name="SchoolYear" style = "border: 1px solid black;">
+                                <input type="newchoolYear" class="form-control" placeholder = "Ex: 2021" name="SchoolYear" required>
                                 </div>
                             </div>
-                            <div class = "col-6"><b>GPA:</b>
+                            <div class = "col-6"><b style = "color: LIghtBlue;">GPA</b>
                                 <div class="form-group" style = "width: 159px">
-                                <input type="newGPA" class="form-control" placeholder = "Ex: 3.45" name="GPA" style = "border: 1px solid black;">
+                                <input type="newGPA" class="form-control" placeholder = "Ex: 3.45" name="GPA" required>
                                 </div>
                             </div>
                         </div>
                         <div class = "row">
-                        <b>Bio:</b>
-                            <textarea name = "Bio" placeholder = "A short bio about yourself" cols = "80" rows = "6" style = "border: 1px solid black;"></textarea>
+                        <b style = "color: LIghtBlue;">Bio:</b>
+                            <textarea name = "Bio" placeholder = "A short bio about yourself" cols = "80" rows = "3" maxlength="80"></textarea>
                         </div>
                         <div style= "float:right;">
-                            <button onclick="window.location.href = '/home';" type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top: 15px;">Submit</a></button>
+                            <button type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; color: LightBLue; margin-top: 15px;">Submit</a></button>
                         </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

@@ -7,44 +7,41 @@
 
     <!-- static/login_style.css -->
     <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 </head>
 
-<style>
-    form label{
-  font-weight:bold;
-}
-</style>
-
 <body style = "background: LightBlue">
-    <div class = "container">
+<div id="wrapper">
+        <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b>Next Step!</b></h5>  
-                    <form method='POST'><b>Contact information:</b>
+                    <h5 class="title text-center"><b style = "color: LightBLue;">Next Step!</b></h5>
+                    <form method='POST'>
                         {% csrf_token %}
-                        <div class = "row">
+                        <div class = "row" style = "margin-top: 50px;">
                             <div class = "col-6">
                                 <div class="form-group" style = "width: 164px">
-                                <input type="newPhoneNumber" class="form-control" placeholder = "Cell Phone Number" name="PhoneNumber" style = "border: 1px solid black;">
+                                <input type="newPhoneNumber" class="form-control" placeholder = "Cell Phone Number" name="PhoneNumber" required>
                                 </div>
                             </div>
                             <div class = "col-6">
                                 <div class="form-group" style = "width: 159px">
-                                <input type="newcomputingID" class="form-control" placeholder = "Computing ID" name="ComputingID" style = "border: 1px solid black;">
+                                <input type="newcomputingID" class="form-control" placeholder = "Computing ID" name="ComputingID" required>
                                 </div>
                             </div>
                         </div>
                         <div style= "float:right;">
-                            <button onclick="window.location.href = '/newprofile2';" type="submit" class = "btn btn-light" style = "border: 2px solid black;">Next</a></button>
+                            <button type="submit" class = "btn btn-light" style = "border: 2px solid LightBlue; color: LightBlue; margin-top: 20px;">Next</a></button>
                         </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

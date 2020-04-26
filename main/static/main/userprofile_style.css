@@ -11,7 +11,7 @@ body{
 	top: -45px;
 	margin-left: -75px;
 	margin-right: 195px;
-	background-color: black;
+	background-color: White;
 	border-radius: 30px;
 	padding: 5px;
 	text-align: center;
@@ -54,10 +54,9 @@ img{
 	justify-content: center;
 	flex-direction: column;
 	padding: 10px;
-	border: 1px solid black;
-	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 10px;
 }
 .top_layer .title{
@@ -93,8 +92,14 @@ p.line{
 	line-height: .05;
 }
 .my-btn{
-	border:1px solid black;
+	border:2px solid LightBlue;
 }
 .my-btn:hover{
+	background-color:white;
+}
+.go-home{
+	background-color:white;
+}
+.go-home:hover{
 	background-color:LightBlue;
 }

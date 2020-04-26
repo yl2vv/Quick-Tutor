@@ -26,13 +26,14 @@ class Profile(models.Model):
     gpa = models.FloatField(default=0.0,blank=True)
     schoolYear = models.IntegerField(default=0,blank=True)
     classes = ListCharField(base_field=models.CharField(max_length=15),size=15,max_length= 240,blank=True)
-    bio = models.CharField(max_length=500,blank=True)
+    bio = models.CharField(max_length=80,blank=False)
     activeStatus = models.BooleanField(default=False) #Are they an active tutor
     connection = models.CharField(max_length=50,blank=True) #Who they are tutoring
     tutorRate = models.FloatField(default=0.0,blank=True) #the rating of tutor
     compositeRating = models.IntegerField(default=0, blank=True) #total score recieved to calculate rating
     timesTutored = models.IntegerField(default=0,blank=True) #the number of times tutored
     balance = models.FloatField(default=0.0,blank=True) #the person's current balance
+    questionsReceived = ListCharField(base_field=models.CharField(max_length=15),size=15,max_length= 240,blank=True)
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
@@ -41,8 +42,6 @@ class Question(models.Model):
     Question_text = models.CharField(default='',max_length=200)
     Class_text = models.CharField(default='',max_length=200)
     Comments_text = models.CharField(default='',max_length=10000)
-    File_upload = models.ImageField()
-    #asker= models.CharField(default='',max_length=10000)
     person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.Question_text
@@ -58,7 +57,7 @@ class Question(models.Model):
 
 class Tutee(models.Model):
     person = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
-    tuteeStatus = models.CharField(default="none", max_length=10) #current status of tutee // none, waiting, accept, rating
+    tuteeStatus = models.CharField(default="none", max_length=10) #current status of tutee // none, waiting, accept, rating, decline
     timesTuteed = models.IntegerField(default=0,blank=True) #the number of times got help
     ratingPage = models.CharField(default="", max_length=100) #stores ratings page id
     asked = models.BooleanField(default=False) #Did they ask a question already?

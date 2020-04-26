@@ -11,18 +11,13 @@ body,html{
 	margin-left: -75px;
 	margin-right: 195px;
 	border-radius: 300px;
-	background-color: black;
+	background-color: White;
 	padding: 5px;
 	text-align: center;
 		box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
 }
-
-/*.img{
-	border-radius: 20px;
-}*/
-
 
 img{
 	max-width: 100%;
@@ -52,7 +47,6 @@ img{
 	margin-bottom: auto;
 	background: #008080;
 	position: relative;
-	border: 1px solid black;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -80,8 +74,8 @@ img{
     font-weight: 300;
     text-align: center; 
     background-color: Teal;
-    border: 2px solid black;
+    border: 2px solid LightBLue;
 } 
 .btn-circle.btn-xl:hover{
-	background-color: Black;
+	background-color: white;
 }

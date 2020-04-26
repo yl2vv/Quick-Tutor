@@ -1,26 +1,28 @@
 STATIC_URL = '/static/'
-.btn.btn-light{
-	border: 1px solid black;
+.btn.my-btn{
+	background-color:Teal;
 }
-.btn.btn-light:hover{
-	background-color: LightBlue;
+.btn.my-btn:hover{
+	background-color:white;
 }
 .my-navbar{
 	background-color:background: rgb(0,128,128);
 background: linear-gradient(90deg, rgba(0,128,128,1) 0%, rgba(173,216,230,1) 38%);;
 }
-.go-home{
-	border:1px solid black;
-}
+
 .question-card{
 	background-color:Teal;
 	margin-top: 40px;
-	border: 1px solid black;
 	border-radius:10px;
-}
-.profile-btn{
-	/*opacity: .6;*/
+	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.2), 0 25px 25px 0 rgba(0, 0, 0, 0.19);
+
 }
 .submit-btn{
-	border: 2px solid black;
+	border: 2px solid LightBlue;
+	background-color: Teal;
+}
+.submit-btn:hover{
+	background-color: white;
 }

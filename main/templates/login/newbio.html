@@ -7,43 +7,49 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- static/login_style.css -->
-    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/userprofile_style.css'%}">
-    <!-- javascripts from Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/createprofile_style.css'%}">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main/footer.css'%}">
 </head>
 
 <body style = "background: LightBlue">
-    <nav class="navbar navbar-expand-lg my-navbar">
-        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';">Home Page</button>
+<div id="wrapper">
+        <nav class="navbar navbar-expand-lg my-navbar">
+        <button class= "btn btn-light go-home" onclick="window.location.href = '/home';"><b style = "color: Teal">Home Page</b></button>
           <div class="nav-item ">
             <button class = "btn profile-btn" onclick="window.location.href = '/userprofile';">Your Profile</button>
             </div>
-          </div>
-        </div>
+
     </nav>
     <div class = "container">
         <div class = "row">
             <div class= "col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class= "card top_layer my_5">
                     <div class = "body">
-                    <h5 class="title text-center"><b>Update your bio!</b></h5>  
+                    <h5 class="title text-center"><b style = "color: LightBlue">Update your bio!</b></h5>
                     <form method='POST'>
                         {% csrf_token %}
                         <div class = "row">
-                        <b>Bio:</b>
-                            <textarea name = "Bio" placeholder = "A short bio about yourself" cols = "80" rows = "6" style = "border: 1px solid black;"></textarea>
+                            <textarea name = "Bio" placeholder = "My new bio" cols = "80" rows = "3" maxlength="80"></textarea>
                         </div>
-                        <div style= "float:right;">
-                            <button onclick="window.location.href = '/home';" type= "submit" class = "btn btn-circle btn-light" style = "border: 2px solid black; margin-top: 15px;">Update</a></button>
+                        <div class = "row" style = "margin-top: 30px;">
+                            <div class = "col-8">
+                                <div style= "float:left;">
+                                    <button type= "submit" name = "back" value = "back" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; margin-top: 15px;"><b style = "color: LightBlue"><< Your Profile</b></a></button>
+                                </div>
+                            </div>
+                            <div class = "col-4">
+                                <div style= "float:right;">
+                                    <button type= "submit" name = "update" value = "update" class = "btn btn-circle btn-light" style = "border: 2px solid LightBlue; margin-top: 15px;"><b style = "color: LightBlue"> Update</b></a></button>
+                                </div>
+                            </div>
                         </div>
-                    </form>  
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+<footer>Copyright &copy; 2020 All Rights Reserved by quickTutor</footer>
 </body>
 </html>

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import sys
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -99,9 +101,6 @@ DATABASES = {
         'NAME': 'quicktutor',
         'USER': 'postgres',
         'PASSWORD': 'adm!n1847',
-        # 'NAME': 'quicktutor2',
-        # 'USER': 'postgres',
-        # 'PASSWORD': '10721744Cross!',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
